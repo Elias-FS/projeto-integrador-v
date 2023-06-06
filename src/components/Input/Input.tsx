@@ -1,9 +1,9 @@
 import styles from './Input.module.css';
 
-export function InputText(props) {
+export function InputText(props: any) {
   const placeholderModificada = `${props.placeholder}`;
 
-  const aoDigitado = (evento) => {
+  const aoDigitado = (evento: any) => {
     props.aoAlterado(evento.target.value);
   };
   return (

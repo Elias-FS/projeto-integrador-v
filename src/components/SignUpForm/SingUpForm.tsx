@@ -1,0 +1,143 @@
+import React, { useState } from "react";
+import { InputText } from "../Input/Input";
+import styles from "./SignUpForm.module.css";
+import { MenuItem } from "../DropBox/MenuItem";
+import { DropBox } from "../DropBox/DropBox";
+
+export function SignUpForm() {
+  const [email, setEmail] = useState<string>("");
+  const [senha, setSenha] = useState<string>("");
+  const [celular, setCelular] = useState<string>("");
+  const [cep, setCep] = useState<string>("");
+  const [bairro, setBairro] = useState<string>("");
+  const [rua, setRua] = useState<string>("");
+
+  const estados = [
+    { value: "acre", label: "Acre" },
+    { value: "alagoas", label: "Alagoas" },
+    { value: "amapa", label: "Amapá" },
+    { value: "amazonas", label: "Amazonas" },
+    { value: "bahia", label: "Bahia" },
+    { value: "ceara", label: "Ceará" },
+    { value: "distrito_federal", label: "Distrito Federal" },
+    { value: "espirito_santo", label: "Espírito Santo" },
+    { value: "goias", label: "Goiás" },
+    { value: "maranhao", label: "Maranhão" },
+    { value: "mato_grosso", label: "Mato Grosso" },
+    { value: "mato_grosso_do_sul", label: "Mato Grosso do Sul" },
+    { value: "minas_gerais", label: "Minas Gerais" },
+    { value: "para", label: "Pará" },
+    { value: "paraiba", label: "Paraíba" },
+    { value: "parana", label: "Paraná" },
+    { value: "pernambuco", label: "Pernambuco" },
+    { value: "piaui", label: "Piauí" },
+    { value: "rio_de_janeiro", label: "Rio de Janeiro" },
+    { value: "rio_grande_do_norte", label: "Rio Grande do Norte" },
+    { value: "rio_grande_do_sul", label: "Rio Grande do Sul" },
+    { value: "rondonia", label: "Rondônia" },
+    { value: "roraima", label: "Roraima" },
+    { value: "santa_catarina", label: "Santa Catarina" },
+    { value: "sao_paulo", label: "São Paulo" },
+    { value: "sergipe", label: "Sergipe" },
+    { value: "tocantins", label: "Tocantins" },
+  ];
+
+  const colaborador = [
+    { value: "sim", label: "Sim" },
+    { value: "nao", label: "Não" },
+  ];
+
+  const profissao = [
+    { value: "mecanico", label: "Mecânico" },
+    { value: "borracheiro", label: "Borracheiro" },
+    { value: "funileiro", label: "Funileiro" },
+  ];
+
+  return (
+    <div className={styles.signupContainer}>
+      <form className={styles.signupForm}>
+        <div className={styles.grid_container}>
+          <div className={styles.item1}>
+            <h1>Cadastro</h1>
+          </div>
+          <div className={styles.item3}>
+            <InputText
+              obrigatorio={true}
+              label="E-mail *"
+              placeholder="Digite seu E-mail"
+              valor={email}
+              type={"email"}
+              aoAlterado={(valorEmail: string) => setEmail(valorEmail)}
+            />
+            <InputText
+              obrigatorio={true}
+              label="Senha *"
+              placeholder="Digite sua Senha"
+              valor={senha}
+              type={"password"}
+              aoAlterado={(valorSenha: string) => setSenha(valorSenha)}
+            />
+            <InputText
+              obrigatorio={true}
+              label="Celular *"
+              placeholder="Digite seu Número"
+              valor={celular}
+              type={"tel"}
+              aoAlterado={(valorCeluar: string) => setCelular(valorCeluar)}
+            />
+            <InputText
+              obrigatorio={true}
+              label="CEP *"
+              placeholder="Digite seu CEP"
+              valor={cep}
+              type={"text"}
+              aoAlterado={(valorCep: string) => setCep(valorCep)}
+            />
+            <InputText
+              obrigatorio={true}
+              label="Bairro *"
+              placeholder="Digite seu Bairro"
+              valor={bairro}
+              type={"text"}
+              aoAlterado={(valorBairro: string) => setBairro(valorBairro)}
+            />
+            <InputText
+              obrigatorio={true}
+              label="Rua *"
+              placeholder="Digite sua Rua"
+              valor={rua}
+              type={"text"}
+              aoAlterado={(valorRua: string) => setRua(valorRua)}
+            />
+          </div>
+          <div className={styles.item4}>
+            <DropBox
+              label="Estado"
+              values={estados.map((option) => (
+                <MenuItem name={option.value} value={option.label} />
+              ))}
+            ></DropBox>
+
+            <DropBox
+              label="Colaborador"
+              values={colaborador.map((option) => (
+                <MenuItem name={option.value} value={option.label} />
+              ))}
+            ></DropBox>
+
+            <DropBox
+              label="Profissão"
+              values={profissao.map((option) => (
+                <MenuItem name={option.value} value={option.label} />
+              ))}
+            ></DropBox>
+            <p className={styles.helptext}>
+              " * " - Campos Obrigatórios
+            </p>
+            <button className={styles.signupButton}>Cadastrar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+}

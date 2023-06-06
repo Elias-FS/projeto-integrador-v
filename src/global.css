@@ -9,11 +9,16 @@
   --gray-900: #121214;
 
   --blue-100: #E0EFFE;
+  --blue-300: #00C2FF;
   --blue-700: #007DFA;
 
-  --red-100: #F08C8F;
-  --red-300: #E31E24;
+  --red-100: #ffeced;
+  --red-300: #ff5157;
   --red-700: #7C080C;
+
+  --green-100: #e4fde1;
+  --green-300: #4BC85A;
+  --green-700: #025C4C;
 }
 
 * {

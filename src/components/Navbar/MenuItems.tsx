@@ -6,7 +6,7 @@ export const MenuItems = [
   },
   {
     title: "Cadastrar",
-    url: "#section2",
+    url: "/signup",
     cName: "nav-links",
   },
   {
