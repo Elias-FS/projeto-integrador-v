@@ -6,12 +6,14 @@ import { DropBox } from "../DropBox/DropBox";
 import api from "../../services/api";
 
 export function SignUpForm() {
+  const [nome, setNome] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [senha, setSenha] = useState<string>("");
   const [celular, setCelular] = useState<string>("");
   const [cep, setCep] = useState<string>("");
   const [bairro, setBairro] = useState<string>("");
   const [rua, setRua] = useState<string>("");
+  const [data, setData] = useState<string>("");
   const [estadoSelecionado, setEstadoSelecionado] = useState<string>("");
   const [colaboradorSelecionado, setColaboradorSelecionado] =
     useState<string>("");
@@ -59,18 +61,20 @@ export function SignUpForm() {
   ];
 
   const click = () => {
-    console.log(estadoSelecionado)
-    console.log(colaboradorSelecionado)
-    console.log(profissaoSelecionado)
+    console.log(estadoSelecionado);
+    console.log(colaboradorSelecionado);
+    console.log(profissaoSelecionado);
 
     api
       .post("alunos", {
+        nome_completo: nome,
         email: email,
         senha: senha,
         celular: email,
         cep: cep,
         bairro: bairro,
         rua: rua,
+        data_nasc: data,
         estado: estadoSelecionado,
         empregado: colaboradorSelecionado,
         area_profissao: profissaoSelecionado,
@@ -88,6 +92,14 @@ export function SignUpForm() {
             <h1>Cadastro</h1>
           </div>
           <div className={styles.item3}>
+            <InputText
+              obrigatorio={true}
+              label="Nome Completo *"
+              placeholder="Digite seu Nome"
+              valor={nome}
+              type={"text"}
+              aoAlterado={(valorNome: string) => setNome(valorNome)}
+            />
             <InputText
               obrigatorio={true}
               label="E-mail *"
@@ -128,6 +140,8 @@ export function SignUpForm() {
               type={"text"}
               aoAlterado={(valorBairro: string) => setBairro(valorBairro)}
             />
+          </div>
+          <div className={styles.item4}>
             <InputText
               obrigatorio={true}
               label="Rua *"
@@ -136,12 +150,18 @@ export function SignUpForm() {
               type={"text"}
               aoAlterado={(valorRua: string) => setRua(valorRua)}
             />
-          </div>
-          <div className={styles.item4}>
+            <InputText
+              obrigatorio={true}
+              label="Data de Nascimento *"
+              placeholder="Digite sua Data de Nascimento"
+              valor={data}
+              type={"text"}
+              aoAlterado={(valorData: string) => setData(valorData)}
+            />
             <DropBox
               valor={estadoSelecionado}
               aoAlterado={(est: string) => setEstadoSelecionado(est)}
-              label="Estado"
+              label="Estado *"
               values={estados.map((option) => (
                 <MenuItem name={option.value} value={option.label} />
               ))}
@@ -150,7 +170,7 @@ export function SignUpForm() {
             <DropBox
               valor={colaboradorSelecionado}
               aoAlterado={(col: string) => setColaboradorSelecionado(col)}
-              label="Colaborador"
+              label="Colaborador *"
               values={colaborador.map((option) => (
                 <MenuItem name={option.value} value={option.label} />
               ))}
@@ -158,7 +178,7 @@ export function SignUpForm() {
             <DropBox
               valor={profissaoSelecionado}
               aoAlterado={(pro: string) => setProfissaoSelecionado(pro)}
-              label="Profissão"
+              label="Profissão *"
               values={profissao.map((option) => (
                 <MenuItem name={option.value} value={option.label} />
               ))}
