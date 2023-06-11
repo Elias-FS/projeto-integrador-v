@@ -3,6 +3,7 @@ import { InputText } from "../Input/Input";
 import styles from "./SignUpForm.module.css";
 import { MenuItem } from "../DropBox/MenuItem";
 import { DropBox } from "../DropBox/DropBox";
+import api from "../../services/api";
 
 export function SignUpForm() {
   const [email, setEmail] = useState<string>("");
@@ -11,6 +12,10 @@ export function SignUpForm() {
   const [cep, setCep] = useState<string>("");
   const [bairro, setBairro] = useState<string>("");
   const [rua, setRua] = useState<string>("");
+  const [estadoSelecionado, setEstadoSelecionado] = useState<string>("");
+  const [colaboradorSelecionado, setColaboradorSelecionado] =
+    useState<string>("");
+  const [profissaoSelecionado, setProfissaoSelecionado] = useState<string>("");
 
   const estados = [
     { value: "acre", label: "Acre" },
@@ -52,6 +57,28 @@ export function SignUpForm() {
     { value: "borracheiro", label: "Borracheiro" },
     { value: "funileiro", label: "Funileiro" },
   ];
+
+  const click = () => {
+    console.log(estadoSelecionado)
+    console.log(colaboradorSelecionado)
+    console.log(profissaoSelecionado)
+
+    api
+      .post("alunos", {
+        email: email,
+        senha: senha,
+        celular: email,
+        cep: cep,
+        bairro: bairro,
+        rua: rua,
+        estado: estadoSelecionado,
+        empregado: colaboradorSelecionado,
+        area_profissao: profissaoSelecionado,
+      })
+      .catch((err: String) => {
+        console.error("ops! ocorreu um erro " + err);
+      });
+  };
 
   return (
     <div className={styles.signupContainer}>
@@ -112,6 +139,8 @@ export function SignUpForm() {
           </div>
           <div className={styles.item4}>
             <DropBox
+              valor={estadoSelecionado}
+              aoAlterado={(est: string) => setEstadoSelecionado(est)}
               label="Estado"
               values={estados.map((option) => (
                 <MenuItem name={option.value} value={option.label} />
@@ -119,22 +148,25 @@ export function SignUpForm() {
             ></DropBox>
 
             <DropBox
+              valor={colaboradorSelecionado}
+              aoAlterado={(col: string) => setColaboradorSelecionado(col)}
               label="Colaborador"
               values={colaborador.map((option) => (
                 <MenuItem name={option.value} value={option.label} />
               ))}
             ></DropBox>
-
             <DropBox
+              valor={profissaoSelecionado}
+              aoAlterado={(pro: string) => setProfissaoSelecionado(pro)}
               label="Profissão"
               values={profissao.map((option) => (
                 <MenuItem name={option.value} value={option.label} />
               ))}
             ></DropBox>
-            <p className={styles.helptext}>
-              " * " - Campos Obrigatórios
-            </p>
-            <button className={styles.signupButton}>Cadastrar</button>
+            <p className={styles.helptext}>" * " - Campos Obrigatórios</p>
+            <button onClick={click} className={styles.signupButton}>
+              Cadastrar
+            </button>
           </div>
         </div>
       </form>
