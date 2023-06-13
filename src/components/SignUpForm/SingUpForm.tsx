@@ -61,16 +61,13 @@ export function SignUpForm() {
   ];
 
   const click = () => {
-    console.log(estadoSelecionado);
-    console.log(colaboradorSelecionado);
-    console.log(profissaoSelecionado);
 
     api
       .post("alunos", {
         nome_completo: nome,
         email: email,
         senha: senha,
-        celular: email,
+        celular: celular,
         cep: cep,
         bairro: bairro,
         rua: rua,
@@ -79,7 +76,7 @@ export function SignUpForm() {
         empregado: colaboradorSelecionado,
         area_profissao: profissaoSelecionado,
       })
-      .catch((err: String) => {
+      .catch((err: string) => {
         console.error("ops! ocorreu um erro " + err);
       });
   };
