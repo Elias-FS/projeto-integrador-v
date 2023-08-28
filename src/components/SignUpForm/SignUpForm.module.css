@@ -53,3 +53,17 @@
   margin-top: 10px;
   text-align: right;
 }
+
+.cepEstado {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* You can adjust the widths as needed */
+.cepEstado .inputField {
+  width: 48%; /* Adjust as needed */
+}
+
+.cepEstado .dropboxField {
+  width: 48%; /* Adjust as needed */
+}
