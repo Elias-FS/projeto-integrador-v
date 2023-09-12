@@ -26,7 +26,7 @@
 }
 
 .inputBox input:focus {
-  border: 3px solid var(--blue-100);
+  border: 1.5px solid var(--blue-100);
   box-shadow: 0px 0px 3px var(--blue-300);
 }
 

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { InputText } from "../Input/Input";
 import styles from "./SignUpForm.module.css";
 import { MenuItem } from "../DropBox/MenuItem";
 import { DropBox } from "../DropBox/DropBox";
 import api from "../../services/api";
+import axios from "axios";
 
 export function SignUpForm() {
   const [nome, setNome] = useState<string>("");
@@ -18,36 +19,37 @@ export function SignUpForm() {
   const [colaboradorSelecionado, setColaboradorSelecionado] =
     useState<string>("");
   const [profissaoSelecionado, setProfissaoSelecionado] = useState<string>("");
-
+  
   const estados = [
-    { value: "acre", label: "Acre" },
-    { value: "alagoas", label: "Alagoas" },
-    { value: "amapa", label: "Amapá" },
-    { value: "amazonas", label: "Amazonas" },
-    { value: "bahia", label: "Bahia" },
-    { value: "ceara", label: "Ceará" },
-    { value: "distrito_federal", label: "Distrito Federal" },
-    { value: "espirito_santo", label: "Espírito Santo" },
-    { value: "goias", label: "Goiás" },
-    { value: "maranhao", label: "Maranhão" },
-    { value: "mato_grosso", label: "Mato Grosso" },
-    { value: "mato_grosso_do_sul", label: "Mato Grosso do Sul" },
-    { value: "minas_gerais", label: "Minas Gerais" },
-    { value: "para", label: "Pará" },
-    { value: "paraiba", label: "Paraíba" },
-    { value: "parana", label: "Paraná" },
-    { value: "pernambuco", label: "Pernambuco" },
-    { value: "piaui", label: "Piauí" },
-    { value: "rio_de_janeiro", label: "Rio de Janeiro" },
-    { value: "rio_grande_do_norte", label: "Rio Grande do Norte" },
-    { value: "rio_grande_do_sul", label: "Rio Grande do Sul" },
-    { value: "rondonia", label: "Rondônia" },
-    { value: "roraima", label: "Roraima" },
-    { value: "santa_catarina", label: "Santa Catarina" },
-    { value: "sao_paulo", label: "São Paulo" },
-    { value: "sergipe", label: "Sergipe" },
-    { value: "tocantins", label: "Tocantins" },
+    { value: "acre", label: "Acre", uf: "AC" },
+    { value: "alagoas", label: "Alagoas", uf: "AL" },
+    { value: "amapa", label: "Amapá", uf: "AP" },
+    { value: "amazonas", label: "Amazonas", uf: "AM" },
+    { value: "bahia", label: "Bahia", uf: "BA" },
+    { value: "ceara", label: "Ceará", uf: "CE" },
+    { value: "distrito_federal", label: "Distrito Federal", uf: "DF" },
+    { value: "espirito_santo", label: "Espírito Santo", uf: "ES" },
+    { value: "goias", label: "Goiás", uf: "GO" },
+    { value: "maranhao", label: "Maranhão", uf: "MA" },
+    { value: "mato_grosso", label: "Mato Grosso", uf: "MT" },
+    { value: "mato_grosso_do_sul", label: "Mato Grosso do Sul", uf: "MS" },
+    { value: "minas_gerais", label: "Minas Gerais", uf: "MG" },
+    { value: "para", label: "Pará", uf: "PA" },
+    { value: "paraiba", label: "Paraíba", uf: "PB" },
+    { value: "parana", label: "Paraná", uf: "PR" },
+    { value: "pernambuco", label: "Pernambuco", uf: "PE" },
+    { value: "piaui", label: "Piauí", uf: "PI" },
+    { value: "rio_de_janeiro", label: "Rio de Janeiro", uf: "RJ" },
+    { value: "rio_grande_do_norte", label: "Rio Grande do Norte", uf: "RN" },
+    { value: "rio_grande_do_sul", label: "Rio Grande do Sul", uf: "RS" },
+    { value: "rondonia", label: "Rondônia", uf: "RO" },
+    { value: "roraima", label: "Roraima", uf: "RR" },
+    { value: "santa_catarina", label: "Santa Catarina", uf: "SC" },
+    { value: "sao_paulo", label: "São Paulo", uf: "SP" },
+    { value: "sergipe", label: "Sergipe", uf: "SE" },
+    { value: "tocantins", label: "Tocantins", uf: "TO" },
   ];
+  
 
   const colaborador = [
     { value: "sim", label: "Sim" },
@@ -60,8 +62,35 @@ export function SignUpForm() {
     { value: "funileiro", label: "Funileiro" },
   ];
 
-  const click = () => {
+  // Function to fetch address details using VIACEP API
+  const fetchAddressDetails = async (cep: string) => {
+    try {
+      const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+      const data = response.data;
 
+      // Update the state with the fetched address details
+      setBairro(data.bairro);
+      setRua(data.logradouro);
+
+      estados.map((option) => {
+        if (option.uf == data.uf) {
+          setEstadoSelecionado(option.value)
+          console.log("data " , data.uf)
+          console.log("option " , option.uf)
+        }
+
+      });
+
+      
+
+      // You can set other relevant fields here as well
+    } catch (error) {
+      console.error("Error fetching address:", error);
+      // Handle the error as needed
+    }
+  };
+
+  const click = () => {
     api
       .post("alunos", {
         nome_completo: nome,
@@ -123,37 +152,30 @@ export function SignUpForm() {
             />
             <InputText
               obrigatorio={true}
-              label="CEP *"
-              placeholder="Digite seu CEP"
-              valor={cep}
-              type={"text"}
-              aoAlterado={(valorCep: string) => setCep(valorCep)}
-            />
-            <InputText
-              obrigatorio={true}
-              label="Bairro *"
-              placeholder="Digite seu Bairro"
-              valor={bairro}
-              type={"text"}
-              aoAlterado={(valorBairro: string) => setBairro(valorBairro)}
-            />
-          </div>
-          <div className={styles.item4}>
-            <InputText
-              obrigatorio={true}
-              label="Rua *"
-              placeholder="Digite sua Rua"
-              valor={rua}
-              type={"text"}
-              aoAlterado={(valorRua: string) => setRua(valorRua)}
-            />
-            <InputText
-              obrigatorio={true}
               label="Data de Nascimento *"
               placeholder="Digite sua Data de Nascimento"
               valor={data}
               type={"text"}
               aoAlterado={(valorData: string) => setData(valorData)}
+            />
+          </div>
+          <div></div>
+          <div className={styles.item4}>
+            <InputText
+              obrigatorio={true}
+              label="CEP *"
+              placeholder="Digite seu CEP"
+              valor={cep}
+              type={"text"}
+              aoAlterado={async (valorCep: string) => {
+                // Update the CEP state
+                setCep(valorCep);
+
+                // Call fetchAddressDetails if the entered value is a valid CEP
+                if (/^\d{5}-?\d{3}$/.test(valorCep)) {
+                  await fetchAddressDetails(valorCep);
+                }
+              }}
             />
             <DropBox
               valor={estadoSelecionado}
@@ -163,6 +185,22 @@ export function SignUpForm() {
                 <MenuItem name={option.value} value={option.label} />
               ))}
             ></DropBox>
+            <InputText
+              obrigatorio={true}
+              label="Bairro *"
+              placeholder="Digite seu Bairro"
+              valor={bairro}
+              type={"text"}
+              aoAlterado={(valorBairro: string) => setBairro(valorBairro)}
+            />
+            <InputText
+              obrigatorio={true}
+              label="Rua *"
+              placeholder="Digite sua Rua"
+              valor={rua}
+              type={"text"}
+              aoAlterado={(valorRua: string) => setRua(valorRua)}
+            />
 
             <DropBox
               valor={colaboradorSelecionado}
