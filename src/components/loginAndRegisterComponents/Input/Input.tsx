@@ -1,5 +1,6 @@
 import styles from './Input.module.css';
 
+
 export function InputText(props: any) {
   const placeholderModificada = `${props.placeholder}`;
 
@@ -9,7 +10,7 @@ export function InputText(props: any) {
   return (
     <div className={styles.inputBox}>
       <label>{props.label}</label>
-      <input
+      <input className="border border-zinc-300 rounded-lg focus:border focus:border-blue-300"
         type={props.type}
         value={props.valor}
         onChange={aoDigitado}

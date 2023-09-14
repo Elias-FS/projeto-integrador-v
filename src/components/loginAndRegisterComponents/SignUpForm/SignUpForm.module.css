@@ -4,13 +4,13 @@
     margin-top: 0px;
   }
   
-  .signupContainer h1 {
+  /* .signupContainer h1 {
     text-align: center;
     justify-content: center;
     display: flex;
     color: var(--gray-900);
   }
-  
+   */
   .signupButton {
     margin-top: 25px;
     width: 100%;

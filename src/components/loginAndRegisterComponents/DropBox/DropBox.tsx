@@ -10,7 +10,7 @@ export function DropBox(this: any, props: any) {
   return (
     <div className={styles.dropBox}>
       <label>{props.label}</label>
-      <select value={props.valor} onChange={aoSelecionado}>
+      <select value={props.valor} className="border border-zinc-300 rounded-lg focus:border focus:border-blue-300"onChange={aoSelecionado}>
       <option value="" disabled selected>Selecione uma opção</option>
         {props.values}
       </select>

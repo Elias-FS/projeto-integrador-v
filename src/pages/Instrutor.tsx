@@ -1,6 +1,6 @@
-import React from 'react';
-import { LoginForm } from '../components/LoginForm/LoginForm';
-import { Navbar } from '../components/Navbar/Navbar';
+import React from "react";
+import { LoginForm } from "../components/loginAndRegisterComponents/LoginForm/LoginForm";
+import { Navbar } from "../components/loginAndRegisterComponents/Navbar/Navbar";
 
 const Instrutor: React.FC = () => {
   return (

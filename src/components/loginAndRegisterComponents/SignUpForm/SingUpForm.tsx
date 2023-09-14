@@ -3,8 +3,9 @@ import { InputText } from "../Input/Input";
 import styles from "./SignUpForm.module.css";
 import { MenuItem } from "../DropBox/MenuItem";
 import { DropBox } from "../DropBox/DropBox";
-import api from "../../services/api";
+import api from "../../../services/api";
 import axios from "axios";
+import { Button } from "@/components/ui/button";
 
 export function SignUpForm() {
   const [nome, setNome] = useState<string>("");
@@ -19,7 +20,7 @@ export function SignUpForm() {
   const [colaboradorSelecionado, setColaboradorSelecionado] =
     useState<string>("");
   const [profissaoSelecionado, setProfissaoSelecionado] = useState<string>("");
-  
+
   const estados = [
     { value: "acre", label: "Acre", uf: "AC" },
     { value: "alagoas", label: "Alagoas", uf: "AL" },
@@ -49,7 +50,6 @@ export function SignUpForm() {
     { value: "sergipe", label: "Sergipe", uf: "SE" },
     { value: "tocantins", label: "Tocantins", uf: "TO" },
   ];
-  
 
   const colaborador = [
     { value: "sim", label: "Sim" },
@@ -74,14 +74,11 @@ export function SignUpForm() {
 
       estados.map((option) => {
         if (option.uf == data.uf) {
-          setEstadoSelecionado(option.value)
-          console.log("data " , data.uf)
-          console.log("option " , option.uf)
+          setEstadoSelecionado(option.value);
+          console.log("data ", data.uf);
+          console.log("option ", option.uf);
         }
-
       });
-
-      
 
       // You can set other relevant fields here as well
     } catch (error) {
@@ -115,7 +112,9 @@ export function SignUpForm() {
       <form className={styles.signupForm}>
         <div className={styles.grid_container}>
           <div className={styles.item1}>
-            <h1>Cadastro</h1>
+          <h1 className="text-center justify-center flex text-gray-900 font-semibold text-4xl pt-5 -mb-8">
+              Cadastro
+            </h1>
           </div>
           <div className={styles.item3}>
             <InputText
@@ -219,9 +218,12 @@ export function SignUpForm() {
               ))}
             ></DropBox>
             <p className={styles.helptext}>" * " - Campos Obrigatórios</p>
-            <button onClick={click} className={styles.signupButton}>
+            <Button
+              onClick={click}
+              className="mt-8 w-full h-12 rounded-lg border-0 bg-blue-500 text-white hover:bg-blue-600"
+            >
               Cadastrar
-            </button>
+            </Button>
           </div>
         </div>
       </form>

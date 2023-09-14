@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { InputText } from "../Input/Input";
 import styles from "./LoginForm.module.css";
-import api from "../../services/api";
+import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
-
+import { Button } from "@/components/ui/button";
 
 export function LoginForm() {
   const [senha, setSenha] = useState<string>("");
@@ -11,8 +11,7 @@ export function LoginForm() {
 
   const navigate = useNavigate();
 
-
-  const click = (e: { preventDefault: () => void; }) => {
+  const click = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const var1 = api
       .post("login", {
@@ -23,17 +22,20 @@ export function LoginForm() {
         console.error("ops! ocorreu um erro " + err);
       });
 
-      if (email == "" || senha == "") {
-        alert("Preencha os campos!!");
-      } else {
-        navigate("/aluno");
-      }
+    if (email == "" || senha == "") {
+      alert("Preencha os campos!!");
+    } else {
+      navigate("/aluno");
+    }
   };
 
   return (
     <div className={styles.loginContainer}>
       <form className={styles.loginForm}>
-        <h1>Entrada</h1>
+        <h1 className="text-center justify-center flex text-gray-900 font-semibold text-4xl pb-3">
+          Entrada
+        </h1>
+
         <InputText
           obrigatorio={true}
           label="E-mail"
@@ -50,14 +52,17 @@ export function LoginForm() {
           type={"password"}
           aoAlterado={(valorSenha: string) => setSenha(valorSenha)}
         />
-        <button onClick={click} className={styles.loginButton}>
+        <Button
+          onClick={click}
+          className="mt-8 w-full h-12 rounded-lg border-0 bg-blue-500 text-white hover:bg-blue-600"
+        >
           Entrar
-        </button>
+        </Button>
         <p>
-          <a href="signup">Esqueci Minha Senha</a>
+          <a href="signup" className="text-blue-600 dark:text-blue-500 hover:underline">Esqueci Minha Senha</a>
         </p>
         <p>
-          Não Possui Conta?<a href="signup">Cadastre-se</a>
+          Não Possui Conta?<a href="signup" className="text-blue-600 dark:text-blue-500 hover:underline">Cadastre-se</a>
         </p>
       </form>
     </div>
