@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Aluno from './pages/Aluno';
 import Adm from './pages/Adm';
 import Instrutor from './pages/Instrutor';
+import AboutUs from './pages/AboutUs';
 
 const Rotas = () => {
     return (
@@ -15,6 +16,7 @@ const Rotas = () => {
           <Route path="/aluno" Component={Aluno} />
           <Route path="/adm" Component={Adm} />
           <Route path="/instrutor" Component={Instrutor} />
+          <Route path="/about-us" Component={AboutUs} />
         </Routes>
       </Router>
     );
