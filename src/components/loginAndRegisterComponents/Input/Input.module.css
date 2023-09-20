@@ -1,3 +1,5 @@
+
+
 .inputBox {
   width: 100%;
   margin-top: 20px;
@@ -8,14 +10,14 @@
   margin-bottom: 8px;
   font-size: 1.2rem;
   letter-spacing: 1px;
-  color: var(--gray-900);
+  //color: var(--gray-900);
   font-weight: 700;
 }
 
 .inputBox input {
   width: 100%;
   //border: none;
-  outline: none;
+  //outline: none;
   padding: 10px 20px;
   //border-radius: 8px;
   //border: 1px solid var(--gray-300);
@@ -31,14 +33,14 @@
 }
 
 input:required:valid {
-  border: 3px solid var(--green-300);
+  //border: 3px solid var(--green-300);
 }
 
 .inputBox input:invalid:focus:not(:placeholder-shown) {
-  border: 3px solid var(--red-300);
+  //border: 3px solid var(--red-300);
 }
 
 .inputBox input::placeholder{
-    color: #C8C8C8;
+   //color: #C8C8C8;
 }
 

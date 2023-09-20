@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar } from "../components/loginAndRegisterComponents/Navbar/Navbar";
-import { SignUpForm } from "../components/loginAndRegisterComponents/SignUpForm/SingUpForm";
+import { SignUpForm } from "../components/loginAndRegisterComponents/SignUpForm/SignUpForm";
 
 const SignUp: React.FC = () => {
   return (

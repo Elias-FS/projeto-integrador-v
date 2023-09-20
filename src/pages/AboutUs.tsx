@@ -1,7 +1,7 @@
 import React from "react";
 import { LoginForm } from "../components/loginAndRegisterComponents/LoginForm/LoginForm";
 import { Navbar } from "../components/loginAndRegisterComponents/Navbar/Navbar";
-import CardUser from "@/components/ui/cardUser";
+import CardUser from "@/components/ui/Card/cardUser";
 
 const AboutUs: React.FC = () => {
   return (

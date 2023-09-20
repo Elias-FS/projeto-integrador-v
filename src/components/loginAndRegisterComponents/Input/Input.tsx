@@ -10,7 +10,7 @@ export function InputText(props: any) {
   return (
     <div className={styles.inputBox}>
       <label>{props.label}</label>
-      <input className="border border-zinc-300 rounded-lg focus:border focus:border-blue-300"
+      <input className="border border-zinc-300 rounded-lg focus:border-blue-300 focus:outline-none"
         type={props.type}
         value={props.valor}
         onChange={aoDigitado}

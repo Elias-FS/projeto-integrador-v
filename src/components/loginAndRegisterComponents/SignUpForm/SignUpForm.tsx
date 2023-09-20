@@ -5,7 +5,7 @@ import { MenuItem } from "../DropBox/MenuItem";
 import { DropBox } from "../DropBox/DropBox";
 import api from "../../../services/api";
 import axios from "axios";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button/button";
 
 export function SignUpForm() {
   const [nome, setNome] = useState<string>("");
@@ -112,7 +112,7 @@ export function SignUpForm() {
       <form className={styles.signupForm}>
         <div className={styles.grid_container}>
           <div className={styles.item1}>
-          <h1 className="text-center justify-center flex text-gray-900 font-semibold text-4xl pt-5 -mb-8">
+            <h1 className="text-center justify-center flex text-gray-900 font-semibold text-4xl pt-5 -mb-8">
               Cadastro
             </h1>
           </div>

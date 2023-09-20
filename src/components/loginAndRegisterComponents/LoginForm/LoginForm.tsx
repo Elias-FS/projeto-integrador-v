@@ -3,7 +3,7 @@ import { InputText } from "../Input/Input";
 import styles from "./LoginForm.module.css";
 import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button/button";
 
 export function LoginForm() {
   const [senha, setSenha] = useState<string>("");
@@ -59,10 +59,21 @@ export function LoginForm() {
           Entrar
         </Button>
         <p>
-          <a href="signup" className="text-blue-600 dark:text-blue-500 hover:underline">Esqueci Minha Senha</a>
+          <a
+            href="signup"
+            className="text-blue-600 dark:text-blue-500 hover:underline"
+          >
+            Esqueci Minha Senha
+          </a>
         </p>
         <p>
-          Não Possui Conta?<a href="signup" className="text-blue-600 dark:text-blue-500 hover:underline">Cadastre-se</a>
+          Não Possui Conta?
+          <a
+            href="signup"
+            className="text-blue-600 dark:text-blue-500 hover:underline"
+          >
+            Cadastre-se
+          </a>
         </p>
       </form>
     </div>

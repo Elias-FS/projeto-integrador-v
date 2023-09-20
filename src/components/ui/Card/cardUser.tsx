@@ -6,7 +6,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui/Card/card";
 import { LinkedinLogo, GithubLogo, TwitterLogo } from "phosphor-react";
 
 interface CardUserProps {
