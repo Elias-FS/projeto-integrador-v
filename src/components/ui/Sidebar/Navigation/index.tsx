@@ -1,38 +1,18 @@
-import { useState, useEffect } from 'react';
-import { BriefcaseMetal, Buildings, ChalkboardTeacher, ClockClockwise, Student } from 'phosphor-react';
+import React from 'react';
+import { useStore } from '@/zustand-store';// Substitua com o caminho correto
+
 import { NavItem } from './NavItem';
-import { Video } from '@phosphor-icons/react';
 
 export function Navigation() {
-  const [path, setPath] = useState('');
+  const { iconsToShow, verify } = useStore(state => ({
+    path: state.path,
+    iconsToShow: state.iconsToShow,
+    verify: state.verify,
+  }));
 
-  useEffect(() => {
-    const currentPath = window.location.pathname;
-    setPath(currentPath);
-  }, []);
-
-  let iconsToShow: { icon: React.ElementType; title: string }[] = [];
-
-  if (path === '/instrutor') {
-    iconsToShow = [
-      { icon: ChalkboardTeacher, title: "Minhas Aulas" },
-      { icon: BriefcaseMetal, title: "Oficina" },
-      { icon: Video, title: "Cursos" }
-    ];
-  } else if (path === '/aluno') {
-    // Defina os novos ícones para o caminho de aluno aqui
-    iconsToShow = [
-      { icon: Student, title: "Meu Aprendizado" },
-      { icon: Video, title: "Cursos" }
-    ];
-  } else if (path === '/adm') {
-    // Defina os novos ícones para o caminho de aluno aqui
-    iconsToShow = [
-      { icon: ClockClockwise, title: "Cursos Pendentes" },
-      { icon: Buildings, title: "Academias" },
-      { icon: Video, title: "Cursos" }
-    ];
-  }
+  React.useEffect(() => {
+    verify(); // Chama a função verify quando o componente monta
+  }, [verify]);
 
   return (
     <nav className="flex flex-col gap-0.5">
