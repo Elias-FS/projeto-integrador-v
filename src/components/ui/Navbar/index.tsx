@@ -15,7 +15,7 @@ import {
 export function Navbar() {
   return (
     <div className="min-h-fit flex flex-col">
-      <div className="pl-[500px] pr-3 py-4 flex items-center justify-between border-b">
+      <div className="pl-4 pr-3 py-4 flex items-center justify-between border-b">
         <h1 className="text-xl font-bold">DPASCHOAL / Página Atual</h1>
 
         <div className="flex items-center gap-3">
