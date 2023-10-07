@@ -8,11 +8,26 @@ import { Button } from "@/components/ui/Button/button";
 export function LoginForm() {
   const [senha, setSenha] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-
   const navigate = useNavigate();
+
+
+  const verificarLogin = (usuarioTipo:String) => {
+      if(usuarioTipo == "adminstrador") {
+          navigate("/adm")
+      }
+      else if(usuarioTipo == "aluno") {
+        navigate("/aluno")
+      }
+      else if(usuarioTipo == "instrutor") {
+        navigate("/instrutor")
+      }
+  }
+
 
   const click = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+
+    
     const var1 = api
       .post("login", {
         email: email,
