@@ -12,6 +12,7 @@ const Adm: React.FC = () => {
         {/* Adicione uma margem à direita para evitar sobreposição */}
         <Navbar />
         <div className="flex flex-1 mx-8 my-8">
+          
           <CardCourse
             name="Elias Fausto"
             profissao="Developer"

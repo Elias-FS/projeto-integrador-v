@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select"
+import { NavBarButton } from "../NavBarButton";
 
 export function Navbar() {
   return (
@@ -19,6 +20,7 @@ export function Navbar() {
         <h1 className="text-xl font-bold">DPASCHOAL / Página Atual</h1>
 
         <div className="flex items-center gap-3">
+          <NavBarButton/>
           <Search/>
           <Select>
       <SelectTrigger className="w-[180px]">
@@ -26,7 +28,7 @@ export function Navbar() {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Fruits</SelectLabel>
+          <SelectLabel>Opções</SelectLabel>
           <SelectItem value="apple">Apple</SelectItem>
           <SelectItem value="banana">Banana</SelectItem>
           <SelectItem value="blueberry">Blueberry</SelectItem>
