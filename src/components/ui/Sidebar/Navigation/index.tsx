@@ -4,15 +4,14 @@ import { useStore } from '@/zustand-store';// Substitua com o caminho correto
 import { NavItem } from './NavItem';
 
 export function Navigation() {
-  const { iconsToShow, verify } = useStore(state => ({
-    path: state.path,
+  const { iconsToShow, verifySideBar } = useStore(state => ({
     iconsToShow: state.iconsToShow,
-    verify: state.verify,
+    verifySideBar: state.verifySideBar,
   }));
 
   React.useEffect(() => {
-    verify(); // Chama a função verify quando o componente monta
-  }, [verify]);
+    verifySideBar(); // Chama a função verifySideBar quando o componente monta
+  }, [verifySideBar]);
 
   return (
     <nav className="flex flex-col gap-0.5">

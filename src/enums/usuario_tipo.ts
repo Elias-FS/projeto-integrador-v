@@ -1,5 +1,5 @@
-enum UsuarioTipo{
-  administrador,
-  aluno,
-  instrutor,
+export enum UsuarioTipo{
+  administrador = "administrador",
+  aluno = "aluno",
+  instrutor = "instrutor",
 }

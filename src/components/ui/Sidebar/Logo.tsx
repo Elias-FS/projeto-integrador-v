@@ -1,9 +1,9 @@
 import React from "react";
 import { useStore } from "@/zustand-store"; // Substitua com o caminho correto
 
+
 export function Logo() {
   const { userType, namingRole } = useStore((state) => ({
-    path: state.path,
     userType: state.userType,
     namingRole: state.namingRole,
   }));

@@ -10,33 +10,45 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/Select"
+} from "@/components/ui/Select";
 import { NavBarButton } from "../NavBarButton";
+import { useStore } from "@/zustand-store";
+import React from "react";
 
 export function Navbar() {
+  const { userType, namingRole } = useStore((state) => ({
+    userType: state.userType,
+    namingRole: state.namingRole,
+  }));
+
+  React.useEffect(() => {
+    namingRole();
+  }, [namingRole]);
+  console.log(userType);
+
   return (
     <div className="min-h-fit flex flex-col">
       <div className="pl-4 pr-3 py-4 flex items-center justify-between border-b">
         <h1 className="text-xl font-bold">DPASCHOAL / Página Atual</h1>
 
         <div className="flex items-center gap-3">
-          <NavBarButton/>
-          <Search/>
+          <NavBarButton />
+          <Search />
           <Select>
-      <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Academias" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectLabel>Opções</SelectLabel>
-          <SelectItem value="apple">Apple</SelectItem>
-          <SelectItem value="banana">Banana</SelectItem>
-          <SelectItem value="blueberry">Blueberry</SelectItem>
-          <SelectItem value="grapes">Grapes</SelectItem>
-          <SelectItem value="pineapple">Pineapple</SelectItem>
-        </SelectGroup>
-      </SelectContent>
-    </Select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Academias" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Opções</SelectLabel>
+                <SelectItem value="apple">Apple</SelectItem>
+                <SelectItem value="banana">Banana</SelectItem>
+                <SelectItem value="blueberry">Blueberry</SelectItem>
+                <SelectItem value="grapes">Grapes</SelectItem>
+                <SelectItem value="pineapple">Pineapple</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
           <Separator orientation="vertical" className="h-6" />
 
           <Button variant="outline">

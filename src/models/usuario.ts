@@ -1,4 +1,6 @@
-class Usuario {
+import { UsuarioTipo } from "@/enums/usuario_tipo";
+
+export class Usuario {
   data_nascimento: Date;
   id: number;
   celular: string;

@@ -7,54 +7,67 @@ import {
   Student,
 } from "phosphor-react";
 import { Video } from "@phosphor-icons/react";
+import { Usuario } from "@/models/usuario";
+import { UsuarioTipo } from "@/enums/usuario_tipo";
+
+const usuarioTeste = new Usuario(
+  new Date('1990-01-01'),
+  1,
+  '123456789',
+  'João da Silva',
+  true,
+  'Desenvolvedor',
+  'joao@example.com',
+  '12345-678',
+  'Centro',
+  'SP',
+  'Rua Principal',
+  UsuarioTipo.administrador
+);
 
 export interface PlayerState {
-  path: string;
   iconsToShow: { icon: React.ElementType; title: string }[];
   userType: string;
 
-  verify: () => void;
+  verifySideBar: () => void;
   namingRole: () => void;
 }
 
 
 export const useStore = create<PlayerState>((set, get) => {
   return {
-    path: window.location.pathname.toString(),
     iconsToShow: [], // Inicialmente, nenhum ícone é mostrado
     userType: "",
 
     namingRole: () => {
-      const path = get().path; // Obtemos o valor atual de path usando a função get
       let newUserType;
-
-      if (path === "/instrutor") {
-        newUserType = "Instrutor";
-      } else if (path === "/aluno") {
+      
+      if (usuarioTeste.cargo == UsuarioTipo.aluno) {
         newUserType = "Aluno";
-      } else if (path === "/adm") {
+      } else if (usuarioTeste.cargo == UsuarioTipo.instrutor) {
+        newUserType = "Instrutor";
+      } else if (usuarioTeste.cargo == UsuarioTipo.administrador) {
         newUserType = "Admin";
       }
 
       set({ userType: newUserType });
     },
 
-    verify: () => {
-      const path = get().path; // Obtemos o valor atual de path usando a função get
+    verifySideBar: () => {
       let newIconsToShow: { icon: React.ElementType; title: string }[] = [];
 
-      if (path === "/instrutor") {
+      if (usuarioTeste.cargo === UsuarioTipo.instrutor) {
         newIconsToShow = [
           { icon: ChalkboardTeacher, title: "Minhas Aulas" },
           { icon: BriefcaseMetal, title: "Oficina" },
           { icon: Video, title: "Cursos" },
         ];
-      } else if (path === "/aluno") {
+      } else if (usuarioTeste.cargo == UsuarioTipo.aluno) {
         newIconsToShow = [
           { icon: Student, title: "Meu Aprendizado" },
           { icon: Video, title: "Cursos" },
         ];
-      } else if (path === "/adm") {
+      } else if (usuarioTeste.cargo == UsuarioTipo.administrador) {
         newIconsToShow = [
           { icon: ClockClockwise, title: "Cursos Pendentes" },
           { icon: Buildings, title: "Academias" },
@@ -64,7 +77,7 @@ export const useStore = create<PlayerState>((set, get) => {
 
       set({ iconsToShow: newIconsToShow });
     },
-    // ...
+
   };
 });
 
