@@ -19,7 +19,7 @@ interface CardUserProps {
 const CardCourse: React.FC<CardUserProps> = ({ name, profissao, src }) => {
   return (
     <>
-      <Card className="h-auto w-96 overflow-hidden">
+      <Card className="h-auto w-96 overflow-hidden mx-1 mb-8">
         <CardHeader style={{ padding: 0 }}>
           <img
             src={src}

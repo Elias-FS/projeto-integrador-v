@@ -23,10 +23,15 @@ const usuarioTeste = new Usuario(
   'SP',
   'Rua Principal',
   UsuarioTipo.administrador
+
 );
 
 export interface PlayerState {
-  iconsToShow: { icon: React.ElementType; title: string }[];
+  iconsToShow: {
+    icon: React.ElementType;
+    title: string;
+    path: string;
+  }[];
   userType: string;
 
   verifySideBar: () => void;
@@ -41,7 +46,7 @@ export const useStore = create<PlayerState>((set, get) => {
 
     namingRole: () => {
       let newUserType;
-      
+
       if (usuarioTeste.cargo == UsuarioTipo.aluno) {
         newUserType = "Aluno";
       } else if (usuarioTeste.cargo == UsuarioTipo.instrutor) {
@@ -54,24 +59,27 @@ export const useStore = create<PlayerState>((set, get) => {
     },
 
     verifySideBar: () => {
-      let newIconsToShow: { icon: React.ElementType; title: string }[] = [];
-
-      if (usuarioTeste.cargo === UsuarioTipo.instrutor) {
+      let newIconsToShow: { icon: React.ElementType; title: string; path: string }[] = [];
+      if (usuarioTeste.cargo == UsuarioTipo.aluno) {
         newIconsToShow = [
-          { icon: ChalkboardTeacher, title: "Minhas Aulas" },
-          { icon: BriefcaseMetal, title: "Oficina" },
-          { icon: Video, title: "Cursos" },
+          { icon: Student, title: "Meu Aprendizado", path: "/meu-aprendizado" },
+          { icon: Video, title: "Cursos", path: "/cursos" },
         ];
-      } else if (usuarioTeste.cargo == UsuarioTipo.aluno) {
+      } else if (usuarioTeste.cargo === UsuarioTipo.instrutor) {
         newIconsToShow = [
-          { icon: Student, title: "Meu Aprendizado" },
-          { icon: Video, title: "Cursos" },
+          { icon: ChalkboardTeacher, title: "Minhas Aulas", path: "/minhas-aulas" },
+          { icon: Student, title: "Meu Aprendizado", path: "/meu-aprendizado" },
+          { icon: BriefcaseMetal, title: "Oficina", path: "/oficina" },
+          { icon: Video, title: "Cursos", path: "/cursos" },
         ];
       } else if (usuarioTeste.cargo == UsuarioTipo.administrador) {
         newIconsToShow = [
-          { icon: ClockClockwise, title: "Cursos Pendentes" },
-          { icon: Buildings, title: "Academias" },
-          { icon: Video, title: "Cursos" },
+          { icon: ClockClockwise, title: "Cursos Pendentes", path: "/cursos-pendentes" },
+          { icon: ChalkboardTeacher, title: "Minhas Aulas", path: "/minhas-aulas" },
+          { icon: Student, title: "Meu Aprendizado", path: "/meu-aprendizado" },
+          { icon: BriefcaseMetal, title: "Oficina", path: "/oficina" },
+          { icon: Buildings, title: "Academias", path: "/academias" },
+          { icon: Video, title: "Cursos", path: "/cursos" },
         ];
       }
 

@@ -13,9 +13,10 @@ import {
 } from "@/components/ui/Select";
 import { NavBarButton } from "../NavBarButton";
 import { useStore } from "@/zustand-store";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export function Navbar() {
+  const [ namePage, setNamePage ] = useState("");
   const { userType, namingRole } = useStore((state) => ({
     userType: state.userType,
     namingRole: state.namingRole,
@@ -26,13 +27,65 @@ export function Navbar() {
   }, [namingRole]);
   console.log(userType);
 
+  useEffect(() => {
+    namingRole();
+    ChangeNamePage();
+  }, [namingRole]);
+
+  function ChangeNamePage() {
+    const pathDaPagina = window.location.pathname;
+    let namePage = "";
+
+    switch (pathDaPagina) {
+      case "/meu-aprendizado":
+        namePage = "Meu Aprendizado";
+        break;
+      case "/cursos":
+        namePage = "Cursos";
+        break;
+      case "/oficina":
+        namePage = "Oficina";
+        break;
+      case "/minhas-aulas":
+        namePage = "Minhas Aulas";
+        break;
+      case "/cursos-pendentes":
+        namePage = "Cursos Pendentes";
+        break;
+      case "/academias":
+        namePage = "Academias";
+        break;
+      case "/about-us":
+        namePage = "About Us";
+        break;
+      default:
+        namePage = "Página Desconhecida";
+    }
+
+    setNamePage(namePage);
+  }
+
   return (
     <div className="min-h-fit flex flex-col">
       <div className="pl-4 pr-3 py-4 flex items-center justify-between border-b">
-        <h1 className="text-xl font-bold">DPASCHOAL / Página Atual</h1>
+        <h1 className="text-xl font-bold">DPASCHOAL / {namePage}</h1>
 
         <div className="flex items-center gap-3">
-          <NavBarButton />
+          {userType === "Admin" ? (
+            <>
+              <NavBarButton name={"Criar Curso"} />
+              <NavBarButton name={"Criar Academia"} />
+            </>
+          ) : (
+            <></>
+          )}
+          {userType === "Instrutor" ? (
+            <>
+              <NavBarButton name={"Criar Curso"} />
+            </>
+          ) : (
+            <></>
+          )}
           <Search />
           <Select>
             <SelectTrigger className="w-[180px]">

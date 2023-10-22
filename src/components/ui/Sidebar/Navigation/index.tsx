@@ -16,7 +16,7 @@ export function Navigation() {
   return (
     <nav className="flex flex-col gap-0.5">
       {iconsToShow && iconsToShow.map((item, index) => (
-        <NavItem key={index} icon={item.icon} title={item.title} />
+        <NavItem key={index} icon={item.icon} title={item.title} path={item.path} />
       ))}
     </nav>
   );
