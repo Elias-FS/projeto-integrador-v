@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import {
-  BriefcaseMetal,
+  Wrench,
   Buildings,
   ChalkboardTeacher,
   ClockClockwise,
@@ -69,7 +69,7 @@ export const useStore = create<PlayerState>((set, get) => {
         newIconsToShow = [
           { icon: ChalkboardTeacher, title: "Minhas Aulas", path: "/minhas-aulas" },
           { icon: Student, title: "Meu Aprendizado", path: "/meu-aprendizado" },
-          { icon: BriefcaseMetal, title: "Oficina", path: "/oficina" },
+          { icon: Wrench, title: "Oficina Curso", path: "/oficina-curso" },
           { icon: Video, title: "Cursos", path: "/cursos" },
         ];
       } else if (usuarioTeste.cargo == UsuarioTipo.administrador) {
@@ -77,7 +77,8 @@ export const useStore = create<PlayerState>((set, get) => {
           { icon: ClockClockwise, title: "Cursos Pendentes", path: "/cursos-pendentes" },
           { icon: ChalkboardTeacher, title: "Minhas Aulas", path: "/minhas-aulas" },
           { icon: Student, title: "Meu Aprendizado", path: "/meu-aprendizado" },
-          { icon: BriefcaseMetal, title: "Oficina", path: "/oficina" },
+          { icon: Wrench, title: "Oficina Curso", path: "/oficina-curso" },
+          { icon: Wrench, title: "Oficina Academia", path: "/oficina-academia" },
           { icon: Buildings, title: "Academias", path: "/academias" },
           { icon: Video, title: "Cursos", path: "/cursos" },
         ];

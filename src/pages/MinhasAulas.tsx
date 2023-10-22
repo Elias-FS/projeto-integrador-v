@@ -49,7 +49,7 @@ const MinhasAulas: React.FC = () => {
       <div className="flex flex-col flex-1 ml-80">
         <Navbar />
         <div className="flex flex-wrap justify-center my-8">
-          <PlusButton name={"Nova Curso"} />
+          <PlusButton name={"Nova Curso"} path={"/oficina-curso"} />
           {cursos.map((curso, index) => (
             <CardCourse
               key={index}

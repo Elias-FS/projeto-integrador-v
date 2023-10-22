@@ -43,8 +43,11 @@ export function Navbar() {
       case "/cursos":
         namePage = "Cursos";
         break;
-      case "/oficina":
-        namePage = "Oficina";
+      case "/oficina-curso":
+        namePage = "Oficina Academia";
+        break;
+      case "/oficina-academia":
+        namePage = "Oficina Curso";
         break;
       case "/minhas-aulas":
         namePage = "Minhas Aulas";
@@ -73,15 +76,15 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           {userType === "Admin" ? (
             <>
-              <NavBarButton name={"Criar Curso"} />
-              <NavBarButton name={"Criar Academia"} />
+              <NavBarButton name={"Criar Curso"} path={"/oficina-curso"} />
+              <NavBarButton name={"Criar Academia"} path={"/oficina-academia"} />
             </>
           ) : (
             <></>
           )}
           {userType === "Instrutor" ? (
             <>
-              <NavBarButton name={"Criar Curso"} />
+              <NavBarButton name={"Criar Curso"} path={"/oficina-curso"} />
             </>
           ) : (
             <></>
