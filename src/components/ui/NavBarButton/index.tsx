@@ -1,5 +1,5 @@
 import { Plus } from "@phosphor-icons/react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button/button";
 import { useNavigate } from "react-router-dom";
 
 interface ButtonProps {
