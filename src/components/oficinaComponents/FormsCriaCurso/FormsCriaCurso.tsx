@@ -5,12 +5,13 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
+import DropZone from "../dropZone/dropZone";
 
 export function FormsCriaCurso() {
   return (
     <Card color="transparent" shadow={false}>
       <Typography variant="h4" color="blue-gray">
-        Criação de Curso
+        Cadastrar Curso
       </Typography>
       <Typography color="gray" className="mt-1 font-normal">
         Preencha todas informações para dar início a criação do seu curso.
@@ -28,6 +29,10 @@ export function FormsCriaCurso() {
               className: "before:content-none after:content-none",
             }}
           />
+          <Typography variant="h6" color="blue-gray" className="-mb-3">
+            Banner:
+          </Typography>
+          <DropZone/>
           <Typography variant="h6" color="blue-gray" className="-mb-3">
             Descrição:
           </Typography>
