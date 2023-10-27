@@ -1,9 +1,12 @@
 import { useRef, useState } from "react";
 
-export default function DropZone() {
+interface DropZoneProps {
+  setSelectedImage: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+export default function DropZone({ setSelectedImage }: DropZoneProps) {
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
@@ -72,11 +75,11 @@ export default function DropZone() {
           para capa.
         </p>
 
-        {selectedImage && (
+        {/* {selectedImage && (
           <div className="flex flex-col items-center">
             <img src={selectedImage} alt="Selected Image" className="mt-2 max-h-48" />
           </div>
-        )}
+        )} */}
       </form>
     </div>
   );

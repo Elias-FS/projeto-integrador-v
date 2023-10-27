@@ -7,7 +7,11 @@ import {
 } from "@material-tailwind/react";
 import DropZone from "../dropZone/dropZone";
 
-export function FormsCriaCurso() {
+interface FormsCriaCursoProps {
+  setSelectedImage: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+export function FormsCriaCurso({ setSelectedImage }: FormsCriaCursoProps) {
   return (
     <Card color="transparent" shadow={false}>
       <Typography variant="h4" color="blue-gray">
@@ -32,7 +36,7 @@ export function FormsCriaCurso() {
           <Typography variant="h6" color="blue-gray" className="-mb-3">
             Imagem do Curso:
           </Typography>
-          <DropZone/>
+          <DropZone setSelectedImage={setSelectedImage}/>
           <Typography variant="h6" color="blue-gray" className="-mb-3">
             Descrição:
           </Typography>
@@ -52,7 +56,7 @@ export function FormsCriaCurso() {
             placeholder="Academia do curso..."
             className="border border-t border-opacity-50 rounded focus:border-t focus:border-opacity-50 focus:rounded"
             labelProps={{
-              className: "before:content-none after:content-none"
+              className: "before:content-none after:content-none",
             }}
           />
         </div>

@@ -8,26 +8,34 @@ import {
   CardTitle,
 } from "@/components/ui/Cards/card";
 
+//import { imagemPadrao } from "";
+
 interface CardUserProps {
   name: string;
   profissao: string;
-  src: string;
+  src: any;
 }
 
-const CardCoursePreview: React.FC<CardUserProps> = ({ name, profissao, src }) => {
+const CardCoursePreview: React.FC<CardUserProps> = ({
+  name,
+  profissao,
+  src,
+}) => {
   return (
     <>
       <Card className="h-auto w-auto overflow-hidden mx-15 mb-8">
         <CardHeader style={{ padding: 0 }}>
           <img
-            src={src}
+            src={src !== null ? src : console.log("imagemPadrao")}
             alt="Imagem do usuário"
             className="aspect-video object-cover"
           />
         </CardHeader>
         <CardContent className="pt-5 pb-10">
           <CardTitle className="mx-2 mt-4 font-bold">{name}</CardTitle>
-          <p className="mt-2 mx-2 text-zinc-600 font-semibold text-xl">{profissao}</p>
+          <p className="mt-2 mx-2 text-zinc-600 font-semibold text-xl">
+            {profissao}
+          </p>
         </CardContent>
       </Card>
     </>
