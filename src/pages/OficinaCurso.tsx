@@ -1,7 +1,7 @@
 import React from "react";
 import { Sidebar } from "@/components/ui/Sidebar";
 import { Navbar } from "@/components/ui/Navbar";
-import { FormsCriaCurso } from "@/components/ui/FormsCriaCurso/FormsCriaCurso";
+import { FormsCriaCurso } from "@/components/oficinaComponents/FormsCriaCurso/FormsCriaCurso";
 
 const OficinaCurso: React.FC = () => {
   return (
