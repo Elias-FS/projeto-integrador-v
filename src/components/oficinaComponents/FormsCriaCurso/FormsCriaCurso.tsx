@@ -24,13 +24,13 @@ export function FormsCriaCurso() {
           <Input
             size="lg"
             placeholder="Título do Curso..."
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+            className="border border-t border-opacity-50 rounded focus:border-t focus:border-opacity-50 focus:rounded"
             labelProps={{
               className: "before:content-none after:content-none",
             }}
           />
           <Typography variant="h6" color="blue-gray" className="-mb-3">
-            Banner:
+            Imagem do Curso:
           </Typography>
           <DropZone/>
           <Typography variant="h6" color="blue-gray" className="-mb-3">
@@ -39,7 +39,7 @@ export function FormsCriaCurso() {
           <Input
             size="lg"
             placeholder="Descrição do curso..."
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+            className="border border-t border-opacity-50 rounded focus:border-t focus:border-opacity-50 focus:rounded"
             labelProps={{
               className: "before:content-none after:content-none",
             }}
@@ -50,14 +50,13 @@ export function FormsCriaCurso() {
           <Input
             size="lg"
             placeholder="Academia do curso..."
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+            className="border border-t border-opacity-50 rounded focus:border-t focus:border-opacity-50 focus:rounded"
             labelProps={{
-              className: "before:content-none after:content-none",
-
+              className: "before:content-none after:content-none"
             }}
           />
         </div>
-        <Button className="mt-6 text-gray-900" fullWidth>
+        <Button className="mt-6 bg-green-700 text-lg h-11" fullWidth>
           Criar Curso
         </Button>
       </form>

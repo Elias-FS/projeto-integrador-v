@@ -1,25 +1,29 @@
 import { useRef, useState } from "react";
-export default function DropZone() {
-  const [dragActive, setDragActive] = useState<boolean>(false);
-  const inputRef = useRef<any>(null);
-  const [files, setFiles] = useState<any>([]);
 
-  function handleChange(e: any) {
+export default function DropZone() {
+  const [dragActive, setDragActive] = useState(false);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     console.log("File has been added");
-    if (e.target.files && e.target.files[0]) {
-      console.log(e.target.files);
-      for (let i = 0; i < e.target.files["length"]; i++) {
-        setFiles((prevState: any) => [...prevState, e.target.files[i]]);
+  
+    if (e.target && e.target.files) {
+      const file = e.target.files[0];
+  
+      if (file && file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const result = event.target?.result as string;
+          if (result) {
+            setSelectedImage(result);
+          }
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert("nao é imagem esse arquivo")// Notificar o usuário de que o arquivo não é uma imagem ou que nenhum arquivo foi selecionado
       }
-    }
-  }
-
-  function handleSubmitFile(e: any) {
-    if (files.length === 0) {
-      // no file has been submitted
-    } else {
-      // write submit logic here
     }
   }
 
@@ -29,95 +33,50 @@ export default function DropZone() {
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       for (let i = 0; i < e.dataTransfer.files["length"]; i++) {
-        setFiles((prevState: any) => [...prevState, e.dataTransfer.files[i]]);
+        setSelectedImage(null);
       }
     }
   }
 
-  function handleDragLeave(e: any) {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-  }
-
-  function handleDragOver(e: any) {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(true);
-  }
-
-  function handleDragEnter(e: any) {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(true);
-  }
-
-  function removeFile(fileName: any, idx: any) {
-    const newArr = [...files];
-    newArr.splice(idx, 1);
-    setFiles([]);
-    setFiles(newArr);
-  }
-
   function openFileExplorer() {
-    inputRef.current.value = "";
-    inputRef.current.click();
+    inputRef.current?.click();
   }
 
   return (
     <div>
       <form
         className={`${
-          dragActive ? "bg-blue-400" : "bg-blue-100"
+          dragActive ? "bg-zinc-900" : "bg-zinc-300"
         }  rounded-lg  min-h-[10rem] min-w-[24rem] text-center flex flex-col justify-center`}
-        onDragEnter={handleDragEnter}
-        onSubmit={(e) => e.preventDefault()}
+        onDragEnter={() => setDragActive(true)}
         onDrop={handleDrop}
-        onDragLeave={handleDragLeave}
-        onDragOver={handleDragOver}
+        onDragLeave={() => setDragActive(false)}
+        onDragOver={(e) => e.preventDefault()}
       >
-        {/* this input element allows us to select files for upload. We make it hidden so we can activate it when the user clicks select files */}
         <input
-          placeholder="fileInput"
-          className="hidden"
           ref={inputRef}
           type="file"
-          multiple={true}
+          accept="image/*"
           onChange={handleChange}
-          accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
+          style={{ display: "none" }}
         />
 
         <p>
-          Drag & Drop files or{" "}
+          Arraste ou{" "}
           <span
-            className="font-bold text-blue-600 cursor-pointer"
+            className="font-bold text-green-600 cursor-pointer"
             onClick={openFileExplorer}
           >
-            <u>Select files</u>
+            <u>Selecione uma Imagem</u>
           </span>{" "}
-          to upload
+          para capa.
         </p>
 
-        <div className="flex flex-col items-center">
-          {files.map((file: any, idx: any) => (
-            <div key={idx} className="flex flex-row space-x-5">
-              <span>{file.name}</span>
-              <span
-                className="text-red-500 cursor-pointer"
-                onClick={() => removeFile(file.name, idx)}
-              >
-                remove
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* <button
-          className="bg-black rounded-lg p-2 mt-3 w-auto"
-          onClick={handleSubmitFile}
-        >
-          <span className="p-2 text-white">Submit</span>
-        </button> */}
+        {selectedImage && (
+          <div className="flex flex-col items-center">
+            <img src={selectedImage} alt="Selected Image" className="mt-2 max-h-48" />
+          </div>
+        )}
       </form>
     </div>
   );
