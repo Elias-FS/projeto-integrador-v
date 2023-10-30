@@ -1,32 +1,38 @@
-import { Plus } from "phosphor-react";
-import { useState } from "react";
+import { Minus, Plus } from "phosphor-react";
 
-interface PlusSideSlideProps {
-  children: string;
+export interface Slide {
+  content: string;
 }
 
-export function PlusSideSlide({ children }: PlusSideSlideProps) {
-  const [isSlideOpen, setSlideOpen] = useState(false);
+interface PlusSideSlideProps {
+  setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
+  slideList: Slide[];
+}
 
-  const toggleSlide = () => {
-    setSlideOpen(!isSlideOpen);
+export function PlusSideSlide({ setSlideList, slideList }: PlusSideSlideProps) {
+  const addSlide = () => {
+    const newSlide: Slide = { content: "" };
+    setSlideList([...slideList, newSlide]);
+  };
+
+  const takeSlide = () => {
+    setSlideList((prevList) => prevList.slice(0, prevList.length - 1));
   };
 
   return (
-    <li className="flex items-center">
+    <div className="flex items-center">
       <div
-        className={`mini-slide ${
-          isSlideOpen ? "open" : "closed"
-        } w-28 h-14 bg-zinc-200 border border-gray-300 rounded cursor-pointer mb-4 shadow-md border-gray-400 flex items-center justify-center`}
-        onClick={toggleSlide}
+        className="mini-slide w-28 h-14 bg-green-600 border border-gray-300 rounded cursor-pointer mb-4 shadow-md border-gray-400 flex items-center justify-center"
+        onClick={addSlide}
       >
-        <Plus size={32} color="gray" />
+        <Plus size={32} color="white" />
       </div>
-
-      <span className="ml-2 text-x pb-5 text-black p-2 flex items-center">
-        {children}
-      </span>
-      {/* Número à direita do slide, centralizado verticalmente */}
-    </li>
+      <div
+        className="mini-slide w-28 h-14 bg-red-400 border border-gray-300 rounded cursor-pointer mb-4 shadow-md border-gray-400 flex items-center justify-center ml-2"
+        onClick={takeSlide}
+      >
+        <Minus size={32} color="white" />
+      </div>
+    </div>
   );
 }
