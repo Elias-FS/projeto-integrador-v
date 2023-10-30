@@ -1,44 +1,39 @@
 import React from "react";
+//import { imagemPadrao } from "";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/Cards/card";
 
-//import { imagemPadrao } from "";
-
 interface CardUserProps {
-  name: string;
-  profissao: string;
+  titulo: string;
+  descricao: string;
   src: any;
 }
 
 const CardCoursePreview: React.FC<CardUserProps> = ({
-  name,
-  profissao,
+  titulo,
+  descricao,
   src,
 }) => {
   return (
-    <>
-      <Card className="h-auto w-auto overflow-hidden mx-15 mb-8">
-        <CardHeader style={{ padding: 0 }}>
-          <img
-            src={src !== null ? src : console.log("imagemPadrao")}
-            alt="Imagem do usuário"
-            className="aspect-video object-cover"
-          />
-        </CardHeader>
-        <CardContent className="pt-5 pb-10">
-          <CardTitle className="mx-2 mt-4 font-bold">{name}</CardTitle>
-          <p className="mt-2 mx-2 text-zinc-600 font-semibold text-xl">
-            {profissao}
-          </p>
-        </CardContent>
-      </Card>
-    </>
+    <Card className="h-full w-full overflow-hidden mx-15 shadow-2xl border-gray-400">
+      <CardHeader className="p-0">
+        <img
+          src={src !== null ? src : "https://igp.rs.gov.br/themes/modelo-noticias/images/outros/GD_imgSemImagem.png"}
+          alt="Imagem do usuário"
+          className="aspect-video object-cover"
+        />
+      </CardHeader>
+      <CardContent className="h-full w-full border-gray-100">
+        <CardTitle className="mx-2 pt-4 font-bold">{titulo}</CardTitle>
+        <p className="mt-2 mx-2 text-zinc-600 font-semibold text-xl">
+          {descricao}
+        </p>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -11,10 +11,10 @@ export default function DropZone({ setSelectedImage }: DropZoneProps) {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     console.log("File has been added");
-  
+
     if (e.target && e.target.files) {
       const file = e.target.files[0];
-  
+
       if (file && file.type.startsWith("image/")) {
         const reader = new FileReader();
         reader.onload = (event) => {
@@ -25,18 +25,30 @@ export default function DropZone({ setSelectedImage }: DropZoneProps) {
         };
         reader.readAsDataURL(file);
       } else {
-        alert("nao é imagem esse arquivo")// Notificar o usuário de que o arquivo não é uma imagem ou que nenhum arquivo foi selecionado
+        alert("Este arquivo não é uma imagem!");
       }
     }
   }
 
-  function handleDrop(e: any) {
+  function handleDrop(e: React.DragEvent<HTMLDivElement>) {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
+
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      for (let i = 0; i < e.dataTransfer.files["length"]; i++) {
-        setSelectedImage(null);
+      const file = e.dataTransfer.files[0];
+
+      if (file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const result = event.target?.result as string;
+          if (result) {
+            setSelectedImage(result);
+          }
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert("Este arquivo não é uma imagem!");
       }
     }
   }
@@ -46,13 +58,12 @@ export default function DropZone({ setSelectedImage }: DropZoneProps) {
   }
 
   return (
-    <div>
+    <div onDrop={handleDrop}>
       <form
         className={`${
           dragActive ? "bg-zinc-900" : "bg-zinc-300"
         }  rounded-lg  min-h-[10rem] min-w-[24rem] text-center flex flex-col justify-center`}
         onDragEnter={() => setDragActive(true)}
-        onDrop={handleDrop}
         onDragLeave={() => setDragActive(false)}
         onDragOver={(e) => e.preventDefault()}
       >
@@ -65,7 +76,7 @@ export default function DropZone({ setSelectedImage }: DropZoneProps) {
         />
 
         <p>
-          Arraste ou{" "}
+          Arraste ou{"  "}
           <span
             className="font-bold text-green-600 cursor-pointer"
             onClick={openFileExplorer}

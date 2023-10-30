@@ -10,6 +10,7 @@ import AboutUs from './pages/AboutUs';
 import MeuAprendizado from './pages/MeuAprendizado';
 import MinhasAulas from './pages/MinhasAulas';
 import CursosPendentes from './pages/CursosPendentes';
+import CriacaoCurso from './pages/CriacaoCurso';
 
 const Rotas = () => {
     return (
@@ -21,6 +22,7 @@ const Rotas = () => {
           <Route path="/cursos" Component={Cursos} />
           <Route path="/oficina-academia" Component={OficinaAcademia} />
           <Route path="/oficina-curso" Component={OficinaCurso} />
+          <Route path="/criacao-curso" Component={CriacaoCurso} />
           <Route path="/minhas-aulas" Component={MinhasAulas} />
           <Route path="/cursos-pendentes" Component={CursosPendentes} />
           <Route path="/academias" Component={Academias} />
