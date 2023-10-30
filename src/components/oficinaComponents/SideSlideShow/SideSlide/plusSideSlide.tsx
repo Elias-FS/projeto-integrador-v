@@ -1,8 +1,5 @@
+import { Slide } from "@/models/slide";
 import { Minus, Plus } from "phosphor-react";
-
-export interface Slide {
-  content: string;
-}
 
 interface PlusSideSlideProps {
   setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
@@ -11,7 +8,9 @@ interface PlusSideSlideProps {
 
 export function PlusSideSlide({ setSlideList, slideList }: PlusSideSlideProps) {
   const addSlide = () => {
-    const newSlide: Slide = { content: "" };
+    const newSlide: Slide = {
+      slideType: `em branco ${slideList.length + 1}`,
+    };
     setSlideList([...slideList, newSlide]);
   };
 

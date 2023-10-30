@@ -1,0 +1,46 @@
+{
+    "slides": [
+      {
+        "slideType": "multipla escolha",
+        "question": "Questão multipla escolha:",
+        "options": ["Angular", "React", "Svelte", "Vue"],
+        "correctOption":[1],
+        "points": 10
+      },
+      {
+        "slideType": "verdadeiro ou falso",
+        "question": "Questão verdadeiro ou falso:",
+        "options": ["Google", "Apple", "Netflix", "Facebook"],
+        "correctOption": [1, 2],
+        "points": 10
+      },
+      {
+        "slideType": "multipla escolha com midia",
+        "midia": "file",
+        "question": "Questão multipla escolha:",
+        "options": ["Components", "Blocks", "Elements", "Effects"],
+        "correctOption": 0,
+        "points": 10
+      },
+      {
+        "slideType": "verdadeiro ou falso com midia",
+        "midia": "file",
+        "question": "Questão verdadeiro ou falso:",
+        "options": ["FBJ", "Babel", "JSX", "ES2015"],
+        "correctOption": 2,
+        "points": 10
+      },
+      {
+        "slideType": "somente midia",
+        "midia": "file"
+      },
+      {
+        "slideType": "feedback ao usuario",
+        "question": "How to pass data into a child component?"
+      },
+      {
+        "slideType": "em branco"
+      }
+    ]
+  }
+  
