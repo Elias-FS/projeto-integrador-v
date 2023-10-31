@@ -4,44 +4,42 @@ import { Navbar } from "@/components/ui/Navbar";
 import CardCourse from "@/components/ui/Cards/cardCourse";
 
 const MeuAprendizado: React.FC = () => {
-
   const cursos = [
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png"
+      name: "Curso de Python",
+      profissao: "Descrição",
+      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
     },
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png"
+      name: "Curso de Python",
+      profissao: "Descrição",
+      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
     },
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png"
+      name: "Curso de Python",
+      profissao: "Descrição",
+      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
     },
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png"
+      name: "Curso de Python",
+      profissao: "Descrição",
+      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
     },
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png"
+      name: "Curso de Python",
+      profissao: "Descrição",
+      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
     },
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png"
+      name: "Curso de Python",
+      profissao: "Descrição",
+      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
     },
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png"
+      name: "Curso de Python",
+      profissao: "Descrição",
+      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
     },
-
   ];
 
   return (

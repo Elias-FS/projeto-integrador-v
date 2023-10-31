@@ -5,41 +5,41 @@ import CardCourse from "@/components/ui/Cards/cardCourse";
 import { PlusButton } from "@/components/ui/PlusButton";
 
 const Academias: React.FC = () => {
-  const cursos = [
+  const academias = [
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png",
+      name: "Lógica de Programação",
+      profissao: "Descrição",
+      src: "https://www.superti360.com.br/wp-content/uploads/2022/02/0-destaque-linguagens-de-programacao-2019.jpg",
     },
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png",
+      name: "Curso de Python",
+      profissao: "Descrição",
+      src: "https://www.superti360.com.br/wp-content/uploads/2022/02/0-destaque-linguagens-de-programacao-2019.jpg",
     },
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png",
+      name: "Curso de Python",
+      profissao: "Descrição",
+      src: "https://www.superti360.com.br/wp-content/uploads/2022/02/0-destaque-linguagens-de-programacao-2019.jpg",
     },
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png",
+      name: "Curso de Python",
+      profissao: "Descrição",
+      src: "https://www.superti360.com.br/wp-content/uploads/2022/02/0-destaque-linguagens-de-programacao-2019.jpg",
     },
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png",
+      name: "Curso de Python",
+      profissao: "Descrição",
+      src: "https://www.superti360.com.br/wp-content/uploads/2022/02/0-destaque-linguagens-de-programacao-2019.jpg",
     },
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png",
+      name: "Curso de Python",
+      profissao: "Descrição",
+      src: "https://www.superti360.com.br/wp-content/uploads/2022/02/0-destaque-linguagens-de-programacao-2019.jpg",
     },
     {
-      name: "Elias Fausto",
-      profissao: "Developer",
-      src: "https://github.com/Elias-FS.png",
+      name: "Curso de Python",
+      profissao: "Descrição",
+      src: "https://www.superti360.com.br/wp-content/uploads/2022/02/0-destaque-linguagens-de-programacao-2019.jpg",
     },
   ];
 
@@ -50,7 +50,7 @@ const Academias: React.FC = () => {
         <Navbar />
         <div className="flex flex-wrap justify-center my-8">
           <PlusButton name={"Nova Academia"} path={"/oficina-academia"} />
-          {cursos.map((curso, index) => (
+          {academias.map((curso, index) => (
             <CardCourse
               key={index}
               name={curso.name}

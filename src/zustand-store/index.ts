@@ -11,19 +11,18 @@ import { Usuario } from "@/models/usuario";
 import { UsuarioTipo } from "@/enums/usuario_tipo";
 
 const usuarioTeste = new Usuario(
-  new Date('1990-01-01'),
+  new Date("1990-01-01"),
   1,
-  '123456789',
-  'João da Silva',
+  "123456789",
+  "João da Silva",
   true,
-  'Desenvolvedor',
-  'joao@example.com',
-  '12345-678',
-  'Centro',
-  'SP',
-  'Rua Principal',
+  "Desenvolvedor",
+  "joao@example.com",
+  "12345-678",
+  "Centro",
+  "SP",
+  "Rua Principal",
   UsuarioTipo.administrador
-
 );
 
 export interface PlayerState {
@@ -37,7 +36,6 @@ export interface PlayerState {
   verifySideBar: () => void;
   namingRole: () => void;
 }
-
 
 export const useStore = create<PlayerState>((set, get) => {
   return {
@@ -59,7 +57,11 @@ export const useStore = create<PlayerState>((set, get) => {
     },
 
     verifySideBar: () => {
-      let newIconsToShow: { icon: React.ElementType; title: string; path: string }[] = [];
+      let newIconsToShow: {
+        icon: React.ElementType;
+        title: string;
+        path: string;
+      }[] = [];
       if (usuarioTeste.cargo == UsuarioTipo.aluno) {
         newIconsToShow = [
           { icon: Student, title: "Meu Aprendizado", path: "/meu-aprendizado" },
@@ -67,18 +69,34 @@ export const useStore = create<PlayerState>((set, get) => {
         ];
       } else if (usuarioTeste.cargo === UsuarioTipo.instrutor) {
         newIconsToShow = [
-          { icon: ChalkboardTeacher, title: "Minhas Aulas", path: "/minhas-aulas" },
+          {
+            icon: ChalkboardTeacher,
+            title: "Minhas Aulas",
+            path: "/minhas-aulas",
+          },
           { icon: Student, title: "Meu Aprendizado", path: "/meu-aprendizado" },
           { icon: Wrench, title: "Oficina Curso", path: "/oficina-curso" },
           { icon: Video, title: "Cursos", path: "/cursos" },
         ];
       } else if (usuarioTeste.cargo == UsuarioTipo.administrador) {
         newIconsToShow = [
-          { icon: ClockClockwise, title: "Cursos Pendentes", path: "/cursos-pendentes" },
-          { icon: ChalkboardTeacher, title: "Minhas Aulas", path: "/minhas-aulas" },
+          {
+            icon: ClockClockwise,
+            title: "Cursos Pendentes",
+            path: "/cursos-pendentes",
+          },
+          {
+            icon: ChalkboardTeacher,
+            title: "Minhas Aulas",
+            path: "/minhas-aulas",
+          },
           { icon: Student, title: "Meu Aprendizado", path: "/meu-aprendizado" },
           { icon: Wrench, title: "Oficina Curso", path: "/oficina-curso" },
-          { icon: Wrench, title: "Oficina Academia", path: "/oficina-academia" },
+          {
+            icon: Wrench,
+            title: "Oficina Academia",
+            path: "/oficina-academia",
+          },
           { icon: Buildings, title: "Academias", path: "/academias" },
           { icon: Video, title: "Cursos", path: "/cursos" },
         ];
@@ -86,7 +104,6 @@ export const useStore = create<PlayerState>((set, get) => {
 
       set({ iconsToShow: newIconsToShow });
     },
-
   };
 });
 
