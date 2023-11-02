@@ -1,16 +1,15 @@
+import { SetStateAction } from "react";
+
 interface SideSlideProps {
   numero: number;
-  slideType: string;
-  setSlideOpened: React.Dispatch<React.SetStateAction<string>>; 
+  setSlideOpened: React.Dispatch<SetStateAction<number>>;
 }
 
-export function SideSlide({ numero, slideType, setSlideOpened }: SideSlideProps) {
-  const conteudo = slideType
-  const index = numero
+export function SideSlide({ numero, setSlideOpened }: SideSlideProps) {
+  const index = numero;
 
-  console.log(index.toString())
   const openSlide = () => {
-    setSlideOpened(conteudo); 
+    setSlideOpened(index);
   };
 
   return (
@@ -19,12 +18,11 @@ export function SideSlide({ numero, slideType, setSlideOpened }: SideSlideProps)
         className={`mini-slide w-28 h-14 bg-zinc-200 border border-gray-300 rounded text-black cursor-pointer mb-4 shadow-md border-gray-400`}
         onClick={openSlide}
       >
-        {index}
+        {index + 1}
       </div>
       <span className="ml-2 text-x pb-5 text-black p-2 flex items-center">
-        {index}
+        {index + 1}
       </span>
-
     </div>
   );
 }

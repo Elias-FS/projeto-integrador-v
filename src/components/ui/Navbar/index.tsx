@@ -16,7 +16,7 @@ import { useStore } from "@/zustand-store";
 import React, { useEffect, useState } from "react";
 
 export function Navbar() {
-  const [ namePage, setNamePage ] = useState("");
+  const [namePage, setNamePage] = useState("");
   const { userType, namingRole } = useStore((state) => ({
     userType: state.userType,
     namingRole: state.namingRole,
@@ -25,7 +25,6 @@ export function Navbar() {
   React.useEffect(() => {
     namingRole();
   }, [namingRole]);
-  console.log(userType);
 
   useEffect(() => {
     namingRole();
@@ -77,7 +76,10 @@ export function Navbar() {
           {userType === "Admin" ? (
             <>
               <NavBarButton name={"Criar Curso"} path={"/oficina-curso"} />
-              <NavBarButton name={"Criar Academia"} path={"/oficina-academia"} />
+              <NavBarButton
+                name={"Criar Academia"}
+                path={"/oficina-academia"}
+              />
             </>
           ) : (
             <></>

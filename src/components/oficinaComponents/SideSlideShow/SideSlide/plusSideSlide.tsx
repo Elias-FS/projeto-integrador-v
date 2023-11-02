@@ -9,7 +9,7 @@ interface PlusSideSlideProps {
 export function PlusSideSlide({ setSlideList, slideList }: PlusSideSlideProps) {
   const addSlide = () => {
     const newSlide: Slide = {
-      slideType: `em branco ${slideList.length + 1}`,
+      slideType: "em branco",
     };
     setSlideList([...slideList, newSlide]);
   };

@@ -6,27 +6,25 @@ import { SlideCreation } from "@/components/oficinaComponents/SlideCreation/slid
 import { Slide } from "@/models/slide";
 
 const primeiroSlide: Slide = {
-  slideType: `em branco 1`,
+  slideType: `em branco`,
 };
 
 const CriacaoCurso: React.FC = () => {
-  const [slideOpened, setSlideOpened] = useState("");
-  const [slideList, setSlideList] = useState<Slide[]>([
-    primeiroSlide
-  ]);
+  const [slideOpened, setSlideOpened] = useState(0);
+  const [slideList, setSlideList] = useState<Slide[]>([primeiroSlide]);
 
   return (
     <div className="flex">
       <Sidebar />
       <div className="flex flex-col flex-1 ml-80">
         <Navbar />
-        <div className="flex flex-1 space-x-40">
+        <div className="flex flex-1 ">
           <SideSlideShow
             slideList={slideList}
             setSlideList={setSlideList}
             setSlideOpened={setSlideOpened}
           />
-          <SlideCreation slideOpened={slideOpened} />
+          <SlideCreation slideList={slideList} slideOpened={slideOpened} />
         </div>
       </div>
     </div>
