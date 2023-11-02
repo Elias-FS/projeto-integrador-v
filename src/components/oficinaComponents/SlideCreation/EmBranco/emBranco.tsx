@@ -1,15 +1,20 @@
 import { Slide } from "@/models/slide";
 import { TemplateOption } from "./TemplateOption/templateOption";
+import { SetStateAction } from "react";
 
 interface EmBrancoTemplateProps {
-  slideList: Slide[];
-  slideOpened: number;
+  slideOpened: Slide;
+  setSlideOpened: React.Dispatch<SetStateAction<Slide>>;
+  setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
 }
 
-export function EmBranco({ slideList, slideOpened }: EmBrancoTemplateProps) {
+export function EmBranco({
+  slideOpened,
+  setSlideOpened,
+}: EmBrancoTemplateProps) {
   return (
     <div className="w-full h-96 bg-gray-300 border border-gray-400 rounded-lg flex items-center justify-center">
-      Slide: {slideOpened + 1}
+      Slide: {slideOpened.index + 1}
       <div className="flex">
         <div>
           <TemplateOption
@@ -18,8 +23,8 @@ export function EmBranco({ slideList, slideOpened }: EmBrancoTemplateProps) {
             }
             title={"Múltipla escolha"}
             type="multipla escolha"
-            slideList={slideList}
             slideOpened={slideOpened}
+            setSlideOpened={setSlideOpened}
           />
           <TemplateOption
             imageUrl={
@@ -27,8 +32,8 @@ export function EmBranco({ slideList, slideOpened }: EmBrancoTemplateProps) {
             }
             title={"Verdadeiro ou Falso"}
             type="verdadeiro ou falso"
-            slideList={slideList}
             slideOpened={slideOpened}
+            setSlideOpened={setSlideOpened}
           />
           <TemplateOption
             imageUrl={
@@ -36,8 +41,8 @@ export function EmBranco({ slideList, slideOpened }: EmBrancoTemplateProps) {
             }
             title={"Múltipla escolha com Mídia"}
             type="multipla escolha com midia"
-            slideList={slideList}
             slideOpened={slideOpened}
+            setSlideOpened={setSlideOpened}
           />
         </div>
         <div>
@@ -47,8 +52,8 @@ export function EmBranco({ slideList, slideOpened }: EmBrancoTemplateProps) {
             }
             title={"Verdadeiro ou Falso com Mídia"}
             type="verdadeiro ou falso com midia"
-            slideList={slideList}
             slideOpened={slideOpened}
+            setSlideOpened={setSlideOpened}
           />
           <TemplateOption
             imageUrl={
@@ -56,8 +61,8 @@ export function EmBranco({ slideList, slideOpened }: EmBrancoTemplateProps) {
             }
             title={"Somente Mídia"}
             type="somente midia"
-            slideList={slideList}
             slideOpened={slideOpened}
+            setSlideOpened={setSlideOpened}
           />
           <TemplateOption
             imageUrl={
@@ -65,8 +70,8 @@ export function EmBranco({ slideList, slideOpened }: EmBrancoTemplateProps) {
             }
             title={"Feedback"}
             type="feedback ao usuario"
-            slideList={slideList}
             slideOpened={slideOpened}
+            setSlideOpened={setSlideOpened}
           />
         </div>
       </div>

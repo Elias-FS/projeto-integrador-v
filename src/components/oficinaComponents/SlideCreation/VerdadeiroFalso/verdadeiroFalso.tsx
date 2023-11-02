@@ -1,4 +1,9 @@
-interface VerdadeiroFalsoProps {}
+import { Slide } from "@/models/slide";
+
+interface VerdadeiroFalsoProps {
+  slideOpened: Slide;
+  slideList: Slide[];
+}
 
 export function VerdadeiroFalso({}: VerdadeiroFalsoProps) {
   return (

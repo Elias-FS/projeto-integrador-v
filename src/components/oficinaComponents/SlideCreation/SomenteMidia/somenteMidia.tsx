@@ -1,4 +1,9 @@
-interface SomenteMidiaProps {}
+import { Slide } from "@/models/slide";
+
+interface SomenteMidiaProps {
+  slideOpened: Slide;
+  slideList: Slide[];
+}
 
 export function SomenteMidia({}: SomenteMidiaProps) {
   return (

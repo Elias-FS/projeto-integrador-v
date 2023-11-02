@@ -1,15 +1,21 @@
+import { Slide } from "@/models/slide";
 import { SetStateAction } from "react";
 
 interface SideSlideProps {
   numero: number;
-  setSlideOpened: React.Dispatch<SetStateAction<number>>;
+  setSlideOpened: React.Dispatch<SetStateAction<Slide>>;
+  slideList: Slide[];
 }
 
-export function SideSlide({ numero, setSlideOpened }: SideSlideProps) {
+export function SideSlide({
+  numero,
+  setSlideOpened,
+  slideList,
+}: SideSlideProps) {
   const index = numero;
 
   const openSlide = () => {
-    setSlideOpened(index);
+    setSlideOpened(slideList[numero]);
   };
 
   return (

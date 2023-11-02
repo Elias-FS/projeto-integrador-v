@@ -6,30 +6,43 @@ import { MultiplaEscolhaMidia } from "./MultiplaEscolhaMidia/multiplaEscolhaMidi
 import { VerdadeiroFalsoMidia } from "./VerdadeiroFalsoMidia/verdadeiroFalsoMidia";
 import { SomenteMidia } from "./SomenteMidia/somenteMidia";
 import { Feedback } from "./Feedback/feedback";
+import { SetStateAction } from "react";
 
 interface SlideCreationProps {
-  slideOpened: number;
+  slideOpened: Slide;
   slideList: Slide[];
+  setSlideOpened: React.Dispatch<SetStateAction<Slide>>;
+  setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
 }
 
-export function SlideCreation({ slideOpened, slideList }: SlideCreationProps) {
+export function SlideCreation({
+  slideOpened,
+  slideList,
+  setSlideOpened,
+  setSlideList,
+}: SlideCreationProps) {
   return (
     <div className="w-full h-3/4 m-10 bg-gray-300 border border-gray-400 rounded-lg flex items-center justify-center">
-      {slideList[slideOpened].slideType === "em branco" ? (
-        <EmBranco slideOpened={slideOpened} slideList={slideList} />
-      ) : slideList[slideOpened].slideType === "multipla escolha" ? (
+      {slideList[slideOpened.index].slideType === "em branco" ? (
+        <EmBranco
+          setSlideList={setSlideList}
+          slideOpened={slideOpened}
+          setSlideOpened={setSlideOpened}
+        />
+      ) : slideList[slideOpened.index].slideType === "multipla escolha" ? (
         <MultiplaEscolha slideOpened={slideOpened} slideList={slideList} />
-      ) : slideList[slideOpened].slideType === "verdadeiro ou falso" ? (
-        <VerdadeiroFalso />
-      ) : slideList[slideOpened].slideType === "multipla escolha com midia" ? (
-        <MultiplaEscolhaMidia />
-      ) : slideList[slideOpened].slideType ===
+      ) : slideList[slideOpened.index].slideType === "verdadeiro ou falso" ? (
+        <VerdadeiroFalso slideOpened={slideOpened} slideList={slideList} />
+      ) : slideList[slideOpened.index].slideType ===
+        "multipla escolha com midia" ? (
+        <MultiplaEscolhaMidia slideOpened={slideOpened} slideList={slideList} />
+      ) : slideList[slideOpened.index].slideType ===
         "verdadeiro ou falso com midia" ? (
-        <VerdadeiroFalsoMidia />
-      ) : slideList[slideOpened].slideType === "somente midia" ? (
-        <SomenteMidia />
-      ) : slideList[slideOpened].slideType === "feedback ao usuario" ? (
-        <Feedback />
+        <VerdadeiroFalsoMidia slideOpened={slideOpened} slideList={slideList} />
+      ) : slideList[slideOpened.index].slideType === "somente midia" ? (
+        <SomenteMidia slideOpened={slideOpened} slideList={slideList} />
+      ) : slideList[slideOpened.index].slideType === "feedback ao usuario" ? (
+        <Feedback slideOpened={slideOpened} slideList={slideList} />
       ) : (
         "ERRO"
       )}

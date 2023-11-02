@@ -1,4 +1,9 @@
-interface FeedbackProps {}
+import { Slide } from "@/models/slide";
+
+interface FeedbackProps {
+  slideOpened: Slide;
+  slideList: Slide[];
+}
 
 export function Feedback({}: FeedbackProps) {
   return (

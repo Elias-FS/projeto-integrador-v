@@ -1,25 +1,28 @@
 import { Slide } from "@/models/slide";
+import { SetStateAction, useState } from "react";
 
 interface TemplateOptionProps {
   imageUrl: string;
   title: string;
   type: string;
-  slideList: Slide[];
-  slideOpened: number;
+  slideOpened: Slide;
+  setSlideOpened: React.Dispatch<SetStateAction<Slide>>;
 }
 
 export function TemplateOption({
   imageUrl,
   title,
   type,
-  slideList,
   slideOpened,
+  setSlideOpened,
 }: TemplateOptionProps) {
+  function alterandoEstado() {
+    slideOpened.slideType = type;
+    setSlideOpened(slideOpened);
+  }
+
   return (
-    <div
-      onClick={() => (slideList[slideOpened].slideType = type)}
-      className="text-center"
-    >
+    <div onClick={alterandoEstado} className="text-center">
       <div className="flex flex-col">
         <div className="w-full flex justify-center items-center">
           <h2 className="text-black font-bold">{title}</h2>

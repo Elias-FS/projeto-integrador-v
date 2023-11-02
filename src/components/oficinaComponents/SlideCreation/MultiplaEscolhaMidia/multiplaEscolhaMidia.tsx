@@ -1,4 +1,9 @@
-interface MultiplaEscolhaMidiaProps {}
+import { Slide } from "@/models/slide";
+
+interface MultiplaEscolhaMidiaProps {
+  slideOpened: Slide;
+  slideList: Slide[];
+}
 
 export function MultiplaEscolhaMidia({}: MultiplaEscolhaMidiaProps) {
   return (

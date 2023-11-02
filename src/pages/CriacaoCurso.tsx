@@ -7,11 +7,14 @@ import { Slide } from "@/models/slide";
 
 const primeiroSlide: Slide = {
   slideType: `em branco`,
+  index: 0,
 };
 
 const CriacaoCurso: React.FC = () => {
-  const [slideOpened, setSlideOpened] = useState(0);
+  const [slideOpened, setSlideOpened] = useState(primeiroSlide);
   const [slideList, setSlideList] = useState<Slide[]>([primeiroSlide]);
+
+  console.log(slideList);
 
   return (
     <div className="flex">
@@ -24,7 +27,12 @@ const CriacaoCurso: React.FC = () => {
             setSlideList={setSlideList}
             setSlideOpened={setSlideOpened}
           />
-          <SlideCreation slideList={slideList} slideOpened={slideOpened} />
+          <SlideCreation
+            slideList={slideList}
+            slideOpened={slideOpened}
+            setSlideOpened={setSlideOpened}
+            setSlideList={setSlideList}
+          />
         </div>
       </div>
     </div>
