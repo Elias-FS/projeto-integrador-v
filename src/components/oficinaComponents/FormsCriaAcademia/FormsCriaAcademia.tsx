@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/Select";
 import DropZone from "../DropZone/dropZone";
 import React, { useState } from "react";
+import AcademiaService from "@/services/academia.service";
+
 
 interface FormsCriaAcademiaProps {
   setSelectedImage: React.Dispatch<React.SetStateAction<string | null>>;
@@ -37,6 +39,11 @@ export function FormsCriaAcademia({
     setTypedTitle(valorDigitado);
     console.log("Valor digitado: ", valorDigitado);
   };
+
+  
+  const click = () => {
+    AcademiaService.criarAcademias(inputTitle, inputDescription)
+  }
 
   const handleInputDescriptionChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -86,7 +93,10 @@ export function FormsCriaAcademia({
             }}
           />
         </div>
-        <Button className="mt-6 bg-green-700 text-lg h-11" fullWidth>
+        <Button 
+        className="mt-6 bg-green-700 text-lg h-11" fullWidth
+        onClick={click}
+        >
           Criar Academia
         </Button>
       </form>

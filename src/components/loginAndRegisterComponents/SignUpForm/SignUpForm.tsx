@@ -3,9 +3,10 @@ import { InputText } from "../Input/Input";
 import styles from "./SignUpForm.module.css";
 import { MenuItem } from "../DropBox/MenuItem";
 import { DropBox } from "../DropBox/DropBox";
-import api from "../../../services/api";
 import axios from "axios";
 import { Button } from "@/components/ui/Button/button";
+import UsuarioService from "@/services/usuario.service";
+import { Usuario } from "@/models/usuario";
 
 export function SignUpForm() {
   const [nome, setNome] = useState<string>("");
@@ -88,22 +89,24 @@ export function SignUpForm() {
   };
 
   const click = () => {
-    api
-      .post("alunos", {
-        nome_completo: nome,
-        email: email,
-        senha: senha,
-        celular: celular,
-        cep: cep,
-        bairro: bairro,
-        rua: rua,
-        data_nasc: data,
-        estado: estadoSelecionado,
-        empregado: colaboradorSelecionado,
-        area_profissao: profissaoSelecionado,
+    UsuarioService.registrarUsuario(
+      nome,
+      email,
+      senha,
+      celular,
+      cep,
+      bairro,
+      rua,
+      data,
+      estadoSelecionado,
+      colaboradorSelecionado,
+      profissaoSelecionado
+    )
+      .then(response => {
+        console.log("Registro bem-sucedido!", response);
       })
-      .catch((err: string) => {
-        console.error("ops! ocorreu um erro " + err);
+      .catch(error => {
+        console.error("Erro no registro:", error);
       });
   };
 

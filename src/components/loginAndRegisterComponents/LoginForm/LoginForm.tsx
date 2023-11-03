@@ -4,12 +4,13 @@ import styles from "./LoginForm.module.css";
 import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/Button/button";
+import authHeader from "@/services/auth.service";
 
 export function LoginForm() {
   const [senha, setSenha] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const navigate = useNavigate();
-
+  const auth = authHeader
 
   const verificarLogin = (usuarioTipo:String) => {
       if(usuarioTipo == "adminstrador") {
@@ -26,13 +27,12 @@ export function LoginForm() {
 
   const click = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-
-    
     const var1 = api
       .post("login", {
         email: email,
         senha: senha,
       })
+    
       .catch((err: string) => {
         console.error("ops! ocorreu um erro " + err);
       });
@@ -42,6 +42,9 @@ export function LoginForm() {
     } else {
       navigate("/aluno");
     }
+
+    console.log(auth)
+    
   };
 
   return (
