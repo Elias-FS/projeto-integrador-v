@@ -1,14 +1,18 @@
 import { Slide } from "@/models/slide";
+import DropZoneMidia from "../../DropZoneMidia/dropZoneMidia";
 
 interface SomenteMidiaProps {
   slideOpened: Slide;
-  slideList: Slide[];
 }
 
-export function SomenteMidia({}: SomenteMidiaProps) {
+export function SomenteMidia({ slideOpened }: SomenteMidiaProps) {
   return (
-    <div className="w-1/2 h-96 bg-gray-300 border border-gray-400 rounded-lg flex items-center justify-center">
-      TEMPLATE SOMENTE MIDIA
+    <div className="flex items-center justify-center h-full w-full flex-col">
+      <div className="w-3/4 text-center pb-5">
+        TEMPLATE SOMENTE MIDIA {slideOpened.index + 1}
+      </div>
+      <DropZoneMidia />
+      <div />
     </div>
   );
 }

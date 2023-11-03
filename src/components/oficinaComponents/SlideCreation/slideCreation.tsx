@@ -30,9 +30,9 @@ export function SlideCreation({
           setSlideOpened={setSlideOpened}
         />
       ) : slideList[slideOpened.index].slideType === "multipla escolha" ? (
-        <MultiplaEscolha slideOpened={slideOpened} slideList={slideList} />
+        <MultiplaEscolha slideOpened={slideOpened} />
       ) : slideList[slideOpened.index].slideType === "verdadeiro ou falso" ? (
-        <VerdadeiroFalso slideOpened={slideOpened} slideList={slideList} />
+        <VerdadeiroFalso slideOpened={slideOpened} />
       ) : slideList[slideOpened.index].slideType ===
         "multipla escolha com midia" ? (
         <MultiplaEscolhaMidia slideOpened={slideOpened} slideList={slideList} />
@@ -40,7 +40,7 @@ export function SlideCreation({
         "verdadeiro ou falso com midia" ? (
         <VerdadeiroFalsoMidia slideOpened={slideOpened} slideList={slideList} />
       ) : slideList[slideOpened.index].slideType === "somente midia" ? (
-        <SomenteMidia slideOpened={slideOpened} slideList={slideList} />
+        <SomenteMidia slideOpened={slideOpened} />
       ) : slideList[slideOpened.index].slideType === "feedback ao usuario" ? (
         <Feedback slideOpened={slideOpened} slideList={slideList} />
       ) : (
