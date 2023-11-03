@@ -6,16 +6,23 @@ const listarAcademias = () => {
     return axios.get(API_URL + "/academias")
 }
 
-const criarAcademias =  (
-    nome:string,
-    descricao:string,
-    data_criacao: Date
+const criarAcademias = (
+    nome: string,
+    descricao: string,
+    usuarioId: number,
 
 ) => {
-    return axios.post(API_URL + "/academia/registrar", {
+
+
+    return axios.post(API_URL + "/academias", {
+
         nome,
         descricao,
-        data_criacao: new Date()
+        usuarioId
+    }, {
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`
+        }
     })
 }
 

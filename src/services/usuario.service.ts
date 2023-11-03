@@ -20,7 +20,7 @@ const registrarUsuario = (
     colaboradorSelecionado: string,
     profissaoSelecionado: string
   ) => {
-    return axios.post(API_URL + "usuario", {
+    return axios.post(API_URL + "usuarios/registrar", {
       nome,
       email,
       senha,

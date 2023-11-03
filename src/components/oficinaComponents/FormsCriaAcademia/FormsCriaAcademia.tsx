@@ -42,7 +42,7 @@ export function FormsCriaAcademia({
 
   
   const click = () => {
-    AcademiaService.criarAcademias(inputTitle, inputDescription)
+    AcademiaService.criarAcademias(inputTitle, inputDescription, 10)
   }
 
   const handleInputDescriptionChange = (

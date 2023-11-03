@@ -1,50 +1,27 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { InputText } from "../Input/Input";
 import styles from "./LoginForm.module.css";
-import api from "../../../services/api";
+import AuthService from "@/services/auth.service";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/Button/button";
 import authHeader from "@/services/auth.service";
+
 
 export function LoginForm() {
   const [senha, setSenha] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const navigate = useNavigate();
-  const auth = authHeader
 
-  const verificarLogin = (usuarioTipo:String) => {
-      if(usuarioTipo == "adminstrador") {
-          navigate("/adm")
-      }
-      else if(usuarioTipo == "aluno") {
-        navigate("/aluno")
-      }
-      else if(usuarioTipo == "instrutor") {
-        navigate("/instrutor")
-      }
-  }
-
-
-  const click = (e: { preventDefault: () => void }) => {
+  const click = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const var1 = api
-      .post("login", {
-        email: email,
-        senha: senha,
-      })
     
-      .catch((err: string) => {
-        console.error("ops! ocorreu um erro " + err);
-      });
+    const response = await AuthService.login(email, senha);
 
-    if (email == "" || senha == "") {
-      alert("Preencha os campos!!");
-    } else {
-      navigate("/aluno");
-    }
+    localStorage.setItem('token', response.data.token);
 
-    console.log(auth)
-    
+    console.log(response.data.usuarioTipo)
+
+
   };
 
   return (
