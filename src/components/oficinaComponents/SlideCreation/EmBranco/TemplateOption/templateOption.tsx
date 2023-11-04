@@ -1,12 +1,11 @@
 import { Slide } from "@/models/slide";
-import { SetStateAction, useState } from "react";
 
 interface TemplateOptionProps {
   imageUrl: string;
   title: string;
   type: string;
-  slideOpened: Slide;
-  setSlideOpened: React.Dispatch<SetStateAction<Slide>>;
+  slideOpened: number;
+  setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
 }
 
 export function TemplateOption({
@@ -14,11 +13,18 @@ export function TemplateOption({
   title,
   type,
   slideOpened,
-  setSlideOpened,
+  setSlideList,
 }: TemplateOptionProps) {
   function alterandoEstado() {
-    slideOpened.slideType = type;
-    setSlideOpened(slideOpened);
+    setSlideList((prevSlideList) => {
+      return prevSlideList.map((slide) => {
+        if (slide.index === slideOpened) {
+          // Atualiza o slideOpened na lista com o novo tipo
+          return { ...slide, slideType: type };
+        }
+        return slide;
+      });
+    });
   }
 
   return (

@@ -3,19 +3,15 @@ import { TemplateOption } from "./TemplateOption/templateOption";
 import { SetStateAction } from "react";
 
 interface EmBrancoTemplateProps {
-  slideOpened: Slide;
-  setSlideOpened: React.Dispatch<SetStateAction<Slide>>;
+  slideOpened: number;
   setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
 }
 
-export function EmBranco({
-  slideOpened,
-  setSlideOpened,
-}: EmBrancoTemplateProps) {
+export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
   return (
-    <div className="w-full h-96 bg-gray-300 border border-gray-400 rounded-lg flex items-center justify-center">
-      Slide: {slideOpened.index + 1}
+    <div className="w-full h-full bg-gray-300 border border-gray-400 rounded-lg flex items-center justify-center">
       <div className="flex">
+        Slide: {slideOpened + 1}
         <div>
           <TemplateOption
             imageUrl={
@@ -24,7 +20,7 @@ export function EmBranco({
             title={"Múltipla escolha"}
             type="multipla escolha"
             slideOpened={slideOpened}
-            setSlideOpened={setSlideOpened}
+            setSlideList={setSlideList}
           />
           <TemplateOption
             imageUrl={
@@ -33,7 +29,7 @@ export function EmBranco({
             title={"Verdadeiro ou Falso"}
             type="verdadeiro ou falso"
             slideOpened={slideOpened}
-            setSlideOpened={setSlideOpened}
+            setSlideList={setSlideList}
           />
           <TemplateOption
             imageUrl={
@@ -42,7 +38,7 @@ export function EmBranco({
             title={"Múltipla escolha com Mídia"}
             type="multipla escolha com midia"
             slideOpened={slideOpened}
-            setSlideOpened={setSlideOpened}
+            setSlideList={setSlideList}
           />
         </div>
         <div>
@@ -53,7 +49,7 @@ export function EmBranco({
             title={"Verdadeiro ou Falso com Mídia"}
             type="verdadeiro ou falso com midia"
             slideOpened={slideOpened}
-            setSlideOpened={setSlideOpened}
+            setSlideList={setSlideList}
           />
           <TemplateOption
             imageUrl={
@@ -62,7 +58,7 @@ export function EmBranco({
             title={"Somente Mídia"}
             type="somente midia"
             slideOpened={slideOpened}
-            setSlideOpened={setSlideOpened}
+            setSlideList={setSlideList}
           />
           <TemplateOption
             imageUrl={
@@ -71,7 +67,7 @@ export function EmBranco({
             title={"Feedback"}
             type="feedback ao usuario"
             slideOpened={slideOpened}
-            setSlideOpened={setSlideOpened}
+            setSlideList={setSlideList}
           />
         </div>
       </div>

@@ -1,14 +1,21 @@
 import { Slide } from "@/models/slide";
+import { Input } from "@material-tailwind/react";
 
 interface FeedbackProps {
-  slideOpened: Slide;
-  slideList: Slide[];
+  slideOpened: number;
 }
 
-export function Feedback({}: FeedbackProps) {
+export function Feedback({ slideOpened }: FeedbackProps) {
   return (
-    <div className="w-1/2 h-96 bg-gray-300 border border-gray-400 rounded-lg flex items-center justify-center">
-      TEMPLATE FEEDBACK
+    <div className="flex items-center justify-center h-full w-full flex-col">
+      <div className="w-3/4 text-center pb-5">
+        TEMPLATE FEEDBACK {slideOpened + 1}
+        <Input
+          placeholder="Feedback ou conteúdo:"
+          className="w-full mb-4 rounded-full"
+        />
+      </div>
+      <div />
     </div>
   );
 }

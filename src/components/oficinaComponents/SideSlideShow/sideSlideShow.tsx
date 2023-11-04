@@ -4,7 +4,7 @@ import { SideSlide } from "./SideSlide/sideSlide";
 import { Dispatch, SetStateAction } from "react";
 
 interface SideSlideShowProps {
-  setSlideOpened: React.Dispatch<SetStateAction<Slide>>;
+  setSlideOpened: React.Dispatch<SetStateAction<number>>;
   setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
   slideList: Slide[];
 }
@@ -19,7 +19,6 @@ export function SideSlideShow({
       <ul className="mt-4">
         {slideList.map((slide, index) => (
           <SideSlide
-            slideList={slideList}
             setSlideOpened={setSlideOpened}
             key={index}
             numero={index}

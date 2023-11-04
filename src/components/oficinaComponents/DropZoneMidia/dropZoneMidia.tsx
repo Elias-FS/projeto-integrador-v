@@ -1,8 +1,17 @@
+import { Slide } from "@/models/slide";
 import { useRef, useState } from "react";
 
-interface DropZoneMidiaProps {}
+interface DropZoneMidiaProps {
+  slideOpened: number;
+  setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
+  slideList: Slide[];
+}
 
-export default function DropZoneMidia({}: DropZoneMidiaProps) {
+export default function DropZoneMidia({
+  slideOpened,
+  setSlideList,
+  slideList,
+}: DropZoneMidiaProps) {
   const [dragActive, setDragActive] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewURL, setPreviewURL] = useState<string | null>(null);
@@ -20,6 +29,16 @@ export default function DropZoneMidia({}: DropZoneMidiaProps) {
           const result = event.target?.result as string;
           if (result) {
             setPreviewURL(result);
+
+            // Atualize o setSlideList com o slide modificado
+            setSlideList((prevSlideList) => {
+              return prevSlideList.map((slide) => {
+                if (slide.index === slideOpened) {
+                  return { ...slide, midia: result };
+                }
+                return slide;
+              });
+            });
           }
         };
         reader.readAsDataURL(file);
@@ -44,6 +63,16 @@ export default function DropZoneMidia({}: DropZoneMidiaProps) {
           const result = event.target?.result as string;
           if (result) {
             setPreviewURL(result);
+
+            // Atualize o setSlideList com o slide modificado
+            setSlideList((prevSlideList) => {
+              return prevSlideList.map((slide) => {
+                if (slide.index === slideOpened) {
+                  return { ...slide, midia: result };
+                }
+                return slide;
+              });
+            });
           }
         };
         reader.readAsDataURL(file);
@@ -86,22 +115,23 @@ export default function DropZoneMidia({}: DropZoneMidiaProps) {
           para capa.
         </p>
 
-        {selectedFile && (
-          <div className="flex flex-col items-center mt-4">
-            {selectedFile.type.startsWith("image/") ? (
-              <img
-                src={previewURL as string}
-                alt="Selected Image"
-                className="max-h-48"
-              />
-            ) : selectedFile.type.startsWith("video/") ? (
-              <video
-                src={previewURL as string}
-                controls
-                className="max-h-48"
-              ></video>
-            ) : null}
-          </div>
+        {slideList[slideOpened] !== undefined &&
+        slideList[slideOpened].midia !== undefined ? (
+          slideList[slideOpened].midia?.startsWith("data:image") ? (
+            <img
+              src={slideList[slideOpened].midia}
+              alt="Selected Image"
+              className="max-h-48"
+            />
+          ) : slideList[slideOpened].midia?.startsWith("data:video") ? (
+            <video
+              src={slideList[slideOpened].midia}
+              controls
+              className="max-h-48"
+            ></video>
+          ) : null
+        ) : (
+          <p>Sem mídia</p>
         )}
       </form>
     </div>

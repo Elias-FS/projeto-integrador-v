@@ -5,7 +5,7 @@ import { SetStateAction } from "react";
 interface PlusSideSlideProps {
   setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
   slideList: Slide[];
-  setSlideOpened: React.Dispatch<SetStateAction<Slide>>;
+  setSlideOpened: React.Dispatch<SetStateAction<number>>;
 }
 
 export function PlusSideSlide({
@@ -19,12 +19,12 @@ export function PlusSideSlide({
       index: slideList.length,
     };
     setSlideList([...slideList, newSlide]);
-    setSlideOpened(newSlide);
+    setSlideOpened(slideList.length);
   };
 
   const takeSlide = () => {
     setSlideList((prevList) => prevList.slice(0, prevList.length - 1));
-    setSlideOpened(slideList[0]);
+    setSlideOpened(slideList.length - 2);
   };
 
   return (
