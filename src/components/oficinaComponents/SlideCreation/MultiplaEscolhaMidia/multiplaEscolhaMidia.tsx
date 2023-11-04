@@ -1,6 +1,6 @@
 import { Slide } from "@/models/slide";
-import { Input } from "@material-tailwind/react";
 import DropZoneMidia from "../../DropZoneMidia/dropZoneMidia";
+import { EstruturaMultiplaEscolha } from "./estruturaMultiplaEscolha";
 
 interface MultiplaEscolhaMidiaProps {
   slideOpened: number;
@@ -22,22 +22,12 @@ export function MultiplaEscolhaMidia({
           setSlideList={setSlideList}
           slideList={slideList}
         />
-        <Input placeholder="Questão:" className="w-full mb-4 rounded-full" />
       </div>
-      <div className="flex flex-col items-center w-full">
-        <div className="w-2/3 mb-4">
-          <Input placeholder="Alternativa 1" className="w-full rounded-full" />
-        </div>
-        <div className="w-2/3 mb-4">
-          <Input placeholder="Alternativa 2" className="w-full rounded-full" />
-        </div>
-        <div className="w-2/3 mb-4">
-          <Input placeholder="Alternativa 3" className="w-full rounded-full" />
-        </div>
-        <div className="w-2/3 mb-4">
-          <Input placeholder="Alternativa 4" className="w-full rounded-full" />
-        </div>
-      </div>
+      <EstruturaMultiplaEscolha
+        slideOpened={slideOpened}
+        setSlideList={setSlideList}
+        slideList={slideList}
+      />
     </div>
   );
 }

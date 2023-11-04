@@ -1,4 +1,3 @@
-import { Slide } from "@/models/slide";
 import { SetStateAction } from "react";
 
 interface SideSlideProps {
