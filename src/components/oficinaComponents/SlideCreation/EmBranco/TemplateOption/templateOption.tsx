@@ -20,7 +20,7 @@ export function TemplateOption({
       return prevSlideList.map((slide) => {
         if (slide.index === slideOpened) {
           // Atualiza o slideOpened na lista com o novo tipo
-          return { ...slide, slideType: type };
+          return { ...slide, slideType: type, options: [""] };
         }
         return slide;
       });

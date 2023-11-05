@@ -23,9 +23,17 @@ export function SlideCreation({
       {slideList[slideOpened].slideType === "em branco" ? (
         <EmBranco setSlideList={setSlideList} slideOpened={slideOpened} />
       ) : slideList[slideOpened].slideType === "multipla escolha" ? (
-        <MultiplaEscolha slideOpened={slideOpened} />
+        <MultiplaEscolha
+          slideOpened={slideOpened}
+          setSlideList={setSlideList}
+          slideList={slideList}
+        />
       ) : slideList[slideOpened].slideType === "verdadeiro ou falso" ? (
-        <VerdadeiroFalso slideOpened={slideOpened} />
+        <VerdadeiroFalso
+          slideOpened={slideOpened}
+          setSlideList={setSlideList}
+          slideList={slideList}
+        />
       ) : slideList[slideOpened].slideType === "multipla escolha com midia" ? (
         <MultiplaEscolhaMidia
           slideOpened={slideOpened}

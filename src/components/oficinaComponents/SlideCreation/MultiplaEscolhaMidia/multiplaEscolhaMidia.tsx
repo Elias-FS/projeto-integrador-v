@@ -1,6 +1,6 @@
 import { Slide } from "@/models/slide";
 import DropZoneMidia from "../../DropZoneMidia/dropZoneMidia";
-import { EstruturaMultiplaEscolha } from "./estruturaMultiplaEscolha";
+import { EstruturaDeAlternativas } from "../EstruturaDeAlternativas/estruturaDeAlternativas";
 
 interface MultiplaEscolhaMidiaProps {
   slideOpened: number;
@@ -23,7 +23,7 @@ export function MultiplaEscolhaMidia({
           slideList={slideList}
         />
       </div>
-      <EstruturaMultiplaEscolha
+      <EstruturaDeAlternativas
         slideOpened={slideOpened}
         setSlideList={setSlideList}
         slideList={slideList}

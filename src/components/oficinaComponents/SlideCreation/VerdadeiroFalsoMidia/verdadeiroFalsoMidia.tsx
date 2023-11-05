@@ -1,6 +1,7 @@
 import { Slide } from "@/models/slide";
 import { Input } from "@material-tailwind/react";
 import DropZoneMidia from "../../DropZoneMidia/dropZoneMidia";
+import { EstruturaDeAlternativas } from "../EstruturaDeAlternativas/estruturaDeAlternativas";
 
 interface VerdadeiroFalsoMidiaProps {
   slideOpened: number;
@@ -22,22 +23,12 @@ export function VerdadeiroFalsoMidia({
           setSlideList={setSlideList}
           slideList={slideList}
         />
-        <Input placeholder="Questão:" className="w-full mb-4 rounded-full" />
       </div>
-      <div className="flex flex-col items-center w-full">
-        <div className="w-2/3 mb-4">
-          <Input placeholder="Afirmação 1" className="w-full rounded-full" />
-        </div>
-        <div className="w-2/3 mb-4">
-          <Input placeholder="Afirmação 2" className="w-full rounded-full" />
-        </div>
-        <div className="w-2/3 mb-4">
-          <Input placeholder="Afirmação 3" className="w-full rounded-full" />
-        </div>
-        <div className="w-2/3 mb-4">
-          <Input placeholder="Afirmação 4" className="w-full rounded-full" />
-        </div>
-      </div>
+      <EstruturaDeAlternativas
+        slideOpened={slideOpened}
+        setSlideList={setSlideList}
+        slideList={slideList}
+      />
     </div>
   );
 }

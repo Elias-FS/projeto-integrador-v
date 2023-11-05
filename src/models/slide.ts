@@ -3,7 +3,7 @@ export interface Slide {
   index: number;
   question?: string;
   options?: string[];
-  correctOption?: number | number[];
+  correctOption?: number[];
   points?: number;
   midia?: string;
 }
