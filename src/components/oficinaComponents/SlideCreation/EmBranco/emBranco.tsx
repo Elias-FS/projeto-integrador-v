@@ -1,5 +1,6 @@
 import { Slide } from "@/models/slide";
 import { TemplateOption } from "./TemplateOption/templateOption";
+import img from "@/image/multiplaEscolhaImg.png";
 import { SetStateAction } from "react";
 
 interface EmBrancoTemplateProps {
@@ -14,9 +15,7 @@ export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
         Slide: {slideOpened + 1}
         <div>
           <TemplateOption
-            imageUrl={
-              "https://canaldoensino.com.br/blog/wp-content/uploads/2018/05/provas_de_multipla_escolha.jpg"
-            }
+            imageUrl={img}
             title={"Múltipla escolha"}
             type="multipla escolha"
             slideOpened={slideOpened}

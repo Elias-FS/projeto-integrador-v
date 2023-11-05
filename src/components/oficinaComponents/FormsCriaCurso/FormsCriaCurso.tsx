@@ -8,8 +8,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select";
-import DropZone from "../DropZone/dropZone";
 import React, { useState } from "react";
+import DropZone from "../DropZone/dropZone";
 
 interface FormsCriaCursoProps {
   setSelectedImage: React.Dispatch<React.SetStateAction<string | null>>;

@@ -3,16 +3,34 @@ import { Input } from "@material-tailwind/react";
 
 interface FeedbackProps {
   slideOpened: number;
+  setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
+  slideList: Slide[];
 }
 
-export function Feedback({ slideOpened }: FeedbackProps) {
+export function Feedback({
+  slideOpened,
+  setSlideList,
+  slideList,
+}: FeedbackProps) {
   return (
     <div className="flex items-center justify-center h-full w-full flex-col">
       <div className="w-3/4 text-center pb-5">
         TEMPLATE FEEDBACK {slideOpened + 1}
         <Input
-          placeholder="Feedback ou conteúdo:"
-          className="w-full mb-4 rounded-full"
+          id="Feedback"
+          placeholder="Feedback"
+          value={slideList[slideOpened]?.question}
+          onChange={(e) => {
+            const updatedValue = e.target.value;
+            setSlideList((prevSlideList) =>
+              prevSlideList.map((slide) => {
+                if (slide.index === slideOpened) {
+                  return { ...slide, question: updatedValue };
+                }
+                return slide;
+              })
+            );
+          }}
         />
       </div>
       <div />

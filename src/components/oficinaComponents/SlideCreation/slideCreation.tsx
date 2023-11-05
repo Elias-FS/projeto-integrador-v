@@ -54,7 +54,11 @@ export function SlideCreation({
           slideList={slideList}
         />
       ) : slideList[slideOpened].slideType === "feedback ao usuario" ? (
-        <Feedback slideOpened={slideOpened} />
+        <Feedback
+          slideOpened={slideOpened}
+          setSlideList={setSlideList}
+          slideList={slideList}
+        />
       ) : (
         "ERRO"
       )}
