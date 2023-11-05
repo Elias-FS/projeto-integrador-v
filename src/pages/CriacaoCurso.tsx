@@ -14,7 +14,7 @@ const CriacaoCurso: React.FC = () => {
   const [slideOpened, setSlideOpened] = useState(0);
   const [slideList, setSlideList] = useState<Slide[]>([primeiroSlide]);
 
-  // console.log(slideList);
+  console.log(slideList);
 
   return (
     <div className="flex">
