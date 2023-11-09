@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Cards/card";
-import { LinkedinLogo, Users, TwitterLogo } from "phosphor-react";
+import { Users } from "phosphor-react";
 import { Separator } from "../Separator";
 
 interface CardUserProps {
