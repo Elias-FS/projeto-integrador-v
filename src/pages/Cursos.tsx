@@ -54,6 +54,7 @@ const Cursos: React.FC = () => {
               name={curso.name}
               profissao={curso.profissao}
               src={curso.src}
+              type={"nao inscrito"}
             />
           ))}
         </div>

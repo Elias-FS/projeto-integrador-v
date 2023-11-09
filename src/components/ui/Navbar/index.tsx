@@ -60,6 +60,12 @@ export function Navbar() {
       case "/about-us":
         namePage = "About Us";
         break;
+      case "/criacao-curso":
+        namePage = "Criação de Curso";
+        break;
+      case "/configuracoes":
+        namePage = "Configurações";
+        break;
       default:
         namePage = "Página Desconhecida";
     }

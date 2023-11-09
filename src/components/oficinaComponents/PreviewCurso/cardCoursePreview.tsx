@@ -10,7 +10,7 @@ import {
 interface CardUserProps {
   titulo: string;
   descricao: string;
-  src: any;
+  src: string;
 }
 
 const CardCoursePreview: React.FC<CardUserProps> = ({

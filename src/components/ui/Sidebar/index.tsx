@@ -22,7 +22,7 @@ export function Sidebar() {
           <div className="mt-auto flex flex-col gap-6">
             <nav className="flex flex-col gap-1">
               <NavItem icon={Lifebuoy} title="Suporte" path={''} />
-              <NavItem icon={Gear} title="Configurações" path={''} />
+              <NavItem icon={Gear} title="Configurações" path={'/configuracoes'} />
             </nav>
 
             <div className="h-px bg-zinc-200 dark:bg-zinc-800" />

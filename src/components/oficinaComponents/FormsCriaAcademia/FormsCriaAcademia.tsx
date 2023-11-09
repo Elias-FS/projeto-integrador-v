@@ -20,7 +20,7 @@ import AcademiaService from "@/services/academia.service";
 
 
 interface FormsCriaAcademiaProps {
-  setSelectedImage: React.Dispatch<React.SetStateAction<string | null>>;
+  setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
   setTypedTitle: (title: string) => void;
   setTypedDescription: (title: string) => void;
 }

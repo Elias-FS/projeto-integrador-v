@@ -3,7 +3,7 @@ import { useStore } from '@/zustand-store';// Substitua com o caminho correto
 
 import { NavItem } from './NavItem';
 
-export function Navigation() {
+export function  Navigation() {
   const { iconsToShow, verifySideBar } = useStore(state => ({
     iconsToShow: state.iconsToShow,
     verifySideBar: state.verifySideBar,

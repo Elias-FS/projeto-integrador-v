@@ -53,6 +53,7 @@ const CursosPendentes: React.FC = () => {
               name={curso.name}
               profissao={curso.profissao}
               src={curso.src}
+              type={"pendente"}
             />
           ))}
         </div>

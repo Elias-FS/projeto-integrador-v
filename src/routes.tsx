@@ -11,6 +11,7 @@ import MeuAprendizado from './pages/MeuAprendizado';
 import MinhasAulas from './pages/MinhasAulas';
 import CursosPendentes from './pages/CursosPendentes';
 import CriacaoCurso from './pages/CriacaoCurso';
+import Configuracoes from './pages/Configuracoes';
 
 const Rotas = () => {
     return (
@@ -27,6 +28,7 @@ const Rotas = () => {
           <Route path="/cursos-pendentes" Component={CursosPendentes} />
           <Route path="/academias" Component={Academias} />
           <Route path="/about-us" Component={AboutUs} />
+          <Route path="/configuracoes" Component={Configuracoes} />
         </Routes>
       </Router>
     );

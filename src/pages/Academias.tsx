@@ -56,6 +56,7 @@ const Academias: React.FC = () => {
               name={curso.name}
               profissao={curso.profissao}
               src={curso.src}
+              type={""}
             />
           ))}
         </div>

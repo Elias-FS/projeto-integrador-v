@@ -157,6 +157,7 @@ export function EstruturaDeAlternativas({
         )}
       </div>
       {
+        // travar maximo de alternativas
         // slideList[slideOpened].options.length < 5 ? (
         <Plus
           size={28}
