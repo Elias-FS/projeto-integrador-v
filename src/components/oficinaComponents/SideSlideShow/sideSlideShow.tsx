@@ -15,7 +15,7 @@ export function SideSlideShow({
   slideList,
 }: SideSlideShowProps) {
   return (
-    <div className="w-40 bg-white text-white p-4 border-r border-gray-300 h-screen">
+    <div className="w-52 bg-white text-white p-4 border-r border-gray-300 h-screen">
       <ul className="mt-4">
         {slideList.map((slide, index) => (
           <SideSlide

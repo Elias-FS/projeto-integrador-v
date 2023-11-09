@@ -15,7 +15,7 @@ export function SideSlide({ numero, setSlideOpened }: SideSlideProps) {
   return (
     <div className="flex items-center">
       <div
-        className={`mini-slide w-28 h-14 bg-zinc-200 border border-gray-300 rounded text-black cursor-pointer mb-4 shadow-md border-gray-400`}
+        className={`mini-slide w-36 h-20 bg-zinc-200 border border-gray-300 rounded text-black cursor-pointer mb-4 shadow-md border-gray-400`}
         onClick={openSlide}
       >
         {numero + 1}

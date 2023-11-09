@@ -11,9 +11,8 @@ interface EmBrancoTemplateProps {
 export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
   return (
     <div className="w-full h-full bg-gray-300 border border-gray-400 rounded-lg flex items-center justify-center">
-      <div className="flex">
-        Slide: {slideOpened + 1}
-        <div>
+      <div className="grid grid-cols-3 grid-rows-2 gap-28 p-5">
+        <div className="col-span-1">
           <TemplateOption
             imageUrl={img}
             title={"Múltipla escolha"}
@@ -21,6 +20,8 @@ export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
             slideOpened={slideOpened}
             setSlideList={setSlideList}
           />
+        </div>
+        <div className="col-span-1">
           <TemplateOption
             imageUrl={
               "https://canaldoensino.com.br/blog/wp-content/uploads/2018/05/provas_de_multipla_escolha.jpg"
@@ -30,6 +31,8 @@ export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
             slideOpened={slideOpened}
             setSlideList={setSlideList}
           />
+        </div>
+        <div className="col-span-1">
           <TemplateOption
             imageUrl={
               "https://canaldoensino.com.br/blog/wp-content/uploads/2018/05/provas_de_multipla_escolha.jpg"
@@ -40,7 +43,7 @@ export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
             setSlideList={setSlideList}
           />
         </div>
-        <div>
+        <div className="col-span-1">
           <TemplateOption
             imageUrl={
               "https://canaldoensino.com.br/blog/wp-content/uploads/2018/05/provas_de_multipla_escolha.jpg"
@@ -50,6 +53,8 @@ export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
             slideOpened={slideOpened}
             setSlideList={setSlideList}
           />
+        </div>
+        <div className="col-span-1">
           <TemplateOption
             imageUrl={
               "https://canaldoensino.com.br/blog/wp-content/uploads/2018/05/provas_de_multipla_escolha.jpg"
@@ -59,6 +64,8 @@ export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
             slideOpened={slideOpened}
             setSlideList={setSlideList}
           />
+        </div>
+        <div className="col-span-1">
           <TemplateOption
             imageUrl={
               "https://canaldoensino.com.br/blog/wp-content/uploads/2018/05/provas_de_multipla_escolha.jpg"

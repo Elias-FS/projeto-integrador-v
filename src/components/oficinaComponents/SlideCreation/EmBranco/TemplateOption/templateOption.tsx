@@ -31,9 +31,13 @@ export function TemplateOption({
     <div onClick={alterandoEstado} className="text-center">
       <div className="flex flex-col">
         <div className="w-full flex justify-center items-center">
-          <h2 className="text-black font-bold">{title}</h2>
+          <h2 className="text-black font-bold text-xl cursor-pointer mb-5">{title}</h2>
         </div>
-        <img src={imageUrl} alt="Imagem" className="h-32" />
+        <img
+          src={imageUrl}
+          alt="Imagem"
+          className="h-44 rounded-md cursor-pointer border-2 border-black"
+        />
       </div>
     </div>
   );

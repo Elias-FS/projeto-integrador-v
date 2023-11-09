@@ -21,6 +21,7 @@ export function EstruturaDeAlternativas({
         <Label htmlFor="Enunciado">Enunciado: </Label>
         {slideList[slideOpened]?.question ? (
           <Input
+          type="text"
             id="Enunciado"
             placeholder="Enunciado"
             value={slideList[slideOpened]?.question}
