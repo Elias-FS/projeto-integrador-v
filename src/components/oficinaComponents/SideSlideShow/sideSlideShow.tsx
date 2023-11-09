@@ -7,12 +7,14 @@ interface SideSlideShowProps {
   setSlideOpened: React.Dispatch<SetStateAction<number>>;
   setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
   slideList: Slide[];
+  slideOpened: number;
 }
 
 export function SideSlideShow({
   setSlideOpened,
   setSlideList,
   slideList,
+  slideOpened,
 }: SideSlideShowProps) {
   return (
     <div className="w-52 bg-white text-white p-4 border-r border-gray-300 h-screen">
@@ -22,6 +24,8 @@ export function SideSlideShow({
             setSlideOpened={setSlideOpened}
             key={index}
             numero={index}
+            setSlideList={setSlideList}
+            slideList={slideList}
           ></SideSlide>
         ))}
         <PlusSideSlide

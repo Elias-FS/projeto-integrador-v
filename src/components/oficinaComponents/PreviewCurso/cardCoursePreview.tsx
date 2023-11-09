@@ -23,7 +23,7 @@ const CardCoursePreview: React.FC<CardUserProps> = ({
       <CardHeader className="p-0">
         <img
           src={
-            src !== null
+            src !== ""
               ? src
               : "https://igp.rs.gov.br/themes/modelo-noticias/images/outros/GD_imgSemImagem.png"
           }

@@ -26,6 +26,7 @@ const CriacaoCurso: React.FC = () => {
             slideList={slideList}
             setSlideList={setSlideList}
             setSlideOpened={setSlideOpened}
+            slideOpened={slideOpened}
           />
           <SlideCreation
             slideList={slideList}
