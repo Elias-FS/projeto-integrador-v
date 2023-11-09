@@ -1,11 +1,20 @@
+import { Slide } from "@/models/slide";
+import { Trash } from "phosphor-react";
 import { SetStateAction } from "react";
 
 interface SideSlideProps {
   numero: number;
   setSlideOpened: React.Dispatch<SetStateAction<number>>;
+  setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
+  slideList: Slide[];
 }
 
-export function SideSlide({ numero, setSlideOpened }: SideSlideProps) {
+export function SideSlide({
+  numero,
+  setSlideOpened,
+  setSlideList,
+  slideList,
+}: SideSlideProps) {
   numero;
 
   const openSlide = () => {
@@ -19,6 +28,21 @@ export function SideSlide({ numero, setSlideOpened }: SideSlideProps) {
         onClick={openSlide}
       >
         {numero + 1}
+        {/* {numero != 0 ? (
+          <Trash
+            size={28}
+            color="white"
+            className="bg-red-400 rounded"
+            onClick={() => {
+              setSlideList((prevList) =>
+                prevList.filter((_, i) => i !== numero)
+              );
+              setSlideOpened(numero);
+            }}
+          />
+        ) : (
+          ""
+        )} */}
       </div>
       <span className="ml-2 text-x pb-5 text-black p-2 flex items-center">
         {numero + 1}

@@ -15,6 +15,7 @@ export function VerdadeiroFalso({
 }: VerdadeiroFalsoProps) {
   return (
     <div className="flex items-center justify-center h-full w-full flex-col">
+      VERDADEIRO OU FALSO {slideOpened + 1}
       <EstruturaDeAlternativas
         slideOpened={slideOpened}
         setSlideList={setSlideList}

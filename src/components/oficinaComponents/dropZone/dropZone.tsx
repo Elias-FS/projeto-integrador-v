@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
 interface DropZoneProps {
-  setSelectedImage: React.Dispatch<React.SetStateAction<string | null>>;
+  setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function DropZone({ setSelectedImage }: DropZoneProps) {

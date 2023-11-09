@@ -5,7 +5,7 @@ import { FormsCriaCurso } from "@/components/oficinaComponents/FormsCriaCurso/Fo
 import CardCoursePreview from "@/components/oficinaComponents/PreviewCurso/cardCoursePreview";
 
 const OficinaCurso: React.FC = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState("");
   const [typedTitle, setTypedTitle] = useState("Título do Curso");
   const [typedDescription, setTypedDescription] = useState(
     "Descrição do curso. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in lectus volutpat, laoreet neque eget, convallis tortor. "
@@ -21,6 +21,7 @@ const OficinaCurso: React.FC = () => {
             setSelectedImage={setSelectedImage}
             setTypedTitle={setTypedTitle}
             setTypedDescription={setTypedDescription}
+            selectedImage={selectedImage}
           />
           <CardCoursePreview
             titulo={typedTitle}

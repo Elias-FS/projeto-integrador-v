@@ -10,17 +10,21 @@ import {
 } from "@/components/ui/Select";
 import React, { useState } from "react";
 import DropZone from "../DropZone/dropZone";
+import { Curso } from "@/models/curso";
+import { v4 as uuidv4 } from "uuid";
 
 interface FormsCriaCursoProps {
-  setSelectedImage: React.Dispatch<React.SetStateAction<string | null>>;
+  setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
   setTypedTitle: (title: string) => void;
   setTypedDescription: (title: string) => void;
+  selectedImage: string;
 }
 
 export function FormsCriaCurso({
   setSelectedImage,
   setTypedTitle,
   setTypedDescription,
+  selectedImage,
 }: FormsCriaCursoProps) {
   const [inputTitle, setInputTitle] = useState(""); // Estado para o título
   const [inputDescription, setInputDescription] = useState(""); // Estado para a descrição
@@ -66,7 +70,16 @@ export function FormsCriaCurso({
 
   const saveInformations = () => {
     //lógica para salvar
-    console.log("salvando info");
+    const curso = new Curso(
+      Date(),
+      uuidv4(),
+      inputTitle,
+      selectedImage,
+      inputDescription,
+      "academia",
+      []
+    );
+    console.log(curso);
   };
 
   return (
