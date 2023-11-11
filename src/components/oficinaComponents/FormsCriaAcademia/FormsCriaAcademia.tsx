@@ -42,6 +42,14 @@ export function FormsCriaAcademia({
   };
 
   const click = () => {
+    // tranformando imagem em binario
+    const base64Image = selectedImage;
+    const base64Content = base64Image.split(",")[1];
+    const binaryString = atob(base64Content);
+    const byteArray = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      byteArray[i] = binaryString.charCodeAt(i);
+    }
     AcademiaService.criarAcademias(inputTitle, inputDescription, 10);
   };
 
