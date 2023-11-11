@@ -28,21 +28,7 @@ export function SideSlide({
         onClick={openSlide}
       >
         {numero + 1}
-        {/* {numero != 0 ? (
-          <Trash
-            size={28}
-            color="white"
-            className="bg-red-400 rounded"
-            onClick={() => {
-              setSlideList((prevList) =>
-                prevList.filter((_, i) => i !== numero)
-              );
-              setSlideOpened(numero);
-            }}
-          />
-        ) : (
-          ""
-        )} */}
+
       </div>
       <span className="ml-2 text-x pb-5 text-black p-2 flex items-center">
         {numero + 1}

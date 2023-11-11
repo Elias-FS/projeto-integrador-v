@@ -6,40 +6,44 @@ import CardCourse from "@/components/ui/Cards/cardCourse";
 const Cursos: React.FC = () => {
   const cursos = [
     {
-      name: "Curso de Python",
-      profissao: "Descrição",
-      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
+      id: "031cccd8-0a96-44e6-b8ee-d5247de06767",
+      titulo: "Curso de Python",
+      descricao: "Descrição Python",
+      data_nascimento: "11/11/2023",
+      academia: "Academia A",
+      capa: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
+      listaDeSlides: [
+        { slideType: "em branco" },
+        { slideType: "em branco" },
+        { slideType: "em branco" },
+      ],
     },
     {
-      name: "Curso de Python",
-      profissao: "Descrição",
-      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
+      id: "031cccd8-0a96-44e6-b8ee-d5247de06768",
+      titulo: "Curso de C++",
+      descricao: "Descrição C++",
+      data_nascimento: "11/11/2023",
+      academia: "Academia B",
+      capa: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
+      listaDeSlides: [
+        { slideType: "verdadeiro ou falso" },
+        { slideType: "verdadeiro ou falso" },
+        { slideType: "verdadeiro ou falso" },
+      ],
     },
     {
-      name: "Curso de Python",
-      profissao: "Descrição",
-      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
-    },
-    {
-      name: "Curso de Python",
-      profissao: "Descrição",
-      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
-    },
-    {
-      name: "Curso de Python",
-      profissao: "Descrição",
-      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
-    },
-    {
-      name: "Curso de Python",
-      profissao: "Descrição",
-      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
-    },
-    {
-      name: "Curso de Python",
-      profissao: "Descrição",
-      src: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
-    },
+      id: "031cccd8-0a96-44e6-b8ee-d5247de06769",
+      titulo: "Curso de TypeScript",
+      descricao: "Descrição TypeScript",
+      data_nascimento: "11/11/2023",
+      academia: "Academia C",
+      capa: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
+      listaDeSlides: [
+        { slideType: "somente midia" },
+        { slideType: "somente midia" },
+        { slideType: "somente midia" },
+      ],
+    }
   ];
 
   return (
@@ -51,9 +55,9 @@ const Cursos: React.FC = () => {
           {cursos.map((curso, index) => (
             <CardCourse
               key={index}
-              name={curso.name}
-              profissao={curso.profissao}
-              src={curso.src}
+              titulo={curso.titulo}
+              descricao={curso.descricao}
+              capa={curso.capa}
               type={"nao inscrito"}
             />
           ))}

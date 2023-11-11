@@ -35,12 +35,16 @@ export function PlusSideSlide({
       >
         <Plus size={32} color="white" />
       </div>
-      <div
-        className="mini-slide w-16 h-16 bg-red-400 border border-gray-300 rounded cursor-pointer mb-4 shadow-md border-gray-400 flex items-center justify-center ml-3.5"
-        onClick={takeSlide}
-      >
-        <Minus size={32} color="white" />
-      </div>
+      {slideList.length != 1 ? (
+        <div
+          className="mini-slide w-16 h-16 bg-red-400 border border-gray-300 rounded cursor-pointer mb-4 shadow-md border-gray-400 flex items-center justify-center ml-3.5"
+          onClick={takeSlide}
+        >
+          <Minus size={32} color="white" />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

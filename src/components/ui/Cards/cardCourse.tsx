@@ -10,18 +10,19 @@ import {
 import { Check, Plus, Student, Users } from "phosphor-react";
 import { Separator } from "../Separator";
 import { Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 interface CardUserProps {
-  name: string;
-  profissao: string;
-  src: string;
+  titulo: string;
+  descricao: string;
+  capa: string;
   type: string;
 }
 
 const CardCourse: React.FC<CardUserProps> = ({
-  name,
-  profissao,
-  src,
+  titulo,
+  descricao,
+  capa,
   type,
 }) => {
   function inscreverCurso() {
@@ -37,20 +38,20 @@ const CardCourse: React.FC<CardUserProps> = ({
     alert("Deseja validar o curso?");
     console.log("logica para validar o curso");
   }
-  
+
   return (
     <>
       <Card className="h-auto w-96 overflow-hidden mx-1 mb-8 group hover:bg-gray-100">
         <CardHeader style={{ padding: 0 }}>
           <img
-            src={src}
+            src={capa}
             alt="Imagem do usuário"
             className="aspect-video object-cover"
           />
         </CardHeader>
         <CardContent className="">
-          <CardTitle className="mx-2 mt-4">{name}</CardTitle>
-          <CardDescription className="mt-2 mx-2">{profissao}</CardDescription>
+          <CardTitle className="mx-2 mt-4">{titulo}</CardTitle>
+          <CardDescription className="mt-2 mx-2">{descricao}</CardDescription>
         </CardContent>
         <CardFooter>
           <Users className="mx-2" size={32} />
@@ -58,14 +59,14 @@ const CardCourse: React.FC<CardUserProps> = ({
           <p className="font-bold text-xl ml-2">1K</p>
           {type === "inscrito" ? (
             // ir para tela de assistir o curso
-            <a>
+            <Link to={"/visualizacao-curso"}>
               <Button
                 className="bg-green-700 group-hover:opacity-100 opacity-0"
                 onClick={fazerCurso}
               >
                 {"Iniciar"} <Student className="ml-2 h-4 w-4" />
               </Button>
-            </a>
+            </Link>
           ) : type === "nao inscrito" ? (
             <Button
               className="bg-green-700 group-hover:opacity-100 opacity-0"
@@ -76,14 +77,14 @@ const CardCourse: React.FC<CardUserProps> = ({
           ) : type === "pendente" ? (
             // ir para tela de assistir o curso e validar
             <>
-              <a>
+              <Link to={"/visualizacao-curso"}>
                 <Button
                   className="bg-green-700 group-hover:opacity-100 opacity-0"
                   onClick={fazerCurso}
                 >
                   {"Iniciar"} <Student className="ml-2 h-4 w-4" />
                 </Button>
-              </a>
+              </Link>
               <Button
                 className="bg-yellow-500 group-hover:opacity-100 opacity-0"
                 onClick={validarCurso}
