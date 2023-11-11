@@ -8,10 +8,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DropZone from "../DropZone/dropZone";
 import { Curso } from "@/models/curso";
 import { v4 as uuidv4 } from "uuid";
+import { useStore } from "@/zustand-store";
+import { Link } from "react-router-dom";
 
 interface FormsCriaCursoProps {
   setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
@@ -26,8 +28,13 @@ export function FormsCriaCurso({
   setTypedDescription,
   selectedImage,
 }: FormsCriaCursoProps) {
-  const [inputTitle, setInputTitle] = useState(""); // Estado para o título
-  const [inputDescription, setInputDescription] = useState(""); // Estado para a descrição
+  const [inputTitle, setInputTitle] = useState("");
+  const [inputDescription, setInputDescription] = useState("");
+  const [academiaSelecionada, setAcademiaSelecionada] = useState("");
+  const { curso, saveInformations } = useStore((state) => ({
+    curso: state.curso,
+    saveInformations: state.saveInformations,
+  }));
 
   const academias = [
     {
@@ -68,19 +75,27 @@ export function FormsCriaCurso({
     console.log("Valor digitado: ", valorDigitado);
   };
 
-  const saveInformations = () => {
+  const handleSelectChange = (valor: string) => {
+    setAcademiaSelecionada(valor);
+  };
+
+  useEffect(() => {
+    console.log("Curso após re-renderização:", curso);
+  }, [curso]); // Executa o efeito sempre que `curso` é alterado
+
+  function salvarSlides() {
     //lógica para salvar
-    const curso = new Curso(
+    const newCurso = new Curso(
       Date(),
       uuidv4(),
       inputTitle,
       selectedImage,
       inputDescription,
-      "academia",
+      academiaSelecionada,
       []
     );
-    console.log(curso);
-  };
+    saveInformations(newCurso);
+  }
 
   return (
     <Card color="transparent" shadow={false}>
@@ -123,7 +138,10 @@ export function FormsCriaCurso({
           <Typography variant="h6" className="-mb-3">
             Academia:
           </Typography>
-          <Select>
+          <Select
+            onValueChange={handleSelectChange}
+            value={academiaSelecionada}
+          >
             <SelectTrigger className="w-[385px]  border-gray-800">
               <SelectValue placeholder="Academias" />
             </SelectTrigger>
@@ -141,15 +159,24 @@ export function FormsCriaCurso({
             </SelectContent>
           </Select>
         </div>
-        <a href="/criacao-curso">
-          <Button
-            onClick={saveInformations}
-            className="mt-6 bg-green-700 text-lg h-11"
-            fullWidth
-          >
+        {!academiaSelecionada ||
+        !inputDescription ||
+        !inputTitle ||
+        !selectedImage ? (
+          <Button className="mt-6 bg-green-700 text-lg h-11" fullWidth disabled>
             Iniciar Criação
           </Button>
-        </a>
+        ) : (
+          <Link to="/criacao-curso">
+            <Button
+              onClick={salvarSlides}
+              className="mt-6 bg-green-700 text-lg h-11"
+              fullWidth
+            >
+              Iniciar Criação
+            </Button>
+          </Link>
+        )}
       </form>
     </Card>
   );

@@ -18,17 +18,18 @@ import DropZone from "../DropZone/dropZone";
 import React, { useState } from "react";
 import AcademiaService from "@/services/academia.service";
 
-
 interface FormsCriaAcademiaProps {
   setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
   setTypedTitle: (title: string) => void;
   setTypedDescription: (title: string) => void;
+  selectedImage: string;
 }
 
 export function FormsCriaAcademia({
   setSelectedImage,
   setTypedTitle,
   setTypedDescription,
+  selectedImage,
 }: FormsCriaAcademiaProps) {
   const [inputTitle, setInputTitle] = useState(""); // Estado para o título
   const [inputDescription, setInputDescription] = useState(""); // Estado para a descrição
@@ -40,10 +41,9 @@ export function FormsCriaAcademia({
     console.log("Valor digitado: ", valorDigitado);
   };
 
-  
   const click = () => {
-    AcademiaService.criarAcademias(inputTitle, inputDescription, 10)
-  }
+    AcademiaService.criarAcademias(inputTitle, inputDescription, 10);
+  };
 
   const handleInputDescriptionChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -93,12 +93,19 @@ export function FormsCriaAcademia({
             }}
           />
         </div>
-        <Button 
-        className="mt-6 bg-green-700 text-lg h-11" fullWidth
-        onClick={click}
-        >
-          Criar Academia
-        </Button>
+        {!inputDescription || !inputTitle || !selectedImage ? (
+          <Button className="mt-6 bg-green-700 text-lg h-11" fullWidth disabled>
+            Criar Academia
+          </Button>
+        ) : (
+          <Button
+            className="mt-6 bg-green-700 text-lg h-11"
+            fullWidth
+            onClick={click}
+          >
+            Criar Academia
+          </Button>
+        )}
       </form>
     </Card>
   );

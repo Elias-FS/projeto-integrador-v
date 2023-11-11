@@ -21,6 +21,7 @@ const OficinaAcademia: React.FC = () => {
             setSelectedImage={setSelectedImage}
             setTypedTitle={setTypedTitle}
             setTypedDescription={setTypedDescription}
+            selectedImage={selectedImage}
           />
           <CardCoursePreview
             titulo={typedTitle}

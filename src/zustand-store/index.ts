@@ -9,6 +9,7 @@ import {
 import { Video } from "@phosphor-icons/react";
 import { Usuario } from "@/models/usuario";
 import { UsuarioTipo } from "@/enums/usuario_tipo";
+import { Curso } from "@/models/curso";
 
 const usuarioTeste = new Usuario(
   new Date("1990-01-01"),
@@ -32,16 +33,25 @@ export interface PlayerState {
     path: string;
   }[];
   userType: string;
+  curso: Curso;
 
   verifySideBar: () => void;
   namingRole: () => void;
+  saveInformations: (curso: Curso) => void;
 }
 
-export const useStore = create<PlayerState>((set, get) => {
+export const useStore = create<PlayerState>((set) => {
   return {
     iconsToShow: [], // Inicialmente, nenhum ícone é mostrado
     userType: "",
+    curso: {data_nascimento:"s"} as Curso,
 
+    saveInformations: (novoCurso) => {
+      console.log('Salvando informações:', novoCurso);
+      // Atualize o estado
+      set((state) => ({ curso: novoCurso }));
+    },
+    
     namingRole: () => {
       let newUserType;
 
