@@ -10,7 +10,6 @@ const criarAcademias = (
     nome: string,
     descricao: string,
     usuarioId: number,
-
 ) => {
 
 

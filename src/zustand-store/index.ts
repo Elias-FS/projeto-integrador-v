@@ -109,6 +109,7 @@ export const useStore = create<PlayerState>((set) => {
           },
           { icon: Buildings, title: "Academias", path: "/academias" },
           { icon: Video, title: "Cursos", path: "/cursos" },
+          { icon: Student, title: "Gerenciar Cargos", path: "/promocao-cargo" }
         ];
       }
 

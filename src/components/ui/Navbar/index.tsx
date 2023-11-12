@@ -69,6 +69,9 @@ export function Navbar() {
       case "/visualizacao-curso":
           namePage = "Visualização de Curso";
           break;
+      case "/promocao-cargo":
+          namePage = "Gerenciamento de Cargos";
+          break;
       default:
         namePage = "Página Desconhecida";
     }
