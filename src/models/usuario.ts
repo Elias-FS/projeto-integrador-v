@@ -41,4 +41,41 @@ export class Usuario {
     this.rua = rua;
     this.cargo = cargo;
   }
+
+  static fromJson(json: any): Usuario {
+    console.log(json)
+    const {
+      data_nascimento,
+      id,
+      celular,
+      nome,
+      colaborador,
+      profissao,
+      email,
+      cep,
+      bairro,
+      estado,
+      rua,
+      cargo,
+    } = json;
+
+    // Você pode adicionar validações ou tratamentos adicionais aqui, se necessário
+
+    const usuario = new Usuario(
+      new Date(data_nascimento),
+      id,
+      celular,
+      nome,
+      colaborador,
+      profissao,
+      email,
+      cep,
+      bairro,
+      estado,
+      rua,
+      cargo as UsuarioTipo // Certifique-se de tratar adequadamente o tipo do cargo
+    );
+
+    return usuario;
+  }
 }

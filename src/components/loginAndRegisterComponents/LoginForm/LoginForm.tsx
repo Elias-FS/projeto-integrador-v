@@ -2,26 +2,25 @@ import { useState } from "react";
 import { InputText } from "../Input/Input";
 import styles from "./LoginForm.module.css";
 import AuthService from "@/services/auth.service";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/Button/button";
-import authHeader from "@/services/auth.service";
-
 
 export function LoginForm() {
   const [senha, setSenha] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const navigate = useNavigate();
 
   const click = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    
+
     const response = await AuthService.login(email, senha);
 
+    const usuarioJson = response.data.usuario;
+
     localStorage.setItem('token', response.data.token);
+    localStorage.setItem('usuario', usuarioJson);
 
-    console.log(response.data.usuarioTipo)
+    
 
-
+    window.location.href = "/home";
   };
 
   return (

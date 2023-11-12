@@ -11,20 +11,7 @@ import { Usuario } from "@/models/usuario";
 import { UsuarioTipo } from "@/enums/usuario_tipo";
 import { Curso } from "@/models/curso";
 
-const usuarioTeste = new Usuario(
-  new Date("1990-01-01"),
-  1,
-  "123456789",
-  "João da Silva",
-  true,
-  "Desenvolvedor",
-  "joao@example.com",
-  "12345-678",
-  "Centro",
-  "SP",
-  "Rua Principal",
-  UsuarioTipo.administrador
-);
+let usuarioTeste: Usuario;
 
 export interface PlayerState {
   iconsToShow: {
