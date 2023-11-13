@@ -4,11 +4,9 @@ import { useEffect } from "react";
 import AuthService from "@/services/auth.service";
 import { Usuario } from "@/models/usuario";
 
-//export interface ProfileProps {}
+// export interface ProfileProps {}
 
-const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
-
-
+// const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
 
 export function Profile() {
   return (
@@ -20,7 +18,8 @@ export function Profile() {
       />
       <div className="flex flex-col">
         <span className="block text-sm font-semibold text-zinc-700 dark:text-zinc-100">
-          {localStorage.getItem("usuario")}
+          {/* {localStorage.getItem("usuario")} */}
+          Gian Dutra
         </span>
         <span className="block text-sm text-zinc-500 dark:text-zinc-400">
           giandutra@hotmail.com.br

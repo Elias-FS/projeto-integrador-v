@@ -11,6 +11,21 @@ import { Usuario } from "@/models/usuario";
 import { UsuarioTipo } from "@/enums/usuario_tipo";
 import { Curso } from "@/models/curso";
 
+const usuario = {
+  data_nascimento: "1990-01-01",
+  id: 1,
+  celular: "123456789",
+  nome: "Emílio Biasi",
+  colaborador: true,
+  profissao: "Desenvolvedor",
+  email: "emilio@example.com",
+  cep: "12345-678",
+  bairro: "Centro",
+  estado: "SP",
+  rua: "Rua Principal",
+  cargo: UsuarioTipo.administrador,
+};
+
 export interface PlayerState {
   iconsToShow: {
     icon: React.ElementType;
@@ -26,20 +41,20 @@ export interface PlayerState {
 }
 
 export const useStore = create<PlayerState>((set) => {
-    return {
+  return {
     iconsToShow: [], // Inicialmente, nenhum ícone é mostrado
     userType: "",
     curso: {} as Curso,
     usuario: {} as Usuario,
 
     saveInformations: (novoCurso) => {
-      console.log('Salvando informações:', novoCurso);
+      console.log("Salvando informações:", novoCurso);
       // Atualize o estado
       set((state) => ({ curso: novoCurso }));
     },
-    
+
     namingRole: () => {
-      const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
+      //const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
       let newUserType;
       if (usuario.cargo == UsuarioTipo.aluno) {
         newUserType = "Aluno";
@@ -52,7 +67,7 @@ export const useStore = create<PlayerState>((set) => {
     },
 
     verifySideBar: () => {
-      const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
+      //const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
       let newIconsToShow: {
         icon: React.ElementType;
         title: string;
@@ -95,7 +110,7 @@ export const useStore = create<PlayerState>((set) => {
           },
           { icon: Buildings, title: "Academias", path: "/academias" },
           { icon: Video, title: "Cursos", path: "/cursos" },
-          { icon: Student, title: "Gerenciar Cargos", path: "/promocao-cargo" }
+          { icon: Student, title: "Gerenciar Cargos", path: "/promocao-cargo" },
         ];
       }
 
