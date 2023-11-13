@@ -1,4 +1,5 @@
 import { UsuarioTipo } from "@/enums/usuario_tipo";
+import moment from 'moment';
 
 export class Usuario {
   data_nascimento: Date;
@@ -43,7 +44,6 @@ export class Usuario {
   }
 
   static fromJson(json: any): Usuario {
-    console.log(json)
     const {
       data_nascimento,
       id,
@@ -59,10 +59,8 @@ export class Usuario {
       cargo,
     } = json;
 
-    // Você pode adicionar validações ou tratamentos adicionais aqui, se necessário
-
     const usuario = new Usuario(
-      new Date(data_nascimento),
+      moment.utc(data_nascimento).toDate(),
       id,
       celular,
       nome,
@@ -73,7 +71,7 @@ export class Usuario {
       bairro,
       estado,
       rua,
-      cargo as UsuarioTipo // Certifique-se de tratar adequadamente o tipo do cargo
+      cargo as UsuarioTipo 
     );
 
     return usuario;

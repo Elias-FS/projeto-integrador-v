@@ -11,8 +11,6 @@ import { Usuario } from "@/models/usuario";
 import { UsuarioTipo } from "@/enums/usuario_tipo";
 import { Curso } from "@/models/curso";
 
-let usuarioTeste: Usuario;
-
 export interface PlayerState {
   iconsToShow: {
     icon: React.ElementType;
@@ -28,10 +26,11 @@ export interface PlayerState {
 }
 
 export const useStore = create<PlayerState>((set) => {
-  return {
+    return {
     iconsToShow: [], // Inicialmente, nenhum ícone é mostrado
     userType: "",
-    curso: {data_nascimento:"s"} as Curso,
+    curso: {} as Curso,
+    usuario: {} as Usuario,
 
     saveInformations: (novoCurso) => {
       console.log('Salvando informações:', novoCurso);
@@ -40,31 +39,31 @@ export const useStore = create<PlayerState>((set) => {
     },
     
     namingRole: () => {
+      const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
       let newUserType;
-
-      if (usuarioTeste.cargo == UsuarioTipo.aluno) {
+      if (usuario.cargo == UsuarioTipo.aluno) {
         newUserType = "Aluno";
-      } else if (usuarioTeste.cargo == UsuarioTipo.instrutor) {
+      } else if (usuario.cargo == UsuarioTipo.instrutor) {
         newUserType = "Instrutor";
-      } else if (usuarioTeste.cargo == UsuarioTipo.administrador) {
+      } else if (usuario.cargo == UsuarioTipo.administrador) {
         newUserType = "Admin";
       }
-
       set({ userType: newUserType });
     },
 
     verifySideBar: () => {
+      const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
       let newIconsToShow: {
         icon: React.ElementType;
         title: string;
         path: string;
       }[] = [];
-      if (usuarioTeste.cargo == UsuarioTipo.aluno) {
+      if (usuario.cargo == UsuarioTipo.aluno) {
         newIconsToShow = [
           { icon: Student, title: "Meu Aprendizado", path: "/meu-aprendizado" },
           { icon: Video, title: "Cursos", path: "/cursos" },
         ];
-      } else if (usuarioTeste.cargo === UsuarioTipo.instrutor) {
+      } else if (usuario.cargo === UsuarioTipo.instrutor) {
         newIconsToShow = [
           {
             icon: ChalkboardTeacher,
@@ -75,7 +74,7 @@ export const useStore = create<PlayerState>((set) => {
           { icon: Wrench, title: "Oficina Curso", path: "/oficina-curso" },
           { icon: Video, title: "Cursos", path: "/cursos" },
         ];
-      } else if (usuarioTeste.cargo == UsuarioTipo.administrador) {
+      } else if (usuario.cargo == UsuarioTipo.administrador) {
         newIconsToShow = [
           {
             icon: ClockClockwise,

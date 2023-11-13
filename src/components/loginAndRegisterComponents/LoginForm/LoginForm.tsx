@@ -3,24 +3,28 @@ import { InputText } from "../Input/Input";
 import styles from "./LoginForm.module.css";
 import AuthService from "@/services/auth.service";
 import { Button } from "@/components/ui/Button/button";
+import { useNavigate } from "react-router-dom";
 
 export function LoginForm() {
   const [senha, setSenha] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const navigate = useNavigate();
 
   const click = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    const response = await AuthService.login(email, senha);
+    try {
+      const response = await AuthService.login(email, senha);
+      const usuarioJson = response.data.usuario;
 
-    const usuarioJson = response.data.usuario;
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("usuario", JSON.stringify(usuarioJson));
 
-    localStorage.setItem('token', response.data.token);
-    localStorage.setItem('usuario', usuarioJson);
-
-    
-
-    window.location.href = "/home";
+      navigate("/cursos");
+    } catch (error) {
+      console.error("Erro durante o login:", error);
+      // Lidar com erros de login, se necessário
+    }
   };
 
   return (

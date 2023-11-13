@@ -6,6 +6,9 @@ const listarUsuarios = () => {
     return axios.get(API_URL + "usuarios")
 }
 
+const getUsuario = () => {
+    return axios.get(API_URL + "usuarios")
+}
 
 const registrarUsuario = (
     nome: string,

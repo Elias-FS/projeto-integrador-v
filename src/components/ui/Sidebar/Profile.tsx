@@ -1,8 +1,14 @@
 import { SignOut } from "phosphor-react";
 import { Button } from "../Button/button";
+import { useEffect } from "react";
+import AuthService from "@/services/auth.service";
+import { Usuario } from "@/models/usuario";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ProfileProps {}
+//export interface ProfileProps {}
+
+const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
+
+
 
 export function Profile() {
   return (
@@ -14,7 +20,7 @@ export function Profile() {
       />
       <div className="flex flex-col">
         <span className="block text-sm font-semibold text-zinc-700 dark:text-zinc-100">
-          Gian Dutra
+          {localStorage.getItem("usuario")}
         </span>
         <span className="block text-sm text-zinc-500 dark:text-zinc-400">
           giandutra@hotmail.com.br

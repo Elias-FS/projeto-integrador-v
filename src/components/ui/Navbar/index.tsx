@@ -21,7 +21,7 @@ export function Navbar() {
     userType: state.userType,
     namingRole: state.namingRole,
   }));
-
+  
   React.useEffect(() => {
     namingRole();
   }, [namingRole]);
