@@ -7,31 +7,6 @@ import AcademiaService from "@/services/academia.service";
 
 const Academias: React.FC = () => {
   const [ academias , setAcademias ] = useState([]);
-  // const academia = [
-  //   {
-  //     id: "031cccd8-0a96-44e6-b8ee-d5247de06767",
-  //     titulo: "Academia A",
-  //     descricao: "Descrição A",
-  //     data_nascimento: "11/11/2023",
-  //     capa: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
-  //   },
-  //   {
-  //     id: "031cccd8-0a96-44e6-b8ee-d5247de06768",
-  //     titulo: "Academia B",
-  //     descricao: "Descrição B",
-  //     data_nascimento: "11/11/2023",
-  //     academia: "Academia B",
-  //     capa: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
-  //   },
-  //   {
-  //     id: "031cccd8-0a96-44e6-b8ee-d5247de06769",
-  //     titulo: "Academia C",
-  //     descricao: "Descrição C",
-  //     data_nascimento: "11/11/2023",
-  //     academia: "Academia C",
-  //     capa: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
-  //   }
-  // ];
 
   useEffect(() => {
     AcademiaService.listarAcademias().then(
