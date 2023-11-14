@@ -19,7 +19,7 @@ export function SignUpForm() {
   const [data, setData] = useState<string>("");
   const [estadoSelecionado, setEstadoSelecionado] = useState<string>("");
   const [colaboradorSelecionado, setColaboradorSelecionado] =
-    useState<string>("");
+    useState<boolean>(false);
   const [profissaoSelecionado, setProfissaoSelecionado] = useState<string>("");
 
   const estados = [
@@ -53,8 +53,8 @@ export function SignUpForm() {
   ];
 
   const colaborador = [
-    { value: "sim", label: "Sim" },
-    { value: "nao", label: "Não" },
+    { value: true, label: "Sim" },
+    { value: false, label: "Não" },
   ];
 
   const profissao = [
@@ -102,10 +102,10 @@ export function SignUpForm() {
       colaboradorSelecionado,
       profissaoSelecionado
     )
-      .then(response => {
+      .then((response) => {
         console.log("Registro bem-sucedido!", response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Erro no registro:", error);
       });
   };
@@ -157,7 +157,7 @@ export function SignUpForm() {
               label="Data de Nascimento *"
               placeholder="Digite sua Data de Nascimento"
               valor={data}
-              type={"text"}
+              type={"date"}
               aoAlterado={(valorData: string) => setData(valorData)}
             />
           </div>
@@ -206,7 +206,7 @@ export function SignUpForm() {
 
             <DropBox
               valor={colaboradorSelecionado}
-              aoAlterado={(col: string) => setColaboradorSelecionado(col)}
+              aoAlterado={(col: boolean) => setColaboradorSelecionado(col)}
               label="Colaborador *"
               values={colaborador.map((option) => (
                 <MenuItem name={option.value} value={option.label} />

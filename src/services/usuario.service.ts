@@ -6,8 +6,8 @@ const listarUsuarios = () => {
     return axios.get(API_URL + "usuarios")
 }
 
-const getUsuario = () => {
-    return axios.get(API_URL + "usuarios")
+const findById = (id:number) => {
+  return axios.get(API_URL + `usuarios/findById/${id}`)
 }
 
 const registrarUsuario = (
@@ -20,7 +20,7 @@ const registrarUsuario = (
     rua: string,
     data: string,
     estadoSelecionado: string,
-    colaboradorSelecionado: string,
+    colaboradorSelecionado: boolean,
     profissaoSelecionado: string
   ) => {
     return axios.post(API_URL + "usuarios/registrar", {
@@ -32,16 +32,16 @@ const registrarUsuario = (
       cep,
       bairro,
       rua,
-      data_nascimento: new Date(data),
-      colaborador: Number(colaboradorSelecionado),
+      dataNascimento: data,
+      colaborador: colaboradorSelecionado,
       profissao: profissaoSelecionado,
-      cargo: 1, // Exemplo de ID de cargo
     });
   };
 
 const UsuarioService = { 
     listarUsuarios,
-    registrarUsuario
+    registrarUsuario,
+    findById
 }
 
 export default UsuarioService
