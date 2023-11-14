@@ -17,6 +17,7 @@ import {
 import DropZone from "../DropZone/dropZone";
 import React, { useState } from "react";
 import AcademiaService from "@/services/academia.service";
+import { Usuario } from "@/models/usuario";
 
 interface FormsCriaAcademiaProps {
   setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
@@ -50,7 +51,8 @@ export function FormsCriaAcademia({
     for (let i = 0; i < binaryString.length; i++) {
       byteArray[i] = binaryString.charCodeAt(i);
     }
-    AcademiaService.criarAcademias(inputTitle, inputDescription, 10);
+    const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
+    AcademiaService.criarAcademias(inputTitle, inputDescription, usuario.id);
   };
 
   const handleInputDescriptionChange = (

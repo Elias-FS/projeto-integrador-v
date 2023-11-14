@@ -14,6 +14,7 @@ import { Curso } from "@/models/curso";
 import { v4 as uuidv4 } from "uuid";
 import { useStore } from "@/zustand-store";
 import { Link } from "react-router-dom";
+import AcademiaService from "@/services/academia.service";
 
 interface FormsCriaCursoProps {
   setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
@@ -35,8 +36,24 @@ export function FormsCriaCurso({
     curso: state.curso,
     saveInformations: state.saveInformations,
   }));
+  const [ academias , setAcademias ] = useState([]);
 
-  const academias = [
+  useEffect(() => {
+    AcademiaService.listarAcademias().then(
+      (response) => {
+        console.log(response.data)
+        setAcademias(response.data);
+      },
+      (error) => {
+        const _content =
+          (error.response && error.response.data) 
+          error.message 
+          error.toString();
+      }
+    );
+  }, []);
+
+  const academia = [
     {
       name: "Academia A",
       profissao: "Treinamento físico e bem-estar",
@@ -58,6 +75,8 @@ export function FormsCriaCurso({
       profissao: "Treinamento de levantamento de peso",
     },
   ];
+
+
 
   const handleInputTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const valorDigitado = e.target.value;
@@ -150,8 +169,8 @@ export function FormsCriaCurso({
                 <SelectLabel>Opções</SelectLabel>
                 {
                   academias.map((academia) => (
-                    <SelectItem value={academia.name}>
-                      {academia.name}
+                    <SelectItem value={academia.nome}>
+                      {academia.nome}
                     </SelectItem>
                   )) //map de academias
                 }
