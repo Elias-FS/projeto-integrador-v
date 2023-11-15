@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/Select";
 import React, { useEffect, useState } from "react";
-import DropZone from "../DropZone/dropZone";
+import DropZone from "../dropZone/dropZone";
 import { Curso } from "@/models/curso";
 import { v4 as uuidv4 } from "uuid";
 import { useStore } from "@/zustand-store";

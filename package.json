@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@azure/identity": "^4.0.0",
+    "@azure/storage-blob": "^12.17.0",
     "@material-tailwind/react": "^2.1.4",
     "@phosphor-icons/react": "^2.0.10",
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -23,6 +25,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
+    "dotenv": "^16.3.1",
     "lucide-react": "^0.279.0",
     "moment": "^2.29.4",
     "phosphor-react": "^1.4.1",

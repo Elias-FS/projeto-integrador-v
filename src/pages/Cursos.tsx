@@ -45,7 +45,7 @@ const Cursos: React.FC = () => {
       ],
     }
   ];
-
+  console.log(localStorage.getItem('token'))
   return (
     <div className="flex">
       <Sidebar />
@@ -53,6 +53,7 @@ const Cursos: React.FC = () => {
         <Navbar />
         <div className="flex flex-wrap justify-center my-8">
           {cursos.map((curso, index) => (
+
             <CardCourse
               key={index}
               titulo={curso.titulo}

@@ -5,19 +5,11 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/Select";
-import DropZone from "../DropZone/dropZone";
+import DropZone from "../dropZone/dropZone";
 import React, { useState } from "react";
 import AcademiaService from "@/services/academia.service";
 import { Usuario } from "@/models/usuario";
+import uploadImagem from "@/upload-imagem";
 
 interface FormsCriaAcademiaProps {
   setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
@@ -43,14 +35,7 @@ export function FormsCriaAcademia({
   };
 
   const click = () => {
-    // tranformando imagem em binario
-    const base64Image = selectedImage;
-    const base64Content = base64Image.split(",")[1];
-    const binaryString = atob(base64Content);
-    const byteArray = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) {
-      byteArray[i] = binaryString.charCodeAt(i);
-    }
+    
     const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
     AcademiaService.criarAcademias(inputTitle, inputDescription, usuario.id);
   };
