@@ -58,6 +58,7 @@ export function EstruturaDeAlternativas({
       <div className="flex flex-col items-center w-full">
         <div className="text-left w-2/3">
           <Label htmlFor="Alternativas">Alternativas: </Label>
+          Marque apenas as alternativas corretas ou que forem verdadeiras:
         </div>
         {slideList[slideOpened]?.options ? (
           slideList[slideOpened].options?.map((questao, index) => (

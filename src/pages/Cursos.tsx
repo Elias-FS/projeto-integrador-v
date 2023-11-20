@@ -45,6 +45,7 @@ const Cursos: React.FC = () => {
       ],
     }
   ];
+  
   console.log(localStorage.getItem('token'))
   return (
     <div className="flex">
