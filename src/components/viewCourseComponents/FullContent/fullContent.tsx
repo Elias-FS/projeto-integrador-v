@@ -8,9 +8,10 @@ import { ViewFeedback } from "./ViewFeedback/viewFeedback";
 
 interface FullContentProps {
   slide: Slide;
+  id: string;
 }
 
-export function FullContent({ slide }: FullContentProps) {
+export function FullContent({ slide, id }: FullContentProps) {
   console.log("cursoo", slide);
   return (
     <div className="flex items-center justify-center h-full w-full flex-col">
@@ -18,13 +19,13 @@ export function FullContent({ slide }: FullContentProps) {
         {slide.slideType === "em branco" ? (
           <p>em branco</p>
         ) : slide.slideType === "multipla escolha" ? (
-          <ViewMultiplaEscolha slide={slide} />
+          <ViewMultiplaEscolha id={id} slide={slide} />
         ) : slide.slideType === "verdadeiro ou falso" ? (
-          <ViewVerdadeiroFalso slide={slide} />
+          <ViewVerdadeiroFalso id={id} slide={slide} />
         ) : slide.slideType === "multipla escolha com midia" ? (
           <ViewMultiplaEscolhaMidia slide={slide} />
         ) : slide.slideType === "verdadeiro ou falso com midia" ? (
-          <ViewVerdadeiroFalsoMidia slide={slide} />
+          <ViewVerdadeiroFalsoMidia id={id} slide={slide} />
         ) : slide.slideType === "somente midia" ? (
           <ViewSomenteMidia slide={slide} />
         ) : slide.slideType === "feedback ao usuario" ? (

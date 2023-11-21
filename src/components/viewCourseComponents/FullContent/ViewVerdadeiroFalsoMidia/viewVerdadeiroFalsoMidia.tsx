@@ -3,10 +3,12 @@ import { ViewEstruturaVF } from "../ViewEstruturaVF/viewEstruturaVF";
 
 interface ViewVerdadeiroFalsoMidiaProps {
   slide: Slide;
+  id: string;
 }
 
 export function ViewVerdadeiroFalsoMidia({
   slide,
+  id,
 }: ViewVerdadeiroFalsoMidiaProps) {
   return (
     <div className="flex items-center justify-center h-full w-full flex-col">
@@ -21,7 +23,7 @@ export function ViewVerdadeiroFalsoMidia({
           <img className="w-full" src={slide.midia} alt="Descrição da imagem" />
         )}
       </div>
-      <ViewEstruturaVF slide={slide} />
+      <ViewEstruturaVF id={id} slide={slide} />
     </div>
   );
 }
