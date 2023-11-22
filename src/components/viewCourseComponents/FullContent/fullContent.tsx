@@ -23,7 +23,7 @@ export function FullContent({ slide, id }: FullContentProps) {
         ) : slide.slideType === "verdadeiro ou falso" ? (
           <ViewVerdadeiroFalso id={id} slide={slide} />
         ) : slide.slideType === "multipla escolha com midia" ? (
-          <ViewMultiplaEscolhaMidia slide={slide} />
+          <ViewMultiplaEscolhaMidia id={id} slide={slide} />
         ) : slide.slideType === "verdadeiro ou falso com midia" ? (
           <ViewVerdadeiroFalsoMidia id={id} slide={slide} />
         ) : slide.slideType === "somente midia" ? (

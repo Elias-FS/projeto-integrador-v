@@ -3,10 +3,12 @@ import { ViewEstruturaME } from "../ViewEstruturaME/viewEstruturaME";
 
 interface ViewMultiplaEscolhaMidiaProps {
   slide: Slide;
+  id: string;
 }
 
 export function ViewMultiplaEscolhaMidia({
   slide,
+  id,
 }: ViewMultiplaEscolhaMidiaProps) {
   return (
     <div className="flex items-center justify-center h-full w-full flex-col">
@@ -21,7 +23,7 @@ export function ViewMultiplaEscolhaMidia({
           <img className="w-full" src={slide.midia} alt="Descrição da imagem" />
         )}
       </div>
-      <ViewEstruturaME slide={slide} />
+      <ViewEstruturaME id={id} slide={slide} />
     </div>
   );
 }
