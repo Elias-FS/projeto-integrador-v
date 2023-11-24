@@ -26,6 +26,7 @@ export function SideSlideShow({
             numero={index}
             setSlideList={setSlideList}
             slideList={slideList}
+            slideOpened={slideOpened}
           ></SideSlide>
         ))}
         <PlusSideSlide

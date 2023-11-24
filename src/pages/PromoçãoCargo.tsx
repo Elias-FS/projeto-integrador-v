@@ -10,7 +10,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/Table/table";
-import { Button } from "@material-tailwind/react";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarTrigger,
+} from "@/components/ui/MenuBar/menubar";
 
 const usuarios = [
   {
@@ -85,8 +92,9 @@ const usuarios = [
   },
 ];
 
-const promoverCargo = (nome: string) => {
-  console.log("Promovendo cargo de " + nome);
+const alterarCargo = (nome: string, cargo: string) => {
+  alert("Ajustando cardo de " + nome + " para " + cargo + ".");
+  // fazer update do cargo aqui
 };
 
 const PromocaoCargo: React.FC = () => {
@@ -121,12 +129,34 @@ const PromocaoCargo: React.FC = () => {
                       : ""}
                   </TableCell>
                   <TableCell>
-                    <Button
-                      onClick={() => promoverCargo(usuario.nome)}
-                      className="bg-green-700 w-20 h-8"
-                    >
-                      Promover
-                    </Button>
+                    <Menubar className="relative inline-block text-left">
+                      <MenubarMenu>
+                        <MenubarTrigger>Definir Cargo</MenubarTrigger>
+                        <MenubarContent>
+                          <MenubarItem
+                            onClick={() => alterarCargo(usuario.nome, "aluno")}
+                          >
+                            Aluno
+                          </MenubarItem>
+                          <MenubarSeparator />
+                          <MenubarItem
+                            onClick={() =>
+                              alterarCargo(usuario.nome, "instrutor")
+                            }
+                          >
+                            Instrutor
+                          </MenubarItem>
+                          <MenubarSeparator />
+                          <MenubarItem
+                            onClick={() =>
+                              alterarCargo(usuario.nome, "administrador")
+                            }
+                          >
+                            Administrador
+                          </MenubarItem>
+                        </MenubarContent>
+                      </MenubarMenu>
+                    </Menubar>
                   </TableCell>
                 </TableRow>
               ))}

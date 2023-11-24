@@ -2,7 +2,7 @@ import { Checkbox } from "@/components/ui/CheckBox/checkbox";
 import { Input } from "@/components/ui/Input/input";
 import { Label } from "@/components/ui/Label/label";
 import { Slide } from "@/models/slide";
-import { Minus, Plus, Trash } from "phosphor-react";
+import { Plus, Trash } from "phosphor-react";
 
 interface EstruturaDeAlternativasProps {
   slideOpened: number;
@@ -15,13 +15,14 @@ export function EstruturaDeAlternativas({
   setSlideList,
   slideList,
 }: EstruturaDeAlternativasProps) {
+  console.log(slideList[slideOpened]);
   return (
     <>
       <div className="text-left w-3/4">
         <Label htmlFor="Enunciado">Enunciado: </Label>
         {slideList[slideOpened]?.question ? (
           <Input
-          type="text"
+            type="text"
             id="Enunciado"
             placeholder="Enunciado"
             value={slideList[slideOpened]?.question}
@@ -159,29 +160,70 @@ export function EstruturaDeAlternativas({
       </div>
       {
         // travar maximo de alternativas
-        // slideList[slideOpened].options.length < 5 ? (
-        <Plus
-          size={28}
-          color="white"
-          className="bg-green-600 rounded"
-          onClick={() => {
-            const updatedValue = slideList[slideOpened].options || [];
-            const index = slideList[slideOpened].options?.length || [].length;
-            updatedValue[index] = "";
+        slideList[slideOpened].options ? (
+          slideList[slideOpened].options.length < 5 ? (
+            <Plus
+              size={28}
+              color="white"
+              className="bg-green-600 rounded"
+              onClick={() => {
+                const updatedValue = slideList[slideOpened].options || [];
+                const index =
+                  slideList[slideOpened].options?.length || [].length;
+                updatedValue[index] = "";
+                setSlideList((prevSlideList) =>
+                  prevSlideList.map((slide) => {
+                    if (slide.index === slideOpened) {
+                      return { ...slide, options: updatedValue };
+                    }
+                    return slide;
+                  })
+                );
+              }}
+            />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )
+      }
+      <div className="w-2/3 mb-4 items-center space-x-2">
+        <Label htmlFor="Feedack Positivo">Feedback para acerto: </Label>
+        <Input
+          id="Feedack Positivo"
+          placeholder="Feedack positivo..."
+          onChange={(e) => {
+            const updatedValue = slideList[slideOpened].feedbacks || [];
+            updatedValue[0] = e.target.value;
             setSlideList((prevSlideList) =>
               prevSlideList.map((slide) => {
                 if (slide.index === slideOpened) {
-                  return { ...slide, options: updatedValue };
+                  return { ...slide, feedbacks: updatedValue };
                 }
                 return slide;
               })
             );
           }}
         />
-        // ) : (
-        //   ""
-        // )
-      }
+        <Label htmlFor="Feedack Negativo">Feedback para erro: </Label>
+        <Input
+          id="Feedack Negativo"
+          placeholder="Feedack de correção..."
+          onChange={(e) => {
+            const updatedValue = slideList[slideOpened].feedbacks || [];
+            updatedValue[1] = e.target.value;
+            setSlideList((prevSlideList) =>
+              prevSlideList.map((slide) => {
+                if (slide.index === slideOpened) {
+                  return { ...slide, feedbacks: updatedValue };
+                }
+                return slide;
+              })
+            );
+          }}
+        />
+      </div>
     </>
   );
 }

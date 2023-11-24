@@ -8,6 +8,7 @@ export class Curso {
   descricao: string;
   academia: string;
   listaDeSlides: Slide[];
+  valido?: boolean;
 
   constructor(
     data_nascimento: string,
