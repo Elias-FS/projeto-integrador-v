@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Sidebar } from "@/components/ui/Sidebar";
 import { Navbar } from "@/components/ui/Navbar";
 import {
@@ -18,86 +18,43 @@ import {
   MenubarSeparator,
   MenubarTrigger,
 } from "@/components/ui/MenuBar/menubar";
+import UsuarioService from "@/services/usuario.service";
 
-const usuarios = [
-  {
-    data_nascimento: "1990-01-01",
-    id: 1,
-    celular: "123456789",
-    nome: "João da Silva",
-    colaborador: true,
-    profissao: "Desenvolvedor",
-    email: "joao@example.com",
-    cep: "12345-678",
-    bairro: "Centro",
-    estado: "SP",
-    rua: "Rua Principal",
-    cargo: "aluno",
-  },
-  {
-    data_nascimento: "1990-01-01",
-    id: 1,
-    celular: "123456789",
-    nome: "Emílio Biasi",
-    colaborador: true,
-    profissao: "Desenvolvedor",
-    email: "emilio@example.com",
-    cep: "12345-678",
-    bairro: "Centro",
-    estado: "SP",
-    rua: "Rua Principal",
-    cargo: "aluno",
-  },
-  {
-    data_nascimento: "1990-01-01",
-    id: 1,
-    celular: "123456789",
-    nome: "Thiago Lima",
-    colaborador: true,
-    profissao: "Desenvolvedor",
-    email: "thiago@example.com",
-    cep: "12345-678",
-    bairro: "Centro",
-    estado: "SP",
-    rua: "Rua Principal",
-    cargo: "instrutor",
-  },
-  {
-    data_nascimento: "1990-01-01",
-    id: 1,
-    celular: "123456789",
-    nome: "Kevin Silva",
-    colaborador: true,
-    profissao: "Desenvolvedor",
-    email: "kevin@example.com",
-    cep: "12345-678",
-    bairro: "Centro",
-    estado: "SP",
-    rua: "Rua Principal",
-    cargo: "administrador",
-  },
-  {
-    data_nascimento: "1990-01-01",
-    id: 1,
-    celular: "123456789",
-    nome: "Gian Dutra",
-    colaborador: true,
-    profissao: "Desenvolvedor",
-    email: "gian@example.com",
-    cep: "12345-678",
-    bairro: "Centro",
-    estado: "SP",
-    rua: "Rua Principal",
-    cargo: "aluno",
-  },
-];
+const alterarCargo = async (usuario: any, cargo:number) => {
+  alert("Ajustando cardo de " + usuario.nome + " para " + getTextoCargo(usuario.cargoId) + ".");
 
-const alterarCargo = (nome: string, cargo: string) => {
-  alert("Ajustando cardo de " + nome + " para " + cargo + ".");
-  // fazer update do cargo aqui
+  console.log(usuario.cargo)
+  
+  await UsuarioService.promoverUsuario(usuario.id, cargo);
+
+  window.location.reload();
 };
 
+const getTextoCargo = (cargoId: number) => {
+  console.log(cargoId)
+  return cargoId === 1 ? "Aluno" : cargoId === 2 ? "Instrutor" : "Administrador"
+}
+
 const PromocaoCargo: React.FC = () => {
+
+  const [usuarios, setUsuarios] = useState([]);
+
+  useEffect(() => {
+    UsuarioService.listarUsuarios().then(
+      (response) => {
+        console.log(response.data);
+        setUsuarios(response.data);
+        
+      },
+      (error) => {
+        const _content =
+          (error.response && error.response.data) 
+          error.message 
+          error.toString();
+      }
+    );
+  }, []);
+
   return (
     <div className="flex">
       <Sidebar />
@@ -120,13 +77,7 @@ const PromocaoCargo: React.FC = () => {
                   <TableCell className="font-medium">{usuario.nome}</TableCell>
                   <TableCell>{usuario.email}</TableCell>
                   <TableCell>
-                    {usuario.cargo == "aluno"
-                      ? "Aluno"
-                      : usuario.cargo == "instrutor"
-                      ? "Instrutor"
-                      : usuario.cargo == "administrador"
-                      ? "Administrador"
-                      : ""}
+                    {getTextoCargo(usuario.cargoId)}
                   </TableCell>
                   <TableCell>
                     <Menubar className="relative inline-block text-left">
@@ -134,14 +85,14 @@ const PromocaoCargo: React.FC = () => {
                         <MenubarTrigger>Definir Cargo</MenubarTrigger>
                         <MenubarContent>
                           <MenubarItem
-                            onClick={() => alterarCargo(usuario.nome, "aluno")}
+                            onClick={() => alterarCargo(usuario, 1)}
                           >
                             Aluno
                           </MenubarItem>
                           <MenubarSeparator />
                           <MenubarItem
                             onClick={() =>
-                              alterarCargo(usuario.nome, "instrutor")
+                              alterarCargo(usuario, 2)
                             }
                           >
                             Instrutor
@@ -149,7 +100,7 @@ const PromocaoCargo: React.FC = () => {
                           <MenubarSeparator />
                           <MenubarItem
                             onClick={() =>
-                              alterarCargo(usuario.nome, "administrador")
+                              alterarCargo(usuario, 3)
                             }
                           >
                             Administrador

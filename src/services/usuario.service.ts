@@ -10,6 +10,13 @@ const findById = (id:number) => {
   return axios.get(API_URL + `usuarios/findById/${id}`)
 }
 
+const promoverUsuario = (id:number, cargoId:number) => {
+  return axios.put(API_URL + `usuarios/promover/`, {
+    id: id,
+    cargoId: cargoId
+  })
+}
+
 const registrarUsuario = (
     nome: string,
     email: string,
@@ -41,7 +48,8 @@ const registrarUsuario = (
 const UsuarioService = { 
     listarUsuarios,
     registrarUsuario,
-    findById
+    findById,
+    promoverUsuario,
 }
 
 export default UsuarioService
