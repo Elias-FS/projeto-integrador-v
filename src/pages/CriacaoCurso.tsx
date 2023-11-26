@@ -20,6 +20,7 @@ import {
 import { Button } from "@/components/ui/Button/button";
 import { Trash } from "phosphor-react";
 import { v4 as uuidv4 } from "uuid";
+import CursoService from "@/services/curso.service";
 
 const primeiroSlide: Slide = {
   id: uuidv4(),
@@ -41,7 +42,17 @@ const CriacaoCurso: React.FC = () => {
 
   function salvarSlides() {
     console.log("criação de cursos: ", curso);
-    saveInformations({ ...curso, listaDeSlides: slideList });
+
+    const usuario = JSON.parse(localStorage.getItem('usuario')!)
+
+    CursoService.criarCurso(
+      curso.titulo,
+      curso.descricao,
+      usuario.id,
+      curso.academia,
+      curso.capa,
+      JSON.stringify(curso.listaDeSlides)
+    )
   }
 
   function deletarSlide() {
