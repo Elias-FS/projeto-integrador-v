@@ -6,6 +6,7 @@ interface TemplateOptionProps {
   type: string;
   slideOpened: number;
   setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
+  slideList: Slide[];
 }
 
 export function TemplateOption({
@@ -14,11 +15,12 @@ export function TemplateOption({
   type,
   slideOpened,
   setSlideList,
+  slideList
 }: TemplateOptionProps) {
   function alterandoEstado() {
     setSlideList((prevSlideList) => {
       return prevSlideList.map((slide) => {
-        if (slide.index === slideOpened) {
+        if (slide.id === slideList[slideOpened].id) {
           // Atualiza o slideOpened na lista com o novo tipo
           return { ...slide, slideType: type, options: [""] };
         }
@@ -31,7 +33,9 @@ export function TemplateOption({
     <div onClick={alterandoEstado} className="text-center">
       <div className="flex flex-col">
         <div className="w-full flex justify-center items-center">
-          <h2 className="text-black font-bold text-xl cursor-pointer mb-5">{title}</h2>
+          <h2 className="text-black font-bold text-xl cursor-pointer mb-5">
+            {title}
+          </h2>
         </div>
         <img
           src={imageUrl}

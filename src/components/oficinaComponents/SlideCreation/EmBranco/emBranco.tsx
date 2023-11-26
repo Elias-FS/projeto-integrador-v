@@ -6,9 +6,10 @@ import { SetStateAction } from "react";
 interface EmBrancoTemplateProps {
   slideOpened: number;
   setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
+  slideList: Slide[];
 }
 
-export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
+export function EmBranco({ slideOpened, setSlideList, slideList }: EmBrancoTemplateProps) {
   return (
     <div className="w-full h-full bg-gray-300 border border-gray-400 rounded-lg flex items-center justify-center">
       <div className="grid grid-cols-3 grid-rows-2 gap-28 p-5">
@@ -19,6 +20,7 @@ export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
             type="multipla escolha"
             slideOpened={slideOpened}
             setSlideList={setSlideList}
+            slideList={slideList}
           />
         </div>
         <div className="col-span-1">
@@ -30,6 +32,7 @@ export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
             type="verdadeiro ou falso"
             slideOpened={slideOpened}
             setSlideList={setSlideList}
+            slideList={slideList}
           />
         </div>
         <div className="col-span-1">
@@ -41,6 +44,7 @@ export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
             type="multipla escolha com midia"
             slideOpened={slideOpened}
             setSlideList={setSlideList}
+            slideList={slideList}
           />
         </div>
         <div className="col-span-1">
@@ -52,6 +56,7 @@ export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
             type="verdadeiro ou falso com midia"
             slideOpened={slideOpened}
             setSlideList={setSlideList}
+            slideList={slideList}
           />
         </div>
         <div className="col-span-1">
@@ -63,6 +68,7 @@ export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
             type="somente midia"
             slideOpened={slideOpened}
             setSlideList={setSlideList}
+            slideList={slideList}
           />
         </div>
         <div className="col-span-1">
@@ -74,6 +80,7 @@ export function EmBranco({ slideOpened, setSlideList }: EmBrancoTemplateProps) {
             type="feedback ao usuario"
             slideOpened={slideOpened}
             setSlideList={setSlideList}
+            slideList={slideList}
           />
         </div>
       </div>

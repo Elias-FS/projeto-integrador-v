@@ -22,7 +22,7 @@ export function SlideCreation({
     <>
       <div className="w-full h-3/4 m-10 bg-gray-100 border border-gray-400 rounded-lg flex items-center justify-center">
         {slideList[slideOpened].slideType === "em branco" ? (
-          <EmBranco setSlideList={setSlideList} slideOpened={slideOpened} />
+          <EmBranco slideList={slideList} setSlideList={setSlideList} slideOpened={slideOpened} />
         ) : slideList[slideOpened].slideType === "multipla escolha" ? (
           <MultiplaEscolha
             slideOpened={slideOpened}

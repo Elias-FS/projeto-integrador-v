@@ -69,29 +69,35 @@ const CriacaoCurso: React.FC = () => {
             slideOpened={slideOpened}
             setSlideList={setSlideList}
           />
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant="outline" className="bg-red-400 text-white">
-                Excluir Slide
-                <Trash size={30} />
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Deseja deletar este Slide?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  Não será possível desfazer esta ação. O Slide atual será
-                  excluído do seu curso.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                <AlertDialogAction onClick={deletarSlide}>
-                  Deletar
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+          {slideList.length != 1 ? (
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="outline" className="bg-red-400 text-white">
+                  Excluir Slide
+                  <Trash size={30} />
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    Deseja deletar este Slide?
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Não será possível desfazer esta ação. O Slide atual será
+                    excluído do seu curso.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                  <AlertDialogAction onClick={deletarSlide}>
+                    Deletar
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          ) : (
+            ""
+          )}
           <Button className="bg-green-700 w-40 h-20" onClick={salvarSlides}>
             Finalziar Curso <Check size={30} />
           </Button>
