@@ -1,7 +1,7 @@
 import { Slide } from "@/models/slide";
 import { PlusSideSlide } from "./SideSlide/plusSideSlide";
 import { SideSlide } from "./SideSlide/sideSlide";
-import { Dispatch, SetStateAction } from "react";
+import { SetStateAction } from "react";
 
 interface SideSlideShowProps {
   setSlideOpened: React.Dispatch<SetStateAction<number>>;
