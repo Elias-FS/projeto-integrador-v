@@ -33,7 +33,7 @@ export default function DropZoneMidia({
             // Atualize o setSlideList com o slide modificado
             setSlideList((prevSlideList) => {
               return prevSlideList.map((slide) => {
-                if (slide.index === slideOpened) {
+                if (slide.posicao === slideOpened) {
                   return { ...slide, midia: result };
                 }
                 return slide;
@@ -67,7 +67,7 @@ export default function DropZoneMidia({
             // Atualize o setSlideList com o slide modificado
             setSlideList((prevSlideList) => {
               return prevSlideList.map((slide) => {
-                if (slide.index === slideOpened) {
+                if (slide.posicao === slideOpened) {
                   return { ...slide, midia: result };
                 }
                 return slide;

@@ -1,11 +1,15 @@
 export interface Slide {
   id: string; 
-  slideType: string;
-  index: number;
-  question?: string;
-  options?: string[];
+  tipo: string;
+  posicao: number;
+  texto?: string;
+  alternativas?: string[];
   feedbacks?: string[];
-  correctOption?: number[];
-  points?: number;
+  resposta?: number[];
   midia?: string;
 }
+
+//correctOption - Resposta
+//question - texto
+//options - alternativas
+//slideType - tipo

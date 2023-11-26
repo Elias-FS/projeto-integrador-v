@@ -14,6 +14,7 @@ const criarCurso = (
     imagem: string,
     telasCursoJson: string,
   ) => {
+    console.log(telasCursoJson)
     return axios.post(API_URL + "cursos/criar", {
       titulo,
       descricao,

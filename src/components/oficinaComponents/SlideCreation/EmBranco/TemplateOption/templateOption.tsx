@@ -22,7 +22,7 @@ export function TemplateOption({
       return prevSlideList.map((slide) => {
         if (slide.id === slideList[slideOpened].id) {
           // Atualiza o slideOpened na lista com o novo tipo
-          return { ...slide, slideType: type, options: [""] };
+          return { ...slide, tipo: type, alternativas: [""] };
         }
         return slide;
       });

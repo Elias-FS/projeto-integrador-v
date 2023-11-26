@@ -49,11 +49,11 @@ export function ViewEstruturaME({ slide, id }: ViewEstruturaQuestoesProps) {
   }, [id]);
 
   function confirmarEscolha(selecionado: number) {
-    const acertou = slide.correctOption?.includes(selecionado) ? 1 : 0;
+    const acertou = slide.resposta?.includes(selecionado) ? 1 : 0;
 
     const respostaSalva = {
       index_curso: id,
-      index_slide: slide.index,
+      index_slide: slide.posicao,
       acertou: acertou,
       selecionado: selecionado,
     };
@@ -65,9 +65,9 @@ export function ViewEstruturaME({ slide, id }: ViewEstruturaQuestoesProps) {
   return (
     <>
       <div className="text-left w-3/4 flex flex-col">
-        <Label>{slide.question}</Label>
+        <Label>{slide.texto}</Label>
         <div className="flex flex-col gap-6 mb-12">
-          {slide.options?.map((option, index) => (
+          {slide.alternativas?.map((option, index) => (
             <Button
               className={`block font-inherit text-inherit text-2xl ${
                 selecionado === index

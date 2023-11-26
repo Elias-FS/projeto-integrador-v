@@ -16,19 +16,19 @@ export function FullContent({ slide, id }: FullContentProps) {
   return (
     <div className="flex items-center justify-center h-full w-full flex-col">
       <div className="w-3/4 text-center pb-5">
-        {slide.slideType === "em branco" ? (
+        {slide.tipo === "em branco" ? (
           <p>em branco</p>
-        ) : slide.slideType === "multipla escolha" ? (
+        ) : slide.tipo === "multipla escolha" ? (
           <ViewMultiplaEscolha id={id} slide={slide} />
-        ) : slide.slideType === "verdadeiro ou falso" ? (
+        ) : slide.tipo === "verdadeiro ou falso" ? (
           <ViewVerdadeiroFalso id={id} slide={slide} />
-        ) : slide.slideType === "multipla escolha com midia" ? (
+        ) : slide.tipo === "multipla escolha com midia" ? (
           <ViewMultiplaEscolhaMidia id={id} slide={slide} />
-        ) : slide.slideType === "verdadeiro ou falso com midia" ? (
+        ) : slide.tipo === "verdadeiro ou falso com midia" ? (
           <ViewVerdadeiroFalsoMidia id={id} slide={slide} />
-        ) : slide.slideType === "somente midia" ? (
+        ) : slide.tipo === "somente midia" ? (
           <ViewSomenteMidia slide={slide} />
-        ) : slide.slideType === "feedback ao usuario" ? (
+        ) : slide.tipo === "feedback ao usuario" ? (
           <ViewFeedback slide={slide} />
         ) : (
           "ERRO"

@@ -21,41 +21,41 @@ export function SlideCreation({
   return (
     <>
       <div className="w-full h-3/4 m-10 bg-gray-100 border border-gray-400 rounded-lg flex items-center justify-center">
-        {slideList[slideOpened].slideType === "em branco" ? (
+        {slideList[slideOpened].tipo === "em branco" ? (
           <EmBranco slideList={slideList} setSlideList={setSlideList} slideOpened={slideOpened} />
-        ) : slideList[slideOpened].slideType === "multipla escolha" ? (
+        ) : slideList[slideOpened].tipo === "multipla escolha" ? (
           <MultiplaEscolha
             slideOpened={slideOpened}
             setSlideList={setSlideList}
             slideList={slideList}
           />
-        ) : slideList[slideOpened].slideType === "verdadeiro ou falso" ? (
+        ) : slideList[slideOpened].tipo === "verdadeiro ou falso" ? (
           <VerdadeiroFalso
             slideOpened={slideOpened}
             setSlideList={setSlideList}
             slideList={slideList}
           />
-        ) : slideList[slideOpened].slideType ===
+        ) : slideList[slideOpened].tipo ===
           "multipla escolha com midia" ? (
           <MultiplaEscolhaMidia
             slideOpened={slideOpened}
             setSlideList={setSlideList}
             slideList={slideList}
           />
-        ) : slideList[slideOpened].slideType ===
+        ) : slideList[slideOpened].tipo ===
           "verdadeiro ou falso com midia" ? (
           <VerdadeiroFalsoMidia
             slideOpened={slideOpened}
             setSlideList={setSlideList}
             slideList={slideList}
           />
-        ) : slideList[slideOpened].slideType === "somente midia" ? (
+        ) : slideList[slideOpened].tipo === "somente midia" ? (
           <SomenteMidia
             slideOpened={slideOpened}
             setSlideList={setSlideList}
             slideList={slideList}
           />
-        ) : slideList[slideOpened].slideType === "feedback ao usuario" ? (
+        ) : slideList[slideOpened].tipo === "feedback ao usuario" ? (
           <Feedback
             slideOpened={slideOpened}
             setSlideList={setSlideList}

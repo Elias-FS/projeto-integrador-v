@@ -10,8 +10,8 @@ interface ViewEstruturaVFProps {
 }
 
 export function ViewEstruturaVF({ slide, id }: ViewEstruturaVFProps) {
-  const respostaSalva = localStorage.getItem(`resposta_${slide.index}_${id}`);
-  const acertouSalvo = localStorage.getItem(`acertou_${slide.index}_${id}`);
+  const respostaSalva = localStorage.getItem(`resposta_${slide.posicao}_${id}`);
+  const acertouSalvo = localStorage.getItem(`acertou_${slide.posicao}_${id}`);
   const [selecionados, setSelecionados] = useState<number[]>(
     respostaSalva ? JSON.parse(respostaSalva) : []
   );
@@ -22,11 +22,11 @@ export function ViewEstruturaVF({ slide, id }: ViewEstruturaVFProps) {
   useEffect(() => {
     const handleStorageChange = () => {
       const novaRespostaSalva = localStorage.getItem(
-        `resposta_${slide.index}_${id}`
+        `resposta_${slide.posicao}_${id}`
       );
       setSelecionados(novaRespostaSalva ? JSON.parse(novaRespostaSalva) : []);
       const novoAcertouSalvo = localStorage.getItem(
-        `acertou_${slide.index}_${id}`
+        `acertou_${slide.posicao}_${id}`
       );
 
       setAcertou(novoAcertouSalvo ? Number(novoAcertouSalvo) : -1);
@@ -35,21 +35,21 @@ export function ViewEstruturaVF({ slide, id }: ViewEstruturaVFProps) {
     return () => {
       window.removeEventListener("storage", handleStorageChange);
     };
-  }, [id, slide.index]);
+  }, [id, slide.posicao]);
 
   function confirmarEscolha(selecionados: number[]) {
     const acertou =
-      slide.correctOption &&
-      slide.correctOption.length === selecionados.length &&
-      new Set(slide.correctOption).size === new Set(selecionados).size &&
-      slide.correctOption.every((value) => new Set(selecionados).has(value));
+      slide.resposta &&
+      slide.resposta.length === selecionados.length &&
+      new Set(slide.resposta).size === new Set(selecionados).size &&
+      slide.resposta.every((value) => new Set(selecionados).has(value));
 
     localStorage.setItem(
-      `resposta_${slide.index}_${id}`,
+      `resposta_${slide.posicao}_${id}`,
       JSON.stringify(selecionados)
     );
     localStorage.setItem(
-      `acertou_${slide.index}_${id}`,
+      `acertou_${slide.posicao}_${id}`,
       String(acertou ? 1 : 0)
     );
     setAcertou(acertou ? 1 : 0);
@@ -57,10 +57,10 @@ export function ViewEstruturaVF({ slide, id }: ViewEstruturaVFProps) {
 
   return (
     <div className="text-left w-3/4 flex flex-col">
-      <Label>{slide.question}</Label>
+      <Label>{slide.texto}</Label>
       Marque as questões verdadeiras:
       <div className="flex flex-col gap-6 mb-12">
-        {slide.options?.map((option, index) => (
+        {slide.alternativas?.map((option, index) => (
           <div className="flex gap-3" key={index}>
             <Checkbox
               checked={selecionados.includes(index)}

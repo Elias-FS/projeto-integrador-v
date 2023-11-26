@@ -17,8 +17,8 @@ export function PlusSideSlide({
   const addSlide = () => {
     const newSlide: Slide = {
       id: uuidv4(),
-      slideType: "em branco",
-      index: slideList.length,
+      tipo: "em branco",
+      posicao: slideList.length,
     };
     setSlideList([...slideList, newSlide]);
     setSlideOpened(slideList.length);

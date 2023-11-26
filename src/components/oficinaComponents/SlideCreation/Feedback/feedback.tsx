@@ -19,13 +19,13 @@ export function Feedback({
         <Input
           id="Feedback"
           placeholder="Feedback"
-          value={slideList[slideOpened]?.question}
+          value={slideList[slideOpened]?.texto}
           onChange={(e) => {
             const updatedValue = e.target.value;
             setSlideList((prevSlideList) =>
               prevSlideList.map((slide) => {
-                if (slide.index === slideOpened) {
-                  return { ...slide, question: updatedValue };
+                if (slide.posicao === slideOpened) {
+                  return { ...slide, texto: updatedValue };
                 }
                 return slide;
               })

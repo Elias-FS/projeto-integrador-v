@@ -24,8 +24,8 @@ import CursoService from "@/services/curso.service";
 
 const primeiroSlide: Slide = {
   id: uuidv4(),
-  slideType: `em branco`,
-  index: 0,
+  tipo: `em branco`,
+  posicao: 0,
 };
 
 const CriacaoCurso: React.FC = () => {
@@ -51,7 +51,7 @@ const CriacaoCurso: React.FC = () => {
       usuario.id,
       curso.academia,
       curso.capa,
-      JSON.stringify(curso.listaDeSlides)
+      JSON.stringify(slideList),
     )
   }
 

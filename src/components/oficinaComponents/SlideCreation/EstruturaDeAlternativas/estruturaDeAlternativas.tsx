@@ -20,18 +20,18 @@ export function EstruturaDeAlternativas({
     <>
       <div className="text-left w-3/4">
         <Label htmlFor="Enunciado">Enunciado: </Label>
-        {slideList[slideOpened]?.question ? (
+        {slideList[slideOpened]?.texto ? (
           <Input
             type="text"
             id="Enunciado"
             placeholder="Enunciado"
-            value={slideList[slideOpened]?.question}
+            value={slideList[slideOpened]?.texto}
             onChange={(e) => {
               const updatedValue = e.target.value;
               setSlideList((prevSlideList) =>
                 prevSlideList.map((slide) => {
-                  if (slide.index === slideOpened) {
-                    return { ...slide, question: updatedValue };
+                  if (slide.posicao === slideOpened) {
+                    return { ...slide, texto: updatedValue };
                   }
                   return slide;
                 })
@@ -46,8 +46,8 @@ export function EstruturaDeAlternativas({
               const updatedValue = e.target.value;
               setSlideList((prevSlideList) =>
                 prevSlideList.map((slide) => {
-                  if (slide.index === slideOpened) {
-                    return { ...slide, question: updatedValue };
+                  if (slide.posicao === slideOpened) {
+                    return { ...slide, texto: updatedValue };
                   }
                   return slide;
                 })
@@ -61,32 +61,32 @@ export function EstruturaDeAlternativas({
           <Label htmlFor="Alternativas">Alternativas: </Label>
           Marque apenas as alternativas corretas ou que forem verdadeiras:
         </div>
-        {slideList[slideOpened]?.options ? (
-          slideList[slideOpened].options?.map((questao, index) => (
+        {slideList[slideOpened]?.alternativas ? (
+          slideList[slideOpened].alternativas?.map((questao, index) => (
             <>
               <div className="w-2/3 mb-4 flex items-center space-x-2">
                 <Checkbox
                   onCheckedChange={(isChecked) => {
                     if (isChecked) {
                       const updatedValue =
-                        slideList[slideOpened].correctOption || [];
+                        slideList[slideOpened].resposta || [];
                       updatedValue[index] = index;
                       setSlideList((prevSlideList) =>
                         prevSlideList.map((slide) => {
-                          if (slide.index === slideOpened) {
-                            return { ...slide, correctOption: updatedValue };
+                          if (slide.posicao === slideOpened) {
+                            return { ...slide, resposta: updatedValue };
                           }
                           return slide;
                         })
                       );
                     } else {
                       const updatedValue = (
-                        slideList[slideOpened].correctOption || []
+                        slideList[slideOpened].resposta || []
                       ).filter((_, i) => i !== index);
                       setSlideList((prevSlideList) =>
                         prevSlideList.map((slide) => {
-                          if (slide.index === slideOpened) {
-                            return { ...slide, correctOption: updatedValue };
+                          if (slide.posicao === slideOpened) {
+                            return { ...slide, resposta: updatedValue };
                           }
                           return slide;
                         })
@@ -99,12 +99,12 @@ export function EstruturaDeAlternativas({
                   placeholder={`Alternativa ${index + 1}`}
                   value={questao}
                   onChange={(e) => {
-                    const updatedValue = slideList[slideOpened].options || [];
+                    const updatedValue = slideList[slideOpened].alternativas || [];
                     updatedValue[index] = e.target.value;
                     setSlideList((prevSlideList) =>
                       prevSlideList.map((slide) => {
-                        if (slide.index === slideOpened) {
-                          return { ...slide, options: updatedValue };
+                        if (slide.posicao === slideOpened) {
+                          return { ...slide, alternativas: updatedValue };
                         }
                         return slide;
                       })
@@ -118,12 +118,12 @@ export function EstruturaDeAlternativas({
                     className="bg-red-400 rounded"
                     onClick={() => {
                       const updatedValue = (
-                        slideList[slideOpened].options || []
+                        slideList[slideOpened].alternativas || []
                       ).filter((_, i) => i !== index);
                       setSlideList((prevSlideList) =>
                         prevSlideList.map((slide) => {
-                          if (slide.index === slideOpened) {
-                            return { ...slide, options: updatedValue };
+                          if (slide.posicao === slideOpened) {
+                            return { ...slide, alternativas: updatedValue };
                           }
                           return slide;
                         })
@@ -143,12 +143,12 @@ export function EstruturaDeAlternativas({
               id="Alternativa 1"
               placeholder="Alternativa 1"
               onChange={(e) => {
-                const updatedValue = slideList[slideOpened].options || [];
+                const updatedValue = slideList[slideOpened].alternativas || [];
                 updatedValue[0] = e.target.value;
                 setSlideList((prevSlideList) =>
                   prevSlideList.map((slide) => {
-                    if (slide.index === slideOpened) {
-                      return { ...slide, options: updatedValue };
+                    if (slide.posicao === slideOpened) {
+                      return { ...slide, alternativas: updatedValue };
                     }
                     return slide;
                   })
@@ -160,21 +160,21 @@ export function EstruturaDeAlternativas({
       </div>
       {
         // travar maximo de alternativas
-        slideList[slideOpened].options ? (
-          slideList[slideOpened].options.length < 5 ? (
+        slideList[slideOpened].alternativas ? (
+          slideList[slideOpened].alternativas.length < 5 ? (
             <Plus
               size={28}
               color="white"
               className="bg-green-600 rounded"
               onClick={() => {
-                const updatedValue = slideList[slideOpened].options || [];
+                const updatedValue = slideList[slideOpened].alternativas || [];
                 const index =
-                  slideList[slideOpened].options?.length || [].length;
+                  slideList[slideOpened].alternativas?.length || [].length;
                 updatedValue[index] = "";
                 setSlideList((prevSlideList) =>
                   prevSlideList.map((slide) => {
-                    if (slide.index === slideOpened) {
-                      return { ...slide, options: updatedValue };
+                    if (slide.posicao === slideOpened) {
+                      return { ...slide, alternativas: updatedValue };
                     }
                     return slide;
                   })
@@ -199,7 +199,7 @@ export function EstruturaDeAlternativas({
             updatedValue[0] = e.target.value;
             setSlideList((prevSlideList) =>
               prevSlideList.map((slide) => {
-                if (slide.index === slideOpened) {
+                if (slide.posicao === slideOpened) {
                   return { ...slide, feedbacks: updatedValue };
                 }
                 return slide;
@@ -217,7 +217,7 @@ export function EstruturaDeAlternativas({
             updatedValue[1] = e.target.value;
             setSlideList((prevSlideList) =>
               prevSlideList.map((slide) => {
-                if (slide.index === slideOpened) {
+                if (slide.posicao === slideOpened) {
                   return { ...slide, feedbacks: updatedValue };
                 }
                 return slide;
