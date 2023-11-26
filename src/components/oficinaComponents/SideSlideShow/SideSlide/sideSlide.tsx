@@ -29,7 +29,7 @@ export function SideSlide({
         className={`mini-slide w-36 h-20 bg-zinc-200 border border-gray-300 rounded text-center text-black cursor-pointer mb-4 shadow-md border-gray-400`}
         onClick={openSlide}
       >
-        {"Ver Slide " + (numero + 1)}
+        Ver Slide 
       </div>
       <span className="ml-2 text-x pb-5 text-black p-2 flex items-center">
         {numero + 1}

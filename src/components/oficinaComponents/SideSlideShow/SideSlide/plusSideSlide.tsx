@@ -1,6 +1,7 @@
 import { Slide } from "@/models/slide";
 import { Minus, Plus } from "phosphor-react";
 import { SetStateAction } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 interface PlusSideSlideProps {
   setSlideList: React.Dispatch<React.SetStateAction<Slide[]>>;
@@ -15,6 +16,7 @@ export function PlusSideSlide({
 }: PlusSideSlideProps) {
   const addSlide = () => {
     const newSlide: Slide = {
+      id: uuidv4(),
       slideType: "em branco",
       index: slideList.length,
     };
@@ -35,15 +37,13 @@ export function PlusSideSlide({
       >
         <Plus size={32} color="white" />
       </div>
-      {slideList.length != 1 ? (
+      {slideList.length !== 1 && (
         <div
           className="mini-slide w-16 h-16 bg-red-400 border border-gray-300 rounded cursor-pointer mb-4 shadow-md border-gray-400 flex items-center justify-center ml-3.5"
           onClick={takeSlide}
         >
           <Minus size={32} color="white" />
         </div>
-      ) : (
-        ""
       )}
     </div>
   );

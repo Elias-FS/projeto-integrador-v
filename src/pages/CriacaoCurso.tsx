@@ -5,10 +5,24 @@ import { SideSlideShow } from "@/components/oficinaComponents/SideSlideShow/side
 import { SlideCreation } from "@/components/oficinaComponents/SlideCreation/slideCreation";
 import { Slide } from "@/models/slide";
 import { useStore } from "@/zustand-store";
-import { Button } from "@material-tailwind/react";
 import { Check } from "phosphor-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/AlertDialog/alert-dialog";
+import { Button } from "@/components/ui/Button/button";
+import { Trash } from "phosphor-react";
+import { v4 as uuidv4 } from "uuid";
 
 const primeiroSlide: Slide = {
+  id: uuidv4(),
   slideType: `em branco`,
   index: 0,
 };
@@ -26,8 +40,16 @@ const CriacaoCurso: React.FC = () => {
   }, [curso]); // Executa o efeito sempre que `curso` é alterado
 
   function salvarSlides() {
-    console.log("criação de cursos: ", curso)
-    saveInformations({...curso, listaDeSlides: slideList});
+    console.log("criação de cursos: ", curso);
+    saveInformations({ ...curso, listaDeSlides: slideList });
+  }
+
+  function deletarSlide() {
+    const novaLista = slideList.filter(
+      (slide) => slide.id !== slideList[slideOpened].id
+    );
+    setSlideList(novaLista);
+    setSlideOpened(0);
   }
 
   return (
@@ -47,11 +69,31 @@ const CriacaoCurso: React.FC = () => {
             slideOpened={slideOpened}
             setSlideList={setSlideList}
           />
-          <Button
-            className="bg-green-700 w-40 h-20"
-            onClick={salvarSlides}
-          >
-            {"Finalziar Curso"} <Check className="ml-2 h-4 w-4" />
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="outline" className="bg-red-400 text-white">
+                Excluir Slide
+                <Trash size={30} />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Deseja deletar este Slide?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Não será possível desfazer esta ação. O Slide atual será
+                  excluído do seu curso.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                <AlertDialogAction onClick={deletarSlide}>
+                  Deletar
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+          <Button className="bg-green-700 w-40 h-20" onClick={salvarSlides}>
+            Finalziar Curso <Check size={30} />
           </Button>
         </div>
       </div>

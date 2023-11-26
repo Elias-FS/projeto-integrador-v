@@ -1,4 +1,5 @@
 export interface Slide {
+  id: string; 
   slideType: string;
   index: number;
   question?: string;

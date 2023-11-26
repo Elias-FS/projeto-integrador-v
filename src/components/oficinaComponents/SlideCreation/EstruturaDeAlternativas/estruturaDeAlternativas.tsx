@@ -193,6 +193,7 @@ export function EstruturaDeAlternativas({
         <Input
           id="Feedack Positivo"
           placeholder="Feedack positivo..."
+          value={slideList[slideOpened].feedbacks ? slideList[slideOpened].feedbacks[0] : ""}
           onChange={(e) => {
             const updatedValue = slideList[slideOpened].feedbacks || [];
             updatedValue[0] = e.target.value;
@@ -210,6 +211,7 @@ export function EstruturaDeAlternativas({
         <Input
           id="Feedack Negativo"
           placeholder="Feedack de correção..."
+          value={slideList[slideOpened].feedbacks ? slideList[slideOpened].feedbacks[1] : ""}
           onChange={(e) => {
             const updatedValue = slideList[slideOpened].feedbacks || [];
             updatedValue[1] = e.target.value;
