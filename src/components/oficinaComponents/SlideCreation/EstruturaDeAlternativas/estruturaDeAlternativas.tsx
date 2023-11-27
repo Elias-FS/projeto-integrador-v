@@ -15,22 +15,22 @@ export function EstruturaDeAlternativas({
   setSlideList,
   slideList,
 }: EstruturaDeAlternativasProps) {
-  console.log(slideList[slideOpened]);
+  console.log("slide aberto: ", slideList[slideOpened]);
   return (
     <>
       <div className="text-left w-3/4">
         <Label htmlFor="Enunciado">Enunciado: </Label>
-        {slideList[slideOpened]?.texto ? (
+        {slideList[slideOpened].texto ? (
           <Input
             type="text"
             id="Enunciado"
             placeholder="Enunciado"
-            value={slideList[slideOpened]?.texto}
+            value={slideList[slideOpened].texto}
             onChange={(e) => {
               const updatedValue = e.target.value;
               setSlideList((prevSlideList) =>
                 prevSlideList.map((slide) => {
-                  if (slide.posicao === slideOpened) {
+                  if (slide.id === slideList[slideOpened].id) {
                     return { ...slide, texto: updatedValue };
                   }
                   return slide;
@@ -46,7 +46,7 @@ export function EstruturaDeAlternativas({
               const updatedValue = e.target.value;
               setSlideList((prevSlideList) =>
                 prevSlideList.map((slide) => {
-                  if (slide.posicao === slideOpened) {
+                  if (slide.id === slideList[slideOpened].id) {
                     return { ...slide, texto: updatedValue };
                   }
                   return slide;
@@ -73,7 +73,7 @@ export function EstruturaDeAlternativas({
                       updatedValue[index] = index;
                       setSlideList((prevSlideList) =>
                         prevSlideList.map((slide) => {
-                          if (slide.posicao === slideOpened) {
+                          if (slide.id === slideList[slideOpened].id) {
                             return { ...slide, resposta: updatedValue };
                           }
                           return slide;
@@ -85,7 +85,7 @@ export function EstruturaDeAlternativas({
                       ).filter((_, i) => i !== index);
                       setSlideList((prevSlideList) =>
                         prevSlideList.map((slide) => {
-                          if (slide.posicao === slideOpened) {
+                          if (slide.id === slideList[slideOpened].id) {
                             return { ...slide, resposta: updatedValue };
                           }
                           return slide;
@@ -99,11 +99,12 @@ export function EstruturaDeAlternativas({
                   placeholder={`Alternativa ${index + 1}`}
                   value={questao}
                   onChange={(e) => {
-                    const updatedValue = slideList[slideOpened].alternativas || [];
+                    const updatedValue =
+                      slideList[slideOpened].alternativas || [];
                     updatedValue[index] = e.target.value;
                     setSlideList((prevSlideList) =>
                       prevSlideList.map((slide) => {
-                        if (slide.posicao === slideOpened) {
+                        if (slide.id === slideList[slideOpened].id) {
                           return { ...slide, alternativas: updatedValue };
                         }
                         return slide;
@@ -122,7 +123,7 @@ export function EstruturaDeAlternativas({
                       ).filter((_, i) => i !== index);
                       setSlideList((prevSlideList) =>
                         prevSlideList.map((slide) => {
-                          if (slide.posicao === slideOpened) {
+                          if (slide.id === slideList[slideOpened].id) {
                             return { ...slide, alternativas: updatedValue };
                           }
                           return slide;
@@ -147,7 +148,7 @@ export function EstruturaDeAlternativas({
                 updatedValue[0] = e.target.value;
                 setSlideList((prevSlideList) =>
                   prevSlideList.map((slide) => {
-                    if (slide.posicao === slideOpened) {
+                    if (slide.id === slideList[slideOpened].id) {
                       return { ...slide, alternativas: updatedValue };
                     }
                     return slide;
@@ -173,7 +174,7 @@ export function EstruturaDeAlternativas({
                 updatedValue[index] = "";
                 setSlideList((prevSlideList) =>
                   prevSlideList.map((slide) => {
-                    if (slide.posicao === slideOpened) {
+                    if (slide.id === slideList[slideOpened].id) {
                       return { ...slide, alternativas: updatedValue };
                     }
                     return slide;
@@ -193,13 +194,17 @@ export function EstruturaDeAlternativas({
         <Input
           id="Feedack Positivo"
           placeholder="Feedack positivo..."
-          value={slideList[slideOpened].feedbacks ? slideList[slideOpened].feedbacks[0] : ""}
+          value={
+            slideList[slideOpened].feedbacks
+              ? slideList[slideOpened].feedbacks[0]
+              : ""
+          }
           onChange={(e) => {
             const updatedValue = slideList[slideOpened].feedbacks || [];
             updatedValue[0] = e.target.value;
             setSlideList((prevSlideList) =>
               prevSlideList.map((slide) => {
-                if (slide.posicao === slideOpened) {
+                if (slide.id === slideList[slideOpened].id) {
                   return { ...slide, feedbacks: updatedValue };
                 }
                 return slide;
@@ -211,13 +216,17 @@ export function EstruturaDeAlternativas({
         <Input
           id="Feedack Negativo"
           placeholder="Feedack de correção..."
-          value={slideList[slideOpened].feedbacks ? slideList[slideOpened].feedbacks[1] : ""}
+          value={
+            slideList[slideOpened].feedbacks
+              ? slideList[slideOpened].feedbacks[1]
+              : ""
+          }
           onChange={(e) => {
             const updatedValue = slideList[slideOpened].feedbacks || [];
             updatedValue[1] = e.target.value;
             setSlideList((prevSlideList) =>
               prevSlideList.map((slide) => {
-                if (slide.posicao === slideOpened) {
+                if (slide.id === slideList[slideOpened].id) {
                   return { ...slide, feedbacks: updatedValue };
                 }
                 return slide;

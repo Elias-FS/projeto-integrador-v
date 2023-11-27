@@ -9,8 +9,19 @@ import {
 } from "@/components/ui/Cards/card";
 import { Check, Plus, Student, Users } from "phosphor-react";
 import { Separator } from "../Separator";
-import { Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/AlertDialog/alert-dialog";
+import { Button } from "../Button/button";
 
 interface CardUserProps {
   titulo: string;
@@ -26,8 +37,9 @@ const CardCourse: React.FC<CardUserProps> = ({
   type,
 }) => {
   function inscreverCurso() {
-    alert("Deseja se inscrever no curso?");
+    // vincular curso ao aluno
     console.log("logica para inscrever o aluno no curso");
+    // atualizar a página após update
   }
 
   function fazerCurso() {
@@ -35,8 +47,10 @@ const CardCourse: React.FC<CardUserProps> = ({
   }
 
   function validarCurso() {
-    alert("Deseja validar o curso?");
+    // validar o curso
     console.log("logica para validar o curso");
+
+    // atualizar a página após update
   }
 
   return (
@@ -68,12 +82,36 @@ const CardCourse: React.FC<CardUserProps> = ({
               </Button>
             </Link>
           ) : type === "nao inscrito" ? (
-            <Button
-              className="bg-green-700 group-hover:opacity-100 opacity-0"
-              onClick={inscreverCurso}
-            >
-              {"Inscrever-se"} <Plus className="ml-2 h-4 w-4" />
-            </Button>
+            <>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button
+                    className="bg-green-700 group-hover:opacity-100 opacity-0 text-white"
+                    variant="outline"
+                  >
+                    Inscrever-se <Plus size={30} className="ml-2 h-4 w-4" />
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Deseja se inscrever no curso?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Essa ação irá víncular o curso selecionado aos cursos que
+                      você já é inscrito. O curso ficará disponível na aba "Meu
+                      Aprendizado".
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                    <AlertDialogAction onClick={inscreverCurso}>
+                      Inscrever-se
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </>
           ) : type === "pendente" ? (
             // ir para tela de assistir o curso e validar
             <>
@@ -85,12 +123,31 @@ const CardCourse: React.FC<CardUserProps> = ({
                   {"Iniciar"} <Student className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <Button
-                className="bg-yellow-500 group-hover:opacity-100 opacity-0"
-                onClick={validarCurso}
-              >
-                {"Validar"} <Check className="ml-2 h-4 w-4" />
-              </Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button
+                    className="bg-yellow-500 group-hover:opacity-100 opacity-0 text-white"
+                    variant="outline"
+                  >
+                    Validar <Check size={30} className="ml-2 h-4 w-4" />
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Deseja validar o curso?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Essa ação irá validar o curso selecionado. O curso ficará
+                      disponível para os Alunos.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                    <AlertDialogAction onClick={validarCurso}>
+                      Validar
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </>
           ) : (
             ""
