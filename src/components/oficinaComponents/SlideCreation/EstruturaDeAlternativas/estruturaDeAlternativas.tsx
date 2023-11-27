@@ -23,7 +23,7 @@ export function EstruturaDeAlternativas({
         {slideList[slideOpened].texto ? (
           <Input
             type="text"
-            id="Enunciado"
+            id={`Texto ${slideList[slideOpened].id}`}
             placeholder="Enunciado"
             value={slideList[slideOpened].texto}
             onChange={(e) => {
@@ -40,8 +40,10 @@ export function EstruturaDeAlternativas({
           />
         ) : (
           <Input
+            type="text"
             id="Enunciado"
             placeholder="Enunciado"
+            value=""
             onChange={(e) => {
               const updatedValue = e.target.value;
               setSlideList((prevSlideList) =>
