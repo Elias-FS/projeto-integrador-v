@@ -65,7 +65,7 @@ export const useStore = create<PlayerState>((set) => {
       }
       set({ userType: newUserType });
     },
-
+    
     verifySideBar: () => {
       const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
       let newIconsToShow: {
