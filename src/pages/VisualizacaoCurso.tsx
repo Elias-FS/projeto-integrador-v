@@ -100,10 +100,12 @@ const VisualizacaoCurso: React.FC = () => {
       <Sidebar />
       <div className="flex flex-col flex-1 mt-14 lg:mt-0 lg:ml-80">
         <Navbar />
-        <div className="flex flex-wrap justify-center my-8">
-          <div className="w-full h-full m-10 bg-zinc-300 border border-gray-400 rounded-lg flex items-center justify-center">
+        <div className="flex flex-wrap justify-center lg:my-8">
+          <div className="w-full h-full bg-zinc-300 border border-gray-400 rounded-lg flex items-center justify-center m-5 lg:m-10">
             <FullContent id={curso.id} slide={curso.listaDeSlides[index]} />
           </div>
+        </div>
+        <div className="flex items-center justify-center mt-8">
           {index != 0 ? <CaretLeft size={32} onClick={voltarSlide} /> : ""}
           {index != curso.listaDeSlides.length - 1 ? (
             <CaretRight size={32} onClick={proximoSlide} />

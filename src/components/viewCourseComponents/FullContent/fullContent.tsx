@@ -15,7 +15,7 @@ export function FullContent({ slide, id }: FullContentProps) {
   console.log("cursoo", slide);
   return (
     <div className="flex items-center justify-center h-full w-full flex-col">
-      <div className="w-3/4 text-center pb-5">
+      <div className="lg:w-full text-center lg:pb-5">
         {slide.tipo === "em branco" ? (
           <p>em branco</p>
         ) : slide.tipo === "multipla escolha" ? (

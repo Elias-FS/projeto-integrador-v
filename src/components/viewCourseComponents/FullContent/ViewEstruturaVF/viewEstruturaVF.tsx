@@ -59,10 +59,11 @@ export function ViewEstruturaVF({ slide, id }: ViewEstruturaVFProps) {
     <div className="text-left w-3/4 flex flex-col">
       <Label>{slide.texto}</Label>
       Marque as questões verdadeiras:
-      <div className="flex flex-col gap-6 mb-12">
+      <div className="flex flex-col gap-3 mb-6 lg:gap-6 lg:mb-12 mx-auto">
         {slide.alternativas?.map((option, index) => (
           <div className="flex gap-3" key={index}>
             <Checkbox
+              className="mt-5"
               checked={selecionados.includes(index)}
               onCheckedChange={(isChecked) => {
                 if (isChecked) {
@@ -80,7 +81,7 @@ export function ViewEstruturaVF({ slide, id }: ViewEstruturaVFProps) {
               }}
             />
             <Button
-              className={`block font-inherit text-inherit text-2xl border-2 border-dark bg-dark py-3 px-6 cursor-pointer rounded-full transition duration-300 hover:bg-darkest hover:transform-hover ${
+              className={`block font-inherit text-inherit text-base lg:text-2xl border-2 border-dark bg-dark py-3 px-6 cursor-pointer rounded-full transition duration-300 hover:bg-darkest hover:transform-hover ${
                 selecionados.length > 0 ? "disabled:cursor-not-allowed" : ""
               }`}
             >
@@ -99,10 +100,8 @@ export function ViewEstruturaVF({ slide, id }: ViewEstruturaVFProps) {
         </div>
       )}
       <Button
-        className={`block font-inherit text-inherit bg-green-700 text-2xl text-white border-2 ${
-          selecionados.length === 0 ? "disabled:cursor-not-allowed" : ""
-        }`}
-        onClick={() => confirmarEscolha(selecionados)}
+        className="block font-inherit text-inherit bg-green-700 text-base lg:text-2xl text-white border-2"
+        onClick={() => confirmarEscolha(selecionado)}
       >
         Confirmar
       </Button>
