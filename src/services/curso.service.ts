@@ -24,23 +24,16 @@ const criarCurso = (
       telasCursoJson
     });
   };
-const atualizarCurso = (
-    id: any,
-    validado: boolean
-
-) => {
-  return axios.patch(API_URL + "cursos/update", {
-     id, 
-     data: {
-        validado: validado
-     }
+const validarCurso = (id: any) => {
+  return axios.patch(API_URL + `cursos/update/${id}`, {
+     id,
   })
 }
 
 const CursoService = { 
     listarCursos,
     criarCurso,
-    atualizarCurso
+    validarCurso
 }
 
 export default CursoService

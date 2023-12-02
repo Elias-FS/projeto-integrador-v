@@ -33,7 +33,7 @@ import UsuarioService from "@/services/usuario.service";
 
 const alterarCargo = async (usuario: any, cargo: number) => {
   await UsuarioService.promoverUsuario(usuario.id, cargo);
-  window.location.reload();
+ // window.location.reload();
 };
 
 const getTextoCargo = (cargoId: number) => {
@@ -61,7 +61,6 @@ const PromocaoCargo: React.FC = () => {
       }
     );
   }, []);
-
   return (
     <div className="flex">
       <Sidebar />
@@ -83,7 +82,7 @@ const PromocaoCargo: React.FC = () => {
                 <TableRow key={index}>
                   <TableCell className="font-medium">{usuario.nome}</TableCell>
                   <TableCell>{usuario.email}</TableCell>
-                  <TableCell>{getTextoCargo(usuario.cargoId)}</TableCell>
+                  <TableCell>{getTextoCargo(usuario.fk_Cargo_id)}</TableCell>
                   <TableCell>
                     <Menubar className="relative inline-block text-left">
                       <MenubarMenu>

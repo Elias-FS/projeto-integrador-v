@@ -57,7 +57,7 @@ const CardCourse: React.FC<CardUserProps> = ({
   }
 
   const validarCurso = () => {
-    CursoService.atualizarCurso(idCurso, true);
+    CursoService.validarCurso(idCurso);
     window.location.reload();
   };
 

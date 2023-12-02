@@ -8,7 +8,7 @@ import { Curso } from "@/models/curso";
 const Cursos: React.FC = () => {
 
   const [ cursos , setCursos ] = useState<Curso[]>([]);
-  const cursosPendentes:Array<Curso> = []
+  const cursosValidados:Array<Curso> = []
 
   useEffect(() => {
 
@@ -16,10 +16,11 @@ const Cursos: React.FC = () => {
       (response) => {
           response.data.forEach(element => {
             if(element.validado != false) {
-              cursosPendentes.push(element)
+              cursosValidados.push(element)
             }
           });
-          setCursos(cursosPendentes);
+          setCursos(cursosValidados);
+          console.log(cursosValidados)
       },
       (error) => {
         const _content =
