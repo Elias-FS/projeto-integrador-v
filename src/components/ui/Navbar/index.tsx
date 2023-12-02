@@ -82,7 +82,7 @@ export function Navbar() {
   return (
     <div className="min-h-fit flex flex-col">
       <div className="pl-4 pr-3 py-4 flex items-center justify-between border-b">
-        <h1 className="text-xl font-bold">DPASCHOAL / {namePage}</h1>
+        <h1 className="lg:text-xl font-bold">{namePage}</h1>
 
         <div className="flex items-center gap-3">
           {userType === "Admin" ? (
@@ -103,9 +103,8 @@ export function Navbar() {
           ) : (
             <></>
           )}
-          <Search />
           <Select>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="lg:w-[180px]">
               <SelectValue placeholder="Academias" />
             </SelectTrigger>
             <SelectContent>

@@ -78,7 +78,7 @@ const Cursos: React.FC = () => {
   return (
     <div className="flex">
       <Sidebar />
-      <div className="flex flex-col flex-1 ml-80">
+      <div className="flex flex-col flex-1 mt-14 lg:mt-0 lg:ml-80">
         <Navbar />
         <div className="flex flex-wrap justify-center my-8">
           {cursos.map((curso, index) => (

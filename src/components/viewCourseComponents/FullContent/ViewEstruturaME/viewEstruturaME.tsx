@@ -66,13 +66,13 @@ export function ViewEstruturaME({ slide, id }: ViewEstruturaQuestoesProps) {
     <>
       <div className="text-left w-3/4 flex flex-col">
         <Label>{slide.texto}</Label>
-        <div className="flex flex-col gap-6 mb-12">
+        <div className="flex flex-col gap-3 mb-6 lg:gap-6 lg:mb-12">
           {slide.alternativas?.map((option, index) => (
             <Button
-              className={`block font-inherit text-inherit text-2xl ${
+              className={`block font-inherit text-inherit text-base lg:text-2xl ${
                 selecionado === index
                   ? "border-accent bg-green-200 text-light transform translate-x-3"
-                  : " bg-dark"
+                  : "bg-dark"
               } py-3 px-6 cursor-pointer rounded-full transition duration-300 hover:bg-darkest hover:transform-hover ${
                 selecionado !== undefined ? "disabled:cursor-not-allowed" : ""
               }`}
@@ -94,7 +94,7 @@ export function ViewEstruturaME({ slide, id }: ViewEstruturaQuestoesProps) {
         </div>
       )}
       <Button
-        className="block font-inherit text-inherit bg-green-700 text-2xl text-white border-2"
+        className="block font-inherit text-inherit bg-green-700 text-base lg:text-2xl text-white border-2"
         onClick={() => confirmarEscolha(selecionado)}
       >
         Confirmar
