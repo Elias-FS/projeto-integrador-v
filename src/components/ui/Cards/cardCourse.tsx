@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import CursoService from "@/services/curso.service";
+
 import {
   Card,
   CardContent,
@@ -22,12 +24,15 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/AlertDialog/alert-dialog";
 import { Button } from "../Button/button";
+import { Usuario } from "@/models/usuario";
+import { Curso } from "@/models/curso";
 
 interface CardUserProps {
   titulo: string;
   descricao: string;
   capa: string;
   type: string;
+  idCurso?: string;
 }
 
 const CardCourse: React.FC<CardUserProps> = ({
@@ -35,7 +40,12 @@ const CardCourse: React.FC<CardUserProps> = ({
   descricao,
   capa,
   type,
+  idCurso,
 }) => {
+  const usuario = Usuario.fromJson(
+    JSON.parse(localStorage.getItem("usuario")!)
+  );
+  
   function inscreverCurso() {
     // vincular curso ao aluno
     console.log("logica para inscrever o aluno no curso");
@@ -46,12 +56,10 @@ const CardCourse: React.FC<CardUserProps> = ({
     console.log("logica para assistir o curso");
   }
 
-  function validarCurso() {
-    // validar o curso
-    console.log("logica para validar o curso");
-
-    // atualizar a página após update
-  }
+  const validarCurso = () => {
+    CursoService.atualizarCurso(idCurso, true);
+    window.location.reload();
+  };
 
   return (
     <>
