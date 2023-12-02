@@ -55,7 +55,7 @@ const CardCourse: React.FC<CardUserProps> = ({
 
   return (
     <>
-      <Card className="h-auto w-96 overflow-hidden mx-1 mb-8 group hover:bg-gray-100">
+      <Card className="h-auto w-80 overflow-hidden mx-1 mb-8 group hover:bg-gray-100 lg:h-auto lg:w-96">
         <CardHeader style={{ padding: 0 }}>
           <img
             src={capa}
@@ -70,7 +70,7 @@ const CardCourse: React.FC<CardUserProps> = ({
         <CardFooter>
           <Users className="mx-2" size={32} />
           <Separator orientation="vertical" className="h-6 w-0.5 bg-zinc-900" />
-          <p className="font-bold text-xl ml-2">1K</p>
+          <p className="font-bold text-xl ml-2 pr-24 lg:pr-36">1K</p>
           {type === "inscrito" ? (
             // ir para tela de assistir o curso
             <Link to={"/visualizacao-curso"}>
