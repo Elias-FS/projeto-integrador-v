@@ -7,10 +7,11 @@ import { Curso } from "@/models/curso";
 
 const CursosPendentes: React.FC = () => {
 
-  const [ cursos , setCursos ] = useState([]);
+  const [ cursos , setCursos ] = useState<Curso[]>([]);
   const cursosPendentes:Array<Curso> = []
 
   useEffect(() => {
+
     CursoService.listarCursos().then(
       (response) => {
           response.data.forEach(element => {
@@ -73,7 +74,7 @@ const CursosPendentes: React.FC = () => {
   
   return (
     <div className="flex">
-      <Sidebar />
+      <Sidebar /> 
       <div className="flex flex-col flex-1 ml-80">
         <Navbar />
         <div className="flex flex-wrap justify-center my-8">
@@ -84,6 +85,7 @@ const CursosPendentes: React.FC = () => {
               descricao={curso.descricao}
               capa={curso.capa}
               type={"pendente"}
+              idCurso={cursos[index].id}
             />
           ))}
         </div>
