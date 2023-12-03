@@ -20,7 +20,6 @@ const CursosPendentes: React.FC = () => {
             }
           });
           setCursos(cursosPendentes);
-          console.log(response.data)
       },
       (error) => {
         const _content =
@@ -79,7 +78,8 @@ const CursosPendentes: React.FC = () => {
       <div className="flex flex-col flex-1 ml-80">
         <Navbar />
         <div className="flex flex-wrap justify-center my-8">
-          {cursos.map((curso, index) => (
+          
+          {cursos.length > 0 ? cursos.map((curso, index) => (
             <CardCourse
               key={index}
               titulo={curso.titulo}
@@ -88,7 +88,7 @@ const CursosPendentes: React.FC = () => {
               type={"pendente"}
               idCurso={cursos[index].id}
             />
-          ))}
+          )) : "Ainda não existem cursos pendentes..."}
         </div>
       </div>
     </div>

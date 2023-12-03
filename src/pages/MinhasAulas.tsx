@@ -82,7 +82,7 @@ const MinhasAulas: React.FC = () => {
         <Navbar />
         <div className="flex flex-wrap justify-center my-8">
           <PlusButton name={"Nova Curso"} path={"/oficina-curso"} />
-          {cursos.map((curso, index) => (
+          {cursos.length > 0 ? cursos.map((curso, index) => (
             <CardCourse
               key={index}
               titulo={curso.titulo}
@@ -90,7 +90,7 @@ const MinhasAulas: React.FC = () => {
               capa={curso.capa}
               type={"inscrito"}
             />
-          ))}
+          )) : "Você ainda não criou nenhum curso..."}
         </div>
       </div>
     </div>

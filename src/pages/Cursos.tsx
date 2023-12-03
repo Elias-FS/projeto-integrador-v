@@ -37,7 +37,7 @@ const Cursos: React.FC = () => {
       <div className="flex flex-col flex-1 mt-14 lg:mt-0 lg:ml-80">
         <Navbar />
         <div className="flex flex-wrap justify-center my-8">
-          {cursos.map((curso, index) => (
+          {cursos.length > 0 ? cursos.map((curso, index) => (
             <CardCourse
               key={index}
               titulo={curso.titulo}
@@ -45,7 +45,7 @@ const Cursos: React.FC = () => {
               capa={curso.capa}
               type={"nao inscrito"}
             />
-          ))}
+          )) : "Ainda não existem cursos para realizar..."}
         </div>
       </div>
     </div>

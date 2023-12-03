@@ -31,7 +31,7 @@ const Academias: React.FC = () => {
         <Navbar />
         <div className="flex flex-wrap justify-center my-8">
           <PlusButton name={"Nova Academia"} path={"/oficina-academia"} />
-          {academias.map((academia, index) => (
+          {academias.length > 0 ? academias.map((academia, index) => (
             <CardAcademy
               key={index}
               titulo={academia.nome}
@@ -39,7 +39,7 @@ const Academias: React.FC = () => {
               capa={"https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg"}
               // capa={academia.capa}
             />
-          ))}
+          )) : "Ainda não existem academias..."}
         </div>
       </div>
     </div>
