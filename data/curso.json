@@ -13,13 +13,7 @@
       "correctOption": [1],
       "points": 10
     },
-    {
-      "slideType": "verdadeiro ou falso",
-      "question": "Questão verdadeiro ou falso:",
-      "options": ["Google", "Apple", "Netflix", "Facebook"],
-      "correctOption": [1, 2],
-      "points": 10
-    },
+     
     {
       "slideType": "multipla escolha com midia",
       "midia": "file",
