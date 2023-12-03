@@ -5,11 +5,10 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import DropZone from "../dropZone/dropZone";
+import DropZone from "../DropZone/dropZone";
 import React, { useState } from "react";
 import AcademiaService from "@/services/academia.service";
 import { Usuario } from "@/models/usuario";
-import uploadImagem from "@/upload-imagem";
 
 interface FormsCriaAcademiaProps {
   setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
@@ -34,8 +33,9 @@ export function FormsCriaAcademia({
   };
 
   const click = () => {
-    
-    const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
+    const usuario = Usuario.fromJson(
+      JSON.parse(localStorage.getItem("usuario")!)
+    );
     AcademiaService.criarAcademias(inputTitle, inputDescription, usuario.id);
   };
 

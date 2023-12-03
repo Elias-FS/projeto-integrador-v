@@ -4,9 +4,10 @@ import { Navbar } from "@/components/ui/Navbar";
 import { PlusButton } from "@/components/ui/PlusButton";
 import CardAcademy from "@/components/ui/Cards/cardAcademy";
 import AcademiaService from "@/services/academia.service";
+import { Academia } from "@/models/academia";
 
 const Academias: React.FC = () => {
-  const [ academias , setAcademias ] = useState([]);
+  const [ academias , setAcademias ] = useState<Academia[]>([]);
 
   useEffect(() => {
     AcademiaService.listarAcademias().then(

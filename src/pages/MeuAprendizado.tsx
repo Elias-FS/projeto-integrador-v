@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Sidebar } from "@/components/ui/Sidebar";
 import { Navbar } from "@/components/ui/Navbar";
 import CardCourse from "@/components/ui/Cards/cardCourse";
 
 const MeuAprendizado: React.FC = () => {
+  // const [ cursos , setCursos ] = useState<Curso[]>([]);
+  // const cursosDoAluno:Array<Curso> = []
+
+  // useEffect(() => {
+
+  //   CursoService.listarCursos().then(
+  //     (response) => {
+  //         response.data.forEach(element => {
+  //           if(element.validado != false) {
+  //             cursosDoAluno.push(element)
+  //           }
+  //         });
+  //         setCursos(cursosDoAluno);
+  //     },
+  //     (error) => {
+  //       const _content =
+  //         (error.response && error.response.data) 
+  //         error.message 
+  //         error.toString();
+  //     }
+  //   );
+  // }, [cursosDoAluno]);
+
   const cursos = [
     {
       id: "031cccd8-0a96-44e6-b8ee-d5247de06767",

@@ -28,7 +28,7 @@ const Cursos: React.FC = () => {
           error.toString();
       }
     );
-  }, []);
+  }, [cursosValidados]);
 
   return (
     <div className="flex">

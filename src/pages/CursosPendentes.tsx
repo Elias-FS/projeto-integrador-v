@@ -20,7 +20,7 @@ const CursosPendentes: React.FC = () => {
             }
           });
           setCursos(cursosPendentes);
-          console.log(cursosPendentes)
+          console.log(response.data)
       },
       (error) => {
         const _content =
@@ -29,7 +29,7 @@ const CursosPendentes: React.FC = () => {
           error.toString();
       }
     );
-  }, []);
+  }, [cursosPendentes]);
 
   // const cursos = [
   //   {
