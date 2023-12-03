@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import CursoService from "@/services/curso.service";
-
 import {
   Card,
   CardContent,
@@ -24,8 +23,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/AlertDialog/alert-dialog";
 import { Button } from "../Button/button";
-import { Usuario } from "@/models/usuario";
-import { Curso } from "@/models/curso";
+import axios from "axios";
 
 interface CardUserProps {
   titulo: string;
@@ -42,9 +40,7 @@ const CardCourse: React.FC<CardUserProps> = ({
   type,
   idCurso,
 }) => {
-  const usuario = Usuario.fromJson(
-    JSON.parse(localStorage.getItem("usuario")!)
-  );
+  const [imageSrc, setImageSrc] = useState<string>('');
   
   function inscreverCurso() {
     // vincular curso ao aluno
@@ -61,12 +57,31 @@ const CardCourse: React.FC<CardUserProps> = ({
     window.location.reload();
   };
 
+  useEffect(() => {
+    handleFileChange();
+  }, []);
+
+
+  const handleFileChange = async () => {
+    console.log(capa)
+    const response = await axios.get(capa, { responseType: 'arraybuffer' });
+
+    var binary = '';
+    const binaryString = new Uint8Array(response.data);
+    var len = binaryString.byteLength;
+    for (var i = 0; i < len; i++) {
+      binary += String.fromCharCode( binaryString[ i ] );
+    }
+    
+    setImageSrc(binary);
+  }
+
   return (
     <>
       <Card className="h-auto w-80 overflow-hidden mx-1 mb-8 group hover:bg-gray-100 lg:h-auto lg:w-96">
         <CardHeader style={{ padding: 0 }}>
           <img
-            src={capa}
+            src={imageSrc}
             alt="Imagem do usuário"
             className="aspect-video object-cover"
           />

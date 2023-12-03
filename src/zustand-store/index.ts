@@ -11,21 +11,6 @@ import { Usuario } from "@/models/usuario";
 import { UsuarioTipo } from "@/enums/usuario_tipo";
 import { Curso } from "@/models/curso";
 
-// const usuario = {
-//   data_nascimento: "1990-01-01",
-//   id: 1,
-//   celular: "123456789",
-//   nome: "Emílio Biasi",
-//   colaborador: true,
-//   profissao: "Desenvolvedor",
-//   email: "emilio@example.com",
-//   cep: "12345-678",
-//   bairro: "Centro",
-//   estado: "SP",
-//   rua: "Rua Principal",
-//   cargo: UsuarioTipo.administrador,
-// };
-
 export interface PlayerState {
   iconsToShow: {
     icon: React.ElementType;
@@ -54,7 +39,9 @@ export const useStore = create<PlayerState>((set) => {
     },
 
     namingRole: () => {
+
       const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
+
       let newUserType;
       if (usuario.cargo == UsuarioTipo.aluno) {
         newUserType = "Aluno";
@@ -118,37 +105,3 @@ export const useStore = create<PlayerState>((set) => {
     },
   };
 });
-
-//     verify: async () => {
-//       set({ isLoading: true })
-
-//       const response = await api.get('/courses/1')
-
-//       set({
-//         course: response.data,
-//         isLoading: false,
-//       })
-//     },
-
-//     next: () => {
-//       const { currentLessonIndex, currentModuleIndex, course } = get()
-
-//       const nextLessonIndex = currentLessonIndex + 1;
-//       const nextLesson = course?.modules[currentModuleIndex].lessons[nextLessonIndex];
-
-//       if (nextLesson) {
-//         set({ currentLessonIndex: nextLessonIndex })
-//       } else {
-//         const nextModuleIndex = currentModuleIndex + 1;
-//         const nextModule = course?.modules[nextModuleIndex];
-
-//         if (nextModule) {
-//           set({
-//             currentModuleIndex: nextModuleIndex,
-//             currentLessonIndex: 0,
-//           })
-//         }
-//       }
-//     }
-//   }
-// })

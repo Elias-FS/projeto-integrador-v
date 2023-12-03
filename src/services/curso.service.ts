@@ -1,3 +1,4 @@
+import { BlobServiceClient, StorageSharedKeyCredential } from "@azure/storage-blob";
 import axios from "axios";
 
 const API_URL = "http://localhost:3000/"
@@ -6,22 +7,19 @@ const listarCursos= () => {
     return axios.get(API_URL + "cursos/")
 }
 
-const criarCurso = (
+const criarCurso = async (
     titulo: string,
     descricao: string,
-    usuarioId: string,
-    academiaId: string,
-    imagem: string,
-    telasCursoJson: string,
+    usuarioId: number,
+    academiaId: number,
+    imagem: File,
   ) => {
-    console.log(telasCursoJson)
     return axios.post(API_URL + "cursos/criar", {
       titulo,
       descricao,
       usuarioId,
       academiaId,
-      //imagem,
-      telasCursoJson
+      imagem,
     });
   };
 const validarCurso = (id: any) => {

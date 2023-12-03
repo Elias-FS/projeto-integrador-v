@@ -17,6 +17,8 @@ export function LoginForm() {
       const response = await AuthService.login(email, senha);
       const usuarioJson = response.data.usuario;
 
+      console.log(response);
+
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("usuario", JSON.stringify(usuarioJson));
 

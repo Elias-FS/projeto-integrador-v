@@ -6,10 +6,6 @@ const listarUsuarios = () => {
     return axios.get(API_URL + "usuarios")
 }
 
-const findById = (id:number) => {
-  return axios.get(API_URL + `usuarios/findById/${id}`)
-}
-
 const promoverUsuario = (id:number, cargoId:number) => {
   return axios.put(API_URL + `usuarios/promover/`, {
     id: id,
@@ -48,7 +44,6 @@ const registrarUsuario = (
 const UsuarioService = { 
     listarUsuarios,
     registrarUsuario,
-    findById,
     promoverUsuario,
 }
 

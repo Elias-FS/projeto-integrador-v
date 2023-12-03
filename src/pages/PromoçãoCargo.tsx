@@ -13,7 +13,6 @@ import {
 import {
   Menubar,
   MenubarContent,
-  MenubarItem,
   MenubarMenu,
   MenubarSeparator,
   MenubarTrigger,
@@ -30,29 +29,26 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/AlertDialog/alert-dialog";
 import UsuarioService from "@/services/usuario.service";
+import { Usuario } from "@/models/usuario";
 
 const alterarCargo = async (usuario: any, cargo: number) => {
   await UsuarioService.promoverUsuario(usuario.id, cargo);
- // window.location.reload();
+ window.location.reload();
 };
 
-const getTextoCargo = (cargoId: number) => {
-  console.log(cargoId);
-  return cargoId === 1
-    ? "Aluno"
-    : cargoId === 2
-    ? "Instrutor"
-    : "Administrador";
-};
 
 const PromocaoCargo: React.FC = () => {
-  const [usuarios, setUsuarios] = useState([]);
+  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
 
   useEffect(() => {
     UsuarioService.listarUsuarios().then(
       (response) => {
-        console.log(response.data);
-        setUsuarios(response.data);
+        const respUsr: Usuario[] = []
+        response.data.forEach((element: string) => {
+        
+          respUsr.push(Usuario.fromJson(element))
+        })
+        setUsuarios(respUsr);
       },
       (error) => {
         const _content = error.response && error.response.data;
@@ -61,6 +57,9 @@ const PromocaoCargo: React.FC = () => {
       }
     );
   }, []);
+
+  console.log(usuarios)
+
   return (
     <div className="flex">
       <Sidebar />
@@ -82,7 +81,7 @@ const PromocaoCargo: React.FC = () => {
                 <TableRow key={index}>
                   <TableCell className="font-medium">{usuario.nome}</TableCell>
                   <TableCell>{usuario.email}</TableCell>
-                  <TableCell>{getTextoCargo(usuario.fk_Cargo_id)}</TableCell>
+                  <TableCell>{usuario.cargo}</TableCell>
                   <TableCell>
                     <Menubar className="relative inline-block text-left">
                       <MenubarMenu>

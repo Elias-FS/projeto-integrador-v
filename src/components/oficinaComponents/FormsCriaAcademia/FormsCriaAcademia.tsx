@@ -31,7 +31,6 @@ export function FormsCriaAcademia({
     const valorDigitado = e.target.value;
     setInputTitle(valorDigitado);
     setTypedTitle(valorDigitado);
-    console.log("Valor digitado: ", valorDigitado);
   };
 
   const click = () => {

@@ -16,7 +16,7 @@ const CursosPendentes: React.FC = () => {
       (response) => {
           response.data.forEach(element => {
             if(element.validado != true) {
-              cursosPendentes.push(element)
+              cursosPendentes.push(Curso.fromJson(element))
             }
           });
           setCursos(cursosPendentes);

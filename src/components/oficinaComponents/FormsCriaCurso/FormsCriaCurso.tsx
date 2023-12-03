@@ -15,12 +15,16 @@ import { v4 as uuidv4 } from "uuid";
 import { useStore } from "@/zustand-store";
 import { Link } from "react-router-dom";
 import AcademiaService from "@/services/academia.service";
+import CursoService from "@/services/curso.service";
+import { Usuario } from "@/models/usuario";
+import { Academia } from "@/models/academia";
+import { buffer } from "stream/consumers";
 
 interface FormsCriaCursoProps {
   setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
   setTypedTitle: (title: string) => void;
   setTypedDescription: (title: string) => void;
-  selectedImage: string;
+  selectedImage: File;
 }
 
 export function FormsCriaCurso({
@@ -31,17 +35,16 @@ export function FormsCriaCurso({
 }: FormsCriaCursoProps) {
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
-  const [academiaSelecionada, setAcademiaSelecionada] = useState("");
+  const [academiaSelecionada, setAcademiaSelecionada] = useState<Academia>();
   const { curso, saveInformations } = useStore((state) => ({
     curso: state.curso,
     saveInformations: state.saveInformations,
   }));
-  const [ academias , setAcademias ] = useState([]);
+  const [ academias , setAcademias ] = useState<Academia[]>([]);
 
   useEffect(() => {
     AcademiaService.listarAcademias().then(
       (response) => {
-        console.log(response.data)
         setAcademias(response.data);
       },
       (error) => {
@@ -52,31 +55,6 @@ export function FormsCriaCurso({
       }
     );
   }, []);
-
-  const academia = [
-    {
-      name: "Academia A",
-      profissao: "Treinamento físico e bem-estar",
-    },
-    {
-      name: "Academia B",
-      profissao: "Condicionamento físico e musculação",
-    },
-    {
-      name: "Academia C",
-      profissao: "Aulas de Yoga e meditação",
-    },
-    {
-      name: "Academia D",
-      profissao: "Treinamento cardiovascular",
-    },
-    {
-      name: "Academia E",
-      profissao: "Treinamento de levantamento de peso",
-    },
-  ];
-
-
 
   const handleInputTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const valorDigitado = e.target.value;
@@ -95,25 +73,33 @@ export function FormsCriaCurso({
   };
 
   const handleSelectChange = (valor: string) => {
-    setAcademiaSelecionada(valor);
+    academias.map(acad =>{
+      if(acad.nome == valor){
+        setAcademiaSelecionada(acad);
+      }
+    })
+    
   };
 
   useEffect(() => {
     console.log("Curso após re-renderização:", curso);
   }, [curso]); // Executa o efeito sempre que `curso` é alterado
 
-  function salvarSlides() {
-    //lógica para salvar
-    const newCurso = new Curso(
-      Date(),
-      uuidv4(),
-      inputTitle,
-      selectedImage,
-      inputDescription,
-      academiaSelecionada,
-      []
-    );
-    saveInformations(newCurso);
+  async function salvarSlides() {
+
+    const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem('usuario')!))
+
+    if(academiaSelecionada != undefined){
+      const newCurso = await CursoService.criarCurso(
+        inputTitle,
+        inputDescription,
+        usuario.id,
+        academiaSelecionada?.id,
+        selectedImage,
+      )
+
+      //saveInformations(Curso.fromJson(newCurso));
+      }  
   }
 
   return (
@@ -159,7 +145,7 @@ export function FormsCriaCurso({
           </Typography>
           <Select
             onValueChange={handleSelectChange}
-            value={academiaSelecionada}
+            value={academiaSelecionada?.nome}
           >
             <SelectTrigger className="w-[385px]  border-gray-800">
               <SelectValue placeholder="Academias" />

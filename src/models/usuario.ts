@@ -1,5 +1,5 @@
 import { UsuarioTipo } from "@/enums/usuario_tipo";
-import moment from 'moment';
+import moment from "moment";
 
 export class Usuario {
   data_nascimento: Date;
@@ -71,7 +71,11 @@ export class Usuario {
       bairro,
       estado,
       rua,
-      cargo as UsuarioTipo 
+      cargo == 1
+        ? UsuarioTipo.aluno
+        : cargo == 2
+        ? UsuarioTipo.instrutor
+        : UsuarioTipo.administrador
     );
 
     return usuario;

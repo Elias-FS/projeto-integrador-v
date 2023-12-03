@@ -20,7 +20,6 @@ const Cursos: React.FC = () => {
             }
           });
           setCursos(cursosValidados);
-          console.log(cursosValidados)
       },
       (error) => {
         const _content =
@@ -31,50 +30,6 @@ const Cursos: React.FC = () => {
     );
   }, []);
 
-  
-  // const cursos = [
-  //   {
-  //     id: "031cccd8-0a96-44e6-b8ee-d5247de06767",
-  //     titulo: "Curso de Python",
-  //     descricao: "Descrição Python",
-  //     data_nascimento: "11/11/2023",
-  //     academia: "Academia A",
-  //     capa: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
-  //     listaDeSlides: [
-  //       { slideType: "em branco" },
-  //       { slideType: "em branco" },
-  //       { slideType: "em branco" },
-  //     ],
-  //   },
-  //   {
-  //     id: "031cccd8-0a96-44e6-b8ee-d5247de06768",
-  //     titulo: "Curso de C++",
-  //     descricao: "Descrição C++",
-  //     data_nascimento: "11/11/2023",
-  //     academia: "Academia B",
-  //     capa: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
-  //     listaDeSlides: [
-  //       { slideType: "verdadeiro ou falso" },
-  //       { slideType: "verdadeiro ou falso" },
-  //       { slideType: "verdadeiro ou falso" },
-  //     ],
-  //   },
-  //   {
-  //     id: "031cccd8-0a96-44e6-b8ee-d5247de06769",
-  //     titulo: "Curso de TypeScript",
-  //     descricao: "Descrição TypeScript",
-  //     data_nascimento: "11/11/2023",
-  //     academia: "Academia C",
-  //     capa: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
-  //     listaDeSlides: [
-  //       { slideType: "somente midia" },
-  //       { slideType: "somente midia" },
-  //       { slideType: "somente midia" },
-  //     ],
-  //   }
-  // ];
-  
-  console.log(localStorage.getItem('token'))
   return (
     <div className="flex">
       <Sidebar />
@@ -87,7 +42,7 @@ const Cursos: React.FC = () => {
               key={index}
               titulo={curso.titulo}
               descricao={curso.descricao}
-              capa={curso.capa}
+              capa={"https://dpaschoalteste.blob.core.windows.net/teste/teste.png"}
               type={"nao inscrito"}
             />
           ))}

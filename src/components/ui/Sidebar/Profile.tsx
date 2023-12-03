@@ -1,31 +1,15 @@
 import { SignOut } from "phosphor-react";
 import { Button } from "../Button/button";
 import { useEffect, useState } from "react";
-import AuthService from "@/services/auth.service";
 import { Usuario } from "@/models/usuario";
-import UsuarioService from "@/services/usuario.service";
 
 // export interface ProfileProps {}
 
 export function Profile() {
-  const [dadosDoUsuario, setDadosDoUsuario] = useState("");
+  const [dadosDoUsuario, setDadosDoUsuario] = useState<Usuario>();
 
   useEffect(() => {
-    const usuario = Usuario.fromJson(
-      JSON.parse(localStorage.getItem("usuario")!)
-    );
-    UsuarioService.findById(usuario.id).then(
-      (response) => {
-        console.log(response.data);
-        setDadosDoUsuario(response.data.user);
-      },
-      (error) => {
-        const _content = error.response && error.response.data;
-        error.message;
-        error.toString();
-        setDadosDoUsuario(_content);
-      }
-    );
+    setDadosDoUsuario(JSON.parse(localStorage.getItem("usuario")!));
   }, []);
 
   return (

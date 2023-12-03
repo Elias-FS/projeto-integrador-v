@@ -1,5 +1,3 @@
-import { Slide } from "./slide";
-
 export class Curso {
   data_nascimento: string;
   id: string;
@@ -7,7 +5,6 @@ export class Curso {
   capa: string;
   descricao: string;
   academia: string;
-  listaDeSlides: Slide[];
   valido?: boolean;
 
   constructor(
@@ -17,7 +14,7 @@ export class Curso {
     capa: string,
     descricao: string,
     academia: string,
-    listaDeSlides: Slide[]
+    valido: boolean
   ) {
     this.data_nascimento = data_nascimento;
     this.id = id;
@@ -25,6 +22,28 @@ export class Curso {
     this.capa = capa;
     this.descricao = descricao;
     this.academia = academia;
-    this.listaDeSlides = listaDeSlides;
+    this.valido = valido;
+  }
+
+  static fromJson(json: any): Curso {
+    const {
+      data_nascimento,
+      id,
+      titulo,
+      imagem,
+      descricao,
+      academia,
+      valido,
+    } = json;
+
+    return new Curso(
+      data_nascimento,
+      id,
+      titulo,
+      imagem,
+      descricao,
+      academia,
+      valido
+    );
   }
 }
