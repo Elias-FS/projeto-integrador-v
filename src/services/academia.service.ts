@@ -18,7 +18,6 @@ const criarAcademias = (
 
 
     return axios.post(API_URL + "/academias", {
-
         nome,
         descricao,
         usuarioId

@@ -60,6 +60,8 @@ const PromocaoCargo: React.FC = () => {
 
   console.log(usuarios)
 
+
+
   return (
     <div className="flex">
       <Sidebar />
@@ -81,7 +83,7 @@ const PromocaoCargo: React.FC = () => {
                 <TableRow key={index}>
                   <TableCell className="font-medium">{usuario.nome}</TableCell>
                   <TableCell>{usuario.email}</TableCell>
-                  <TableCell>{usuario.cargo}</TableCell>
+                  <TableCell>{usuario.cargo == "aluno" ? "Aluno" : usuario.cargo == "instrutor" ? "Instrutor" : "Administrador"}</TableCell>
                   <TableCell>
                     <Menubar className="relative inline-block text-left">
                       <MenubarMenu>

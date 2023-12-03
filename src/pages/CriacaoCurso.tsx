@@ -49,7 +49,7 @@ const CriacaoCurso: React.FC = () => {
       curso.titulo,
       curso.descricao,
       usuario.id,
-      curso.academia,
+      curso.fk_Academia_id,
       curso.capa,
       JSON.stringify(slideList),
     )

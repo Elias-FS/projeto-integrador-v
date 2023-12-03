@@ -1,4 +1,3 @@
-import { BlobServiceClient, StorageSharedKeyCredential } from "@azure/storage-blob";
 import axios from "axios";
 
 const API_URL = "http://localhost:3000/"
@@ -28,7 +27,7 @@ const validarCurso = (id: any) => {
   })
 }
 
-const CursoService = { 
+const CursoService = {
     listarCursos,
     criarCurso,
     validarCurso
