@@ -14,4 +14,24 @@ export class Academia {
         this.usuarioId=usuarioId;
         this.dataCriacao=dataCriacao;
     }
+
+    static fromJson(json: any): Academia {
+        const {
+            id,
+            descricao,
+            nome,
+            imagem,
+            usuarioId,
+            dataCriacao,
+        } = json;
+    
+        return new Academia(
+            id,
+            descricao,
+            nome,
+            imagem,
+            usuarioId,
+            dataCriacao,
+        );
+      }
 }

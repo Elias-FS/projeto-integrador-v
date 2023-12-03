@@ -21,6 +21,7 @@ const Cursos: React.FC = () => {
           });
           setCursos(cursosValidados);
           console.log(cursosValidados)
+          console.log(cursosValidados[0].capa)
       },
       (error) => {
         const _content =
@@ -30,7 +31,7 @@ const Cursos: React.FC = () => {
       }
     );
   }, []);
-
+  
   return (
     <div className="flex">
       <Sidebar />

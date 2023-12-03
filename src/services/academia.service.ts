@@ -1,36 +1,41 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000"
+const API_URL = "http://localhost:3000";
 
 const listarAcademias = () => {
-    return axios.get(API_URL + "/academias", {
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`
-        }
-    })
-}
+  return axios.get(API_URL + "/academias", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+};
 
 const criarAcademias = (
-    nome: string,
-    descricao: string,
-    usuarioId: number,
+  nome: string,
+  descricao: string,
+  usuarioId: number,
+  imagem: File
 ) => {
-
-
-    return axios.post(API_URL + "/academias", {
-        nome,
-        descricao,
-        usuarioId
-    }, {
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`
-        }
-    })
-}
+  console.log(usuarioId);
+  return axios.post(
+    API_URL + "/academias",
+    {
+      nome,
+      descricao,
+      usuarioId,
+      imagem,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
+};
 
 const AcademiaService = {
-    listarAcademias,
-    criarAcademias
-}
+  listarAcademias,
+  criarAcademias,
+};
 
-export default AcademiaService
+export default AcademiaService;

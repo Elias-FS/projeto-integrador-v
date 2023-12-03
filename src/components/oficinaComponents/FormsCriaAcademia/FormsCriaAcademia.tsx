@@ -14,7 +14,7 @@ interface FormsCriaAcademiaProps {
   setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
   setTypedTitle: (title: string) => void;
   setTypedDescription: (title: string) => void;
-  selectedImage: string;
+  selectedImage: File;
 }
 
 export function FormsCriaAcademia({
@@ -32,11 +32,16 @@ export function FormsCriaAcademia({
     setTypedTitle(valorDigitado);
   };
 
-  const click = () => {
+  const salvarAcademia = () => {
     const usuario = Usuario.fromJson(
       JSON.parse(localStorage.getItem("usuario")!)
     );
-    AcademiaService.criarAcademias(inputTitle, inputDescription, usuario.id);
+    AcademiaService.criarAcademias(
+      inputTitle,
+      inputDescription,
+      usuario.id,
+      selectedImage
+    );
   };
 
   const handleInputDescriptionChange = (
@@ -45,7 +50,7 @@ export function FormsCriaAcademia({
     const valorDigitado = e.target.value;
     setInputDescription(valorDigitado);
     setTypedDescription(valorDigitado);
-    console.log("Valor digitado: ", valorDigitado);
+
   };
 
   return (
@@ -95,7 +100,7 @@ export function FormsCriaAcademia({
           <Button
             className="mt-6 bg-green-700 text-lg h-11"
             fullWidth
-            onClick={click}
+            onClick={salvarAcademia}
           >
             Criar Academia
           </Button>

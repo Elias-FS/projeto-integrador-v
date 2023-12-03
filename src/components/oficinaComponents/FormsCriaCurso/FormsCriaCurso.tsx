@@ -11,14 +11,12 @@ import {
 import React, { useEffect, useState } from "react";
 import DropZone from "../DropZone/dropZone";
 import { Curso } from "@/models/curso";
-import { v4 as uuidv4 } from "uuid";
 import { useStore } from "@/zustand-store";
 import { Link } from "react-router-dom";
 import AcademiaService from "@/services/academia.service";
 import CursoService from "@/services/curso.service";
 import { Usuario } from "@/models/usuario";
 import { Academia } from "@/models/academia";
-import { buffer } from "stream/consumers";
 
 interface FormsCriaCursoProps {
   setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
@@ -60,7 +58,6 @@ export function FormsCriaCurso({
     const valorDigitado = e.target.value;
     setInputTitle(valorDigitado);
     setTypedTitle(valorDigitado);
-    console.log("Valor digitado: ", valorDigitado);
   };
 
   const handleInputDescriptionChange = (
@@ -69,7 +66,6 @@ export function FormsCriaCurso({
     const valorDigitado = e.target.value;
     setInputDescription(valorDigitado);
     setTypedDescription(valorDigitado);
-    console.log("Valor digitado: ", valorDigitado);
   };
 
   const handleSelectChange = (valor: string) => {
@@ -81,11 +77,9 @@ export function FormsCriaCurso({
     
   };
 
-  useEffect(() => {
-    console.log("Curso após re-renderização:", curso);
-  }, [curso]); // Executa o efeito sempre que `curso` é alterado
 
-  async function salvarSlides() {
+
+  async function salvarCurso() {
 
     const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem('usuario')!))
 
@@ -97,9 +91,8 @@ export function FormsCriaCurso({
         academiaSelecionada?.id,
         selectedImage,
       )
-
-      //saveInformations(Curso.fromJson(newCurso));
-      }  
+      saveInformations(Curso.fromJson(newCurso));
+      }
   }
 
   return (
@@ -174,7 +167,7 @@ export function FormsCriaCurso({
         ) : (
           <Link to="/criacao-curso">
             <Button
-              onClick={salvarSlides}
+              onClick={salvarCurso}
               className="mt-6 bg-green-700 text-lg h-11"
               fullWidth
             >

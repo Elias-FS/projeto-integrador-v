@@ -21,6 +21,7 @@ const criarCurso = async (
     imagem,
   });
 };
+
 const validarCurso = (id: any) => {
   return axios.put(API_URL + `cursos/validar/${id}`);
 };

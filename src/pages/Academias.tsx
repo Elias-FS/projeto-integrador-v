@@ -7,23 +7,28 @@ import AcademiaService from "@/services/academia.service";
 import { Academia } from "@/models/academia";
 
 const Academias: React.FC = () => {
-  const [ academias , setAcademias ] = useState<Academia[]>([]);
+  const [academias, setAcademias] = useState<Academia[]>([]);
+  
 
   useEffect(() => {
+    const todasAcademias:Array<Academia> = []
+
     AcademiaService.listarAcademias().then(
       (response) => {
-        console.log(response.data)
-        setAcademias(response.data);
+        response.data.forEach((element: Academia) => {
+          todasAcademias.push(Academia.fromJson(element));
+        });
+        console.log(todasAcademias);
+        setAcademias(todasAcademias);
       },
       (error) => {
-        const _content =
-          (error.response && error.response.data) 
-          error.message 
-          error.toString();
+        const _content = error.response && error.response.data;
+        error.message;
+        error.toString();
       }
     );
   }, []);
-
+  
   return (
     <div className="flex">
       <Sidebar />
@@ -31,15 +36,16 @@ const Academias: React.FC = () => {
         <Navbar />
         <div className="flex flex-wrap justify-center my-8">
           <PlusButton name={"Nova Academia"} path={"/oficina-academia"} />
-          {academias.length > 0 ? academias.map((academia, index) => (
-            <CardAcademy
-              key={index}
-              titulo={academia.nome}
-              descricao={academia.descricao}
-              capa={"https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg"}
-              // capa={academia.capa}
-            />
-          )) : "Ainda não existem academias..."}
+          {academias.length > 0
+            ? academias.map((academia, index) => (
+                <CardAcademy
+                  key={index}
+                  titulo={academia.nome}
+                  descricao={academia.descricao}
+                  capa={academia.imagem || ""}
+                />
+              ))
+            : "Ainda não existem academias..."}
         </div>
       </div>
     </div>
