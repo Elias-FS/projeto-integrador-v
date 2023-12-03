@@ -8,18 +8,19 @@ import { Curso } from "@/models/curso";
 const Cursos: React.FC = () => {
 
   const [ cursos , setCursos ] = useState<Curso[]>([]);
-  const cursosValidados:Array<Curso> = []
 
   useEffect(() => {
+    const cursosValidados:Array<Curso> = []
 
     CursoService.listarCursos().then(
       (response) => {
-          response.data.forEach(element => {
+          response.data.forEach((element: { validado: boolean; }) => {
             if(element.validado != false) {
-              cursosValidados.push(element)
+              cursosValidados.push(Curso.fromJson(element))
             }
           });
           setCursos(cursosValidados);
+          console.log(cursosValidados)
       },
       (error) => {
         const _content =
@@ -28,7 +29,7 @@ const Cursos: React.FC = () => {
           error.toString();
       }
     );
-  }, [cursosValidados]);
+  }, []);
 
   return (
     <div className="flex">
@@ -37,12 +38,11 @@ const Cursos: React.FC = () => {
         <Navbar />
         <div className="flex flex-wrap justify-center my-8">
           {cursos.map((curso, index) => (
-
             <CardCourse
               key={index}
               titulo={curso.titulo}
               descricao={curso.descricao}
-              capa={"https://dpaschoalteste.blob.core.windows.net/teste/teste.png"}
+              capa={curso.capa}
               type={"nao inscrito"}
             />
           ))}

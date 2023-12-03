@@ -54,7 +54,7 @@ const CardCourse: React.FC<CardUserProps> = ({
 
   const validarCurso = () => {
     CursoService.validarCurso(idCurso);
-    window.location.reload();
+    //window.location.reload();
   };
 
   useEffect(() => {
@@ -66,10 +66,10 @@ const CardCourse: React.FC<CardUserProps> = ({
     console.log(capa)
     const response = await axios.get(capa, { responseType: 'arraybuffer' });
 
-    var binary = '';
+    let binary = '';
     const binaryString = new Uint8Array(response.data);
-    var len = binaryString.byteLength;
-    for (var i = 0; i < len; i++) {
+    const len = binaryString.byteLength;
+    for (let i = 0; i < len; i++) {
       binary += String.fromCharCode( binaryString[ i ] );
     }
     

@@ -8,13 +8,13 @@ import { Curso } from "@/models/curso";
 const CursosPendentes: React.FC = () => {
 
   const [ cursos , setCursos ] = useState<Curso[]>([]);
-  const cursosPendentes:Array<Curso> = []
 
   useEffect(() => {
+    const cursosPendentes:Array<Curso> = []
 
     CursoService.listarCursos().then(
       (response) => {
-          response.data.forEach(element => {
+          response.data.forEach((element: { validado: boolean; }) => {
             if(element.validado != true) {
               cursosPendentes.push(Curso.fromJson(element))
             }
@@ -29,7 +29,7 @@ const CursosPendentes: React.FC = () => {
           error.toString();
       }
     );
-  }, [cursosPendentes]);
+  }, []);
 
   // const cursos = [
   //   {
