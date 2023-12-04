@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/Button/button";
 import { Trash } from "phosphor-react";
 import { v4 as uuidv4 } from "uuid";
 import telaCursoService from "@/services/telaCurso.service";
+import { Link } from "react-router-dom";
 
 const primeiroSlide: Slide = {
   id: uuidv4(),
@@ -41,13 +42,9 @@ const CriacaoCurso: React.FC = () => {
   }, [curso]); // Executa o efeito sempre que `curso` é alterado
 
   function salvarSlides() {
+    const usuario = JSON.parse(localStorage.getItem("usuario")!);
 
-    const usuario = JSON.parse(localStorage.getItem('usuario')!)
-
-    telaCursoService.criarSlide(
-      slideList,
-      parseInt(curso.id)
-    );
+    telaCursoService.criarSlide(slideList, parseInt(curso.id));
   }
 
   function deletarSlide() {
@@ -104,9 +101,39 @@ const CriacaoCurso: React.FC = () => {
           ) : (
             ""
           )}
-          <Button className="bg-green-700 w-40 h-20" onClick={salvarSlides}>
+          {/* <Button className="bg-green-700 w-40 h-20" onClick={salvarSlides}>
             Finalziar Curso <Check size={30} />
-          </Button>
+          </Button> */}
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button
+                variant="outline"
+                className="bg-green-700 w-40 h-20 text-white"
+              >
+                Finalziar Curso
+                <Check size={30} />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  Deseja finalizar este Curso?
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  Essa ação irá salvar seu curso, seu curso será encaminhado
+                  para validação de um Administrador.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                <Link to="/minhas-aulas">
+                <AlertDialogAction onClick={salvarSlides}>
+                  Finalizar
+                </AlertDialogAction>
+                </Link>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </div>
     </div>
