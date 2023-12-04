@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 interface ViewEstruturaVFProps {
   slide: Slide;
-  id: string;
+  id: number;
 }
 
 export function ViewEstruturaVF({ slide, id }: ViewEstruturaVFProps) {
@@ -101,7 +101,7 @@ export function ViewEstruturaVF({ slide, id }: ViewEstruturaVFProps) {
       )}
       <Button
         className="block font-inherit text-inherit bg-green-700 text-base lg:text-2xl text-white border-2"
-        onClick={() => confirmarEscolha(selecionado)}
+        onClick={() => confirmarEscolha(selecionados)}
       >
         Confirmar
       </Button>

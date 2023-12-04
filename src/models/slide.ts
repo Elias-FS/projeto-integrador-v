@@ -1,5 +1,5 @@
 export interface Slide {
-  id: string; 
+  id: string;
   tipo: string;
   posicao: number;
   texto?: string;
@@ -9,7 +9,28 @@ export interface Slide {
   midia?: string;
 }
 
-//correctOption - Resposta
-//question - texto
-//options - alternativas
-//slideType - tipo
+export class SlideUtils {
+  static fromJson(json: any): Slide {
+    const {
+      id,
+      tipo,
+      posicao,
+      texto,
+      alternativas,
+      feedbacks,
+      resposta,
+      midia
+    } = json;
+
+    return {
+      id: id,
+      tipo: tipo,
+      posicao: posicao,
+      texto: texto || '',
+      alternativas: alternativas || [],
+      feedbacks: feedbacks || [],
+      resposta: resposta || [],
+      midia: midia || ''
+    };
+  }
+}

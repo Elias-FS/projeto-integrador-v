@@ -3,7 +3,7 @@ import { ViewEstruturaME } from "../ViewEstruturaME/viewEstruturaME";
 
 interface ViewMultiplaEscolhaProps {
   slide: Slide;
-  id: string;
+  id: number;
 }
 
 export function ViewMultiplaEscolha({ slide, id }: ViewMultiplaEscolhaProps) {

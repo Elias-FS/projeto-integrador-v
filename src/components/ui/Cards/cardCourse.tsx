@@ -24,6 +24,8 @@ import {
 } from "@/components/ui/AlertDialog/alert-dialog";
 import { Button } from "../Button/button";
 import axios from "axios";
+import { useStore } from "@/zustand-store";
+
 
 interface CardUserProps {
   titulo: string;
@@ -40,8 +42,11 @@ const CardCourse: React.FC<CardUserProps> = ({
   type,
   idCurso,
 }) => {
-  const [imageSrc, setImageSrc] = useState<string>('');
-  
+  const [imageSrc, setImageSrc] = useState<string>("");
+  const { assistirCurso } = useStore(state => ({
+    assistirCurso: state.assistirCurso,
+  }));
+
   function inscreverCurso() {
     // vincular curso ao aluno
     console.log("logica para inscrever o aluno no curso");
@@ -50,6 +55,8 @@ const CardCourse: React.FC<CardUserProps> = ({
 
   function fazerCurso() {
     console.log("logica para assistir o curso");
+    const id = parseInt(idCurso || "")
+    assistirCurso(id)
   }
 
   const validarCurso = () => {
@@ -61,20 +68,19 @@ const CardCourse: React.FC<CardUserProps> = ({
     handleFileChange();
   }, []);
 
-
   const handleFileChange = async () => {
-    console.log(capa)
-    const response = await axios.get(capa, { responseType: 'arraybuffer' });
+    console.log(capa);
+    const response = await axios.get(capa, { responseType: "arraybuffer" });
 
-    let binary = '';
+    let binary = "";
     const binaryString = new Uint8Array(response.data);
     const len = binaryString.byteLength;
     for (let i = 0; i < len; i++) {
-      binary += String.fromCharCode( binaryString[ i ] );
+      binary += String.fromCharCode(binaryString[i]);
     }
-    
+
     setImageSrc(binary);
-  }
+  };
 
   return (
     <>

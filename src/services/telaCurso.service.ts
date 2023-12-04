@@ -7,14 +7,17 @@ const listarSlides = () => {
   return axios.get(API_URL + "telaCurso/");
 };
 
-const criarSlide = async (
-  slides: Slide[],
-  cursoId: number
-) => {
+
+
+const listarSlidesPorId = async (fk_Curso_id: number) => {
+  return axios.get(API_URL + `telaCurso/listarSlidePorId/${fk_Curso_id}`);
+};
+
+const criarSlide = async (slides: Slide[], cursoId: number) => {
   const json = JSON.stringify(slides);
   return axios.post(API_URL + "telaCurso/criar", {
     json,
-    cursoId
+    cursoId,
   });
 };
 
@@ -38,6 +41,7 @@ const criarSlide = async (
 const telaCursoService = {
   listarSlides,
   criarSlide,
+  listarSlidesPorId
 };
 
 export default telaCursoService;

@@ -8,11 +8,11 @@ import { ViewFeedback } from "./ViewFeedback/viewFeedback";
 
 interface FullContentProps {
   slide: Slide;
-  id: string;
+  id: number;
 }
 
 export function FullContent({ slide, id }: FullContentProps) {
-  console.log("cursoo", slide);
+  // console.log("slide", slide);
   return (
     <div className="flex items-center justify-center h-full w-full flex-col">
       <div className="lg:w-full text-center lg:pb-5">

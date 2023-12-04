@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 interface ViewEstruturaQuestoesProps {
   slide: Slide;
-  id: string;
+  id: number;
 }
 
 export function ViewEstruturaME({ slide, id }: ViewEstruturaQuestoesProps) {

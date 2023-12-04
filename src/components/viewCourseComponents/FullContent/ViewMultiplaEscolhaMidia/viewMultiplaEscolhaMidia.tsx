@@ -3,7 +3,7 @@ import { ViewEstruturaME } from "../ViewEstruturaME/viewEstruturaME";
 
 interface ViewMultiplaEscolhaMidiaProps {
   slide: Slide;
-  id: string;
+  id: number;
 }
 
 export function ViewMultiplaEscolhaMidia({

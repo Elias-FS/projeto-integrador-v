@@ -3,7 +3,7 @@ import { ViewEstruturaVF } from "../ViewEstruturaVF/viewEstruturaVF";
 
 interface ViewVerdadeiroFalsoProps {
   slide: Slide;
-  id: string;
+  id: number;
 }
 
 export function ViewVerdadeiroFalso({ slide, id }: ViewVerdadeiroFalsoProps) {

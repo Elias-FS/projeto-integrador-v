@@ -19,10 +19,12 @@ export interface PlayerState {
   }[];
   userType: string;
   curso: Curso;
+  idAssistir: number;
 
   verifySideBar: () => void;
   namingRole: () => void;
   saveInformations: (curso: Curso) => void;
+  assistirCurso: (idAssistir: number) => void;
 }
 
 export const useStore = create<PlayerState>((set) => {
@@ -31,10 +33,15 @@ export const useStore = create<PlayerState>((set) => {
     userType: "",
     curso: {} as Curso,
     usuario: {} as Usuario,
+    idAssistir: 0,
+
+    assistirCurso: (novoId) => {
+      console.log("Salvando informações:", novoId);
+      set(() => ({ idAssistir: novoId }));
+    },
 
     saveInformations: (novoCurso) => {
       console.log("Salvando informações:", novoCurso);
-      // Atualize o estado
       set((state) => ({ curso: novoCurso }));
     },
 
