@@ -44,11 +44,8 @@ const CriacaoCurso: React.FC = () => {
 
     const usuario = JSON.parse(localStorage.getItem('usuario')!)
 
-    console.log(curso.titulo)
-
     telaCursoService.criarSlide(
       slideList,
-      usuario.id,
       parseInt(curso.id)
     );
   }

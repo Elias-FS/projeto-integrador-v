@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/Select";
 import React, { useEffect, useState } from "react";
-import DropZone from "../dropZone/dropZone";
+import DropZone from "../DropZone/dropZone";
 import { Curso } from "@/models/curso";
 import { useStore } from "@/zustand-store";
 import { Link } from "react-router-dom";
@@ -38,7 +38,7 @@ export function FormsCriaCurso({
     curso: state.curso,
     saveInformations: state.saveInformations,
   }));
-  const [ academias , setAcademias ] = useState<Academia[]>([]);
+  const [academias, setAcademias] = useState<Academia[]>([]);
 
   useEffect(() => {
     AcademiaService.listarAcademias().then(
@@ -46,10 +46,9 @@ export function FormsCriaCurso({
         setAcademias(response.data);
       },
       (error) => {
-        const _content =
-          (error.response && error.response.data) 
-          error.message 
-          error.toString();
+        const _content = error.response && error.response.data;
+        error.message;
+        error.toString();
       }
     );
   }, []);
@@ -69,30 +68,29 @@ export function FormsCriaCurso({
   };
 
   const handleSelectChange = (valor: string) => {
-    academias.map(acad =>{
-      if(acad.nome == valor){
+    academias.map((acad) => {
+      if (acad.nome == valor) {
         setAcademiaSelecionada(acad);
       }
-    })
-    
+    });
   };
 
-
-
   async function salvarCurso() {
+    const usuario = Usuario.fromJson(
+      JSON.parse(localStorage.getItem("usuario")!)
+    );
 
-    const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem('usuario')!))
-
-    if(academiaSelecionada != undefined){
+    if (academiaSelecionada != undefined) {
       const newCurso = await CursoService.criarCurso(
         inputTitle,
         inputDescription,
         usuario.id,
         academiaSelecionada?.id,
-        selectedImage,
-      )
-      saveInformations(Curso.fromJson(newCurso));
-      }
+        selectedImage
+      );
+      console.log("newCurso: ", newCurso.data)
+      saveInformations(Curso.fromJson(newCurso.data));
+    }
   }
 
   return (

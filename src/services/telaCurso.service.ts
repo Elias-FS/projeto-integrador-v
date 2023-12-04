@@ -8,15 +8,13 @@ const listarSlides = () => {
 };
 
 const criarSlide = async (
-    slides: Slide[],
-    usuarioId: number,
-    academiaId: number
-    ) => {
-
-      const json = JSON.stringify(slides);
+  slides: Slide[],
+  cursoId: number
+) => {
+  const json = JSON.stringify(slides);
   return axios.post(API_URL + "telaCurso/criar", {
-    json
-
+    json,
+    cursoId
   });
 };
 
