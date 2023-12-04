@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/Select";
 import React, { useEffect, useState } from "react";
-import DropZone from "../DropZone/dropZone";
+import DropZone from "../dropZone/dropZone";
 import { Curso } from "@/models/curso";
 import { useStore } from "@/zustand-store";
 import { Link } from "react-router-dom";

@@ -1,3 +1,4 @@
+import { Slide } from "@/models/slide";
 import axios from "axios";
 
 const API_URL = "http://localhost:3000/";
@@ -7,24 +8,15 @@ const listarSlides = () => {
 };
 
 const criarSlide = async (
-    texto: string,
-    midia: File,
-    resposta: string,
-    fk_Curso_id: number,
-    posicao: string,
-    alternativas: string,
-    feedbacks: string,
-    tipo: string,
+    slides: Slide[],
+    usuarioId: number,
+    academiaId: number
     ) => {
+
+      const json = JSON.stringify(slides);
   return axios.post(API_URL + "telaCurso/criar", {
-    texto,
-    midia,
-    resposta,
-    fk_Curso_id,
-    posicao,
-    alternativas,
-    feedbacks,
-    tipo,
+    json
+
   });
 };
 

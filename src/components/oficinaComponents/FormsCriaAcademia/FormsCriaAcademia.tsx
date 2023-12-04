@@ -5,7 +5,7 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import DropZone from "../DropZone/dropZone";
+import DropZone from "../dropZone/dropZone";
 import React, { useState } from "react";
 import AcademiaService from "@/services/academia.service";
 import { Usuario } from "@/models/usuario";
