@@ -15,7 +15,6 @@ export function EstruturaDeAlternativas({
   setSlideList,
   slideList,
 }: EstruturaDeAlternativasProps) {
-  console.log("slide aberto: ", slideList[slideOpened]);
   return (
     <>
       <div className="text-left w-3/4">

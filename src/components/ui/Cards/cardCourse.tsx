@@ -54,7 +54,6 @@ const CardCourse: React.FC<CardUserProps> = ({
   }
 
   function fazerCurso() {
-      
     const id = parseInt(idCurso || "")
     assistirCurso(id)
   }

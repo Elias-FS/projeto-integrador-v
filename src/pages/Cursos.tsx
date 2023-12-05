@@ -45,6 +45,7 @@ const Cursos: React.FC = () => {
               descricao={curso.descricao}
               capa={curso.capa}
               type={"nao inscrito"}
+              idCurso={cursos[index].id}
             />
           )) : "Ainda não existem cursos para realizar..."}
         </div>

@@ -10,7 +10,7 @@ import { useStore } from "@/zustand-store";
 const VisualizacaoCurso: React.FC = () => {
   const [index, setIndex] = useState(0);
   const [slides, setSlides] = useState<Slide[]>([]);
-  const [isCarregando, setIsCarregando] = useState<boolean>(true)
+  const [isCarregando, setIsCarregando] = useState<boolean>(true);
   const { idAssistir } = useStore((state) => ({
     idAssistir: state.idAssistir,
   }));
@@ -22,11 +22,11 @@ const VisualizacaoCurso: React.FC = () => {
   async function getSlides() {
     const slidesDoCurso: Array<Slide> = [];
     const response = await telaCursoService.listarSlidesPorId(idAssistir);
-    console.log(response);
+    
     response.data.forEach((element: Slide) => {
+      console.log("slideDoCurso: ", element);
       slidesDoCurso.push(SlideUtils.fromJson(element));
     });
-
 
     setSlides(slidesDoCurso);
     setIsCarregando(false);
@@ -47,7 +47,11 @@ const VisualizacaoCurso: React.FC = () => {
         <Navbar />
         <div className="flex flex-wrap justify-center lg:my-8">
           <div className="w-full h-full bg-zinc-300 border border-gray-400 rounded-lg flex items-center justify-center m-5 lg:m-10">
-            {isCarregando ? `Carregando Slides do Curso...` : <FullContent id={idAssistir} slide={slides[index]} />}
+            {isCarregando ? (
+              `Carregando Slides do Curso...`
+            ) : (
+              <FullContent id={idAssistir} slide={slides[index]} />
+            )}
           </div>
         </div>
         <div className="flex items-center justify-center mt-8">

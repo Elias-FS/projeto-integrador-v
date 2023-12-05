@@ -13,24 +13,36 @@ export class SlideUtils {
   static fromJson(json: any): Slide {
     const {
       id,
-      tipo,
+      tipoId,
       posicao,
       texto,
-      alternativas,
-      feedbacks,
-      resposta,
-      midia
+      alternativa1,
+      alternativa2,
+      alternativa3,
+      alternativa4,
+      alternativa5,
+      feedbackNegativo,
+      feedbackPositivo,
+      correta,
+      midia,
     } = json;
 
     return {
       id: id,
-      tipo: tipo,
+      tipo: tipoId,
       posicao: posicao,
-      texto: texto || '',
-      alternativas: alternativas || [],
-      feedbacks: feedbacks || [],
-      resposta: resposta || [],
-      midia: midia || ''
+      texto: texto || "",
+      alternativas:
+        [
+          alternativa1 || "",
+          alternativa2 || "",
+          alternativa3 || "",
+          alternativa4 || "",
+          alternativa5 || "",
+        ] || [],
+      feedbacks: [feedbackPositivo, feedbackNegativo] || [],
+      resposta: correta || [],
+      midia: midia || "",
     };
   }
 }

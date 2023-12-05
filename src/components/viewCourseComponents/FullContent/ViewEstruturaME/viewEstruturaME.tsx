@@ -67,7 +67,8 @@ export function ViewEstruturaME({ slide, id }: ViewEstruturaQuestoesProps) {
       <div className="text-left w-3/4 flex flex-col">
         <Label>{slide.texto}</Label>
         <div className="flex flex-col gap-3 mb-6 lg:gap-6 lg:mb-12">
-          {slide.alternativas?.map((option, index) => (
+          {
+          slide.alternativas?.map((option, index) => (
             <Button
               className={`block font-inherit text-inherit text-base lg:text-2xl ${
                 selecionado === index

@@ -7,8 +7,6 @@ const listarSlides = () => {
   return axios.get(API_URL + "telaCurso/");
 };
 
-
-
 const listarSlidesPorId = async (fk_Curso_id: number) => {
   return axios.get(API_URL + `telaCurso/listarSlidePorId/${fk_Curso_id}`);
 };

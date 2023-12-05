@@ -14,12 +14,14 @@ const MinhasAulas: React.FC = () => {
 
   useEffect(() => {
     const cursosDoProfessor: Array<Curso> = [];
-    const usuario = Usuario.fromJson(JSON.parse(localStorage.getItem("usuario")!))
+    const usuario = Usuario.fromJson(
+      JSON.parse(localStorage.getItem("usuario")!)
+    );
 
     CursoService.listarCursos().then(
       (response) => {
-        response.data.forEach((element: { fk_Usuario_id: number; }) => {
-          if (element.fk_Usuario_id == usuario.id) {
+        response.data.forEach((element: { usuarioId: number }) => {
+          if (element.usuarioId == usuario.id) {
             cursosDoProfessor.push(Curso.fromJson(element));
           }
         });
@@ -33,48 +35,6 @@ const MinhasAulas: React.FC = () => {
     );
   }, []);
 
-  // const cursos = [
-  //   {
-  //     id: "031cccd8-0a96-44e6-b8ee-d5247de06767",
-  //     titulo: "Curso de Python",
-  //     descricao: "Descrição Python",
-  //     data_nascimento: "11/11/2023",
-  //     academia: "Academia A",
-  //     capa: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
-  //     listaDeSlides: [
-  //       { slideType: "em branco" },
-  //       { slideType: "em branco" },
-  //       { slideType: "em branco" },
-  //     ],
-  //   },
-  //   {
-  //     id: "031cccd8-0a96-44e6-b8ee-d5247de06768",
-  //     titulo: "Curso de C++",
-  //     descricao: "Descrição C++",
-  //     data_nascimento: "11/11/2023",
-  //     academia: "Academia B",
-  //     capa: "https://dpaschoalteste.blob.core.windows.net/teste/asdfq-base64",
-  //     listaDeSlides: [
-  //       { slideType: "verdadeiro ou falso" },
-  //       { slideType: "verdadeiro ou falso" },
-  //       { slideType: "verdadeiro ou falso" },
-  //     ],
-  //   },
-  //   {
-  //     id: "031cccd8-0a96-44e6-b8ee-d5247de06769",
-  //     titulo: "Curso de TypeScript",
-  //     descricao: "Descrição TypeScript",
-  //     data_nascimento: "11/11/2023",
-  //     academia: "Academia C",
-  //     capa: "https://www.interviewbit.com/blog/wp-content/uploads/2023/05/Artboard-1-copy-2.jpg",
-  //     listaDeSlides: [
-  //       { slideType: "somente midia" },
-  //       { slideType: "somente midia" },
-  //       { slideType: "somente midia" },
-  //     ],
-  //   },
-  // ];
-
   return (
     <div className="flex">
       <Sidebar />
@@ -82,15 +42,18 @@ const MinhasAulas: React.FC = () => {
         <Navbar />
         <div className="flex flex-wrap justify-center my-8">
           <PlusButton name={"Nova Curso"} path={"/oficina-curso"} />
-          {cursos.length > 0 ? cursos.map((curso, index) => (
-            <CardCourse
-              key={index}
-              titulo={curso.titulo}
-              descricao={curso.descricao}
-              capa={curso.capa}
-              type={"inscrito"}
-            />
-          )) : "Você ainda não criou nenhum curso..."}
+          {cursos.length > 0
+            ? cursos.map((curso, index) => (
+                <CardCourse
+                  key={index}
+                  titulo={curso.titulo}
+                  descricao={curso.descricao}
+                  capa={curso.capa}
+                  type={"inscrito"}
+                  idCurso={cursos[index].id}
+                />
+              ))
+            : "Você ainda não criou nenhum curso..."}
         </div>
       </div>
     </div>

@@ -82,6 +82,7 @@ const MeuAprendizado: React.FC = () => {
               descricao={curso.descricao}
               capa={curso.capa}
               type={"inscrito"}
+              idCurso={cursos[index].id}
             />
           )) : "Você ainda não se inscreveu em nenhum curso..."}
         </div>
