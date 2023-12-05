@@ -42,8 +42,6 @@ const CriacaoCurso: React.FC = () => {
   }, [curso]); // Executa o efeito sempre que `curso` é alterado
 
   function salvarSlides() {
-    const usuario = JSON.parse(localStorage.getItem("usuario")!);
-
     telaCursoService.criarSlide(slideList, parseInt(curso.id));
   }
 

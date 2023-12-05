@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/Cards/card";
 import { Separator } from "../Separator";
 import { Users } from "phosphor-react";
+import axios from "axios";
 
 
 interface CardUserProps {
@@ -22,12 +23,33 @@ const CardAcademy: React.FC<CardUserProps> = ({
   descricao,
   capa,
 }) => {
+
+  const [imageSrc, setImageSrc] = useState<string>("");
+
+  useEffect(() => {
+    handleFileChange();
+  }, []);
+
+  const handleFileChange = async () => {
+    const response = await axios.get(capa, { responseType: "arraybuffer" });
+
+    let binary = "";
+    const binaryString = new Uint8Array(response.data);
+    const len = binaryString.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(binaryString[i]);
+    }
+
+    setImageSrc(binary);
+  };
+
+  
   return (
     <>
       <Card className="h-auto w-96 overflow-hidden mx-1 mb-8 group hover:bg-gray-100">
         <CardHeader style={{ padding: 0 }}>
           <img
-            src={capa}
+            src={imageSrc}
             alt="Imagem do usuário"
             className="aspect-video object-cover"
           />

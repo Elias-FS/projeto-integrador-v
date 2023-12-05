@@ -54,7 +54,7 @@ const CardCourse: React.FC<CardUserProps> = ({
   }
 
   function fazerCurso() {
-    console.log("logica para assistir o curso");
+      
     const id = parseInt(idCurso || "")
     assistirCurso(id)
   }
@@ -69,7 +69,6 @@ const CardCourse: React.FC<CardUserProps> = ({
   }, []);
 
   const handleFileChange = async () => {
-    console.log(capa);
     const response = await axios.get(capa, { responseType: "arraybuffer" });
 
     let binary = "";
